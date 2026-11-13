@@ -384,3 +384,8 @@ body{background:var(--bg0)}
   .hero-media video,.hero-media img{filter:brightness(.5) saturate(.85)}
   .hero::before{background:linear-gradient(180deg,rgba(7,7,6,.78) 0%,rgba(7,7,6,.7) 50%,rgba(7,7,6,.8) 75%,rgba(7,7,6,.97) 100%)}
 }
+.svc-card.feat{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:30px}
+.svc-card.feat h3{font-size:clamp(34px,4vw,48px)}
+.svc-card.feat p{flex:1 1 380px;max-width:620px}
+.svc-card.feat small,.svc-card.feat .go{flex-basis:100%}
+.svc-card.feat .n::after{content:" · em destaque";font-style:normal;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink4)}
