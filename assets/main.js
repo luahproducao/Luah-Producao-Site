@@ -192,3 +192,38 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 })();
+
+/* ===== enviar a um cliente ===== */
+(function () {
+  var SITE = 'https://luahproducao.github.io/Luah-Producao-Site/';
+  var btns = document.querySelectorAll('.share'); if (!btns.length) return;
+  var sh = document.createElement('div'); sh.className = 'sheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-modal', 'true'); sh.setAttribute('aria-label', 'Enviar a um cliente');
+  sh.innerHTML = '<div class="sheet-in"><button class="sheet-x" type="button" aria-label="Fechar">✕</button><h2>Enviar a um cliente</h2><p class="sh-url"></p>' +
+    '<a class="btn btn-gold sh-wa" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>' +
+    '<button class="btn btn-line sh-copy" type="button">Copiar link</button>' +
+    '<button class="btn btn-line sh-more" type="button" hidden>Outros aplicativos</button></div>';
+  document.body.appendChild(sh);
+  var cur = {}, last;
+  function close() { sh.classList.remove('open'); if (last) last.focus(); }
+  sh.querySelector('.sheet-x').addEventListener('click', close);
+  sh.addEventListener('click', function (e) { if (e.target === sh) close(); });
+  sh.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  sh.querySelector('.sh-copy').addEventListener('click', function () {
+    var b = this;
+    (navigator.clipboard ? navigator.clipboard.writeText(cur.url) : Promise.reject()).then(function () { b.textContent = 'Link copiado ✓'; }, function () { prompt('Copie o link:', cur.url); });
+    setTimeout(function () { b.textContent = 'Copiar link'; }, 2200);
+  });
+  var more = sh.querySelector('.sh-more');
+  if (navigator.share) { more.hidden = false; more.addEventListener('click', function () { navigator.share({ title: cur.title, text: cur.text, url: cur.url }).catch(function () {}); }); }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      last = b;
+      var path = b.dataset.path || '';
+      if (b.dataset.random) path = 'v' + (1 + Math.floor(Math.random() * 8)) + '/';
+      cur = { url: SITE + path, title: b.dataset.title, text: 'Olá! Conheça a Luah Produção — ' + b.dataset.title.replace(' — Luah Produção', '') + ':' };
+      sh.querySelector('.sh-url').textContent = cur.url;
+      sh.querySelector('.sh-wa').href = 'https://wa.me/?text=' + encodeURIComponent(cur.text + ' ' + cur.url);
+      sh.classList.add('open'); sh.querySelector('.sh-wa').focus();
+    });
+  });
+})();

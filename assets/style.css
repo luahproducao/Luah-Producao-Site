@@ -426,3 +426,16 @@ section[id],main [id]{scroll-margin-top:84px}
 .form ::placeholder{color:#6F6A61}
 .lb img{max-height:calc(100svh - 120px)}
 .lnk,.plan-acts a{display:inline-flex;align-items:center;min-height:40px}
+
+/* ===== enviar a um cliente ===== */
+.share-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0;background:none;border:0;color:var(--gold);font:500 11px var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer}
+.share-link:hover{color:var(--gold2)}
+.btn.share{gap:10px}
+.sheet{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:rgba(7,7,6,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sheet.open{display:flex}
+.sheet-in{width:100%;max-width:480px;margin:16px;background:var(--bgc);border:1px solid var(--line2);padding:26px;display:flex;flex-direction:column;gap:12px;animation:rise .45s var(--ease)}
+.sheet-in h2{margin:0 0 4px;font-family:var(--serif);font-weight:500;font-size:28px}
+.sheet-in p{margin:0 0 6px;font-size:14px;color:var(--ink3);word-break:break-all}
+.sheet-in .btn{width:100%}
+.sheet-x{align-self:flex-end;width:44px;height:44px;margin:-10px -10px 0 0;border:0;background:none;color:var(--ink2);font-size:20px;cursor:pointer}
+@media (min-width:700px){.sheet{align-items:center}}
