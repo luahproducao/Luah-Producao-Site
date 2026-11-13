@@ -174,8 +174,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 (function () {
   var $ = function (s) { return document.querySelector(s); };
   var LOGO = '../assets/img/logo-gold.png';
-  var DEF = { fotoHora: 0, fotoMin: 2, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoHora: 0, videoMin: 2, edicaoBase: 0, edicaoExtra30: 0, videoPrazo: 'até 10 dias úteis', revisoes: 1,
-    especialPct: 0, especialDatas: '24/12, 25/12, 31/12, 01/01', noturnoPct: 0, deslocamento: 0, realtime: 0, validade: 7,
+  var DEF = { fotoHora: 200, fotoMin: 3, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoHora: 200, videoMin: 3, edicaoBase: 350, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
+    especialPct: 50, especialDatas: '24/12, 25/12, 31/12, 01/01', noturnoPct: 0, deslocamento: 0, realtime: 300, validade: 7,
     pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem, alimentação da equipe e impressões', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção' };
   var cfg = Object.assign({}, DEF);
   try { Object.assign(cfg, JSON.parse(localStorage.getItem('luahPrecos') || '{}')); } catch (e) {}
