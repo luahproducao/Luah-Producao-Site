@@ -92,6 +92,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 .q .eco{margin:10px 0 0;color:var(--gd2)}
 .q .opt{margin:10px 0 0}
 .q.rs td{padding:7px 0}.q.rs .qs .k{margin-top:30px}.q.rs .qs p+p{margin-top:8px}.q.rs hr{margin:22px 0}.q.rs .qm{padding-top:52px;padding-bottom:36px}
+.q tr.zero{opacity:.4}
+.q td[colspan]{text-align:left!important}
 .q .ft{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:11px;color:var(--mu)}
 .q .ft b{color:var(--gd2);font-weight:600}
 .q .ft a{color:var(--gd2);text-decoration:none;font-weight:600}
@@ -112,6 +114,12 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   .qtools,.hint,.sum{display:none!important}
   .q{width:210mm;max-width:none;min-height:297mm;grid-template-columns:66mm minmax(0,1fr);page-break-after:always;break-after:page;page-break-inside:avoid}
   .q.skip{display:none!important}
+  .q tr.zero{display:none}
+  .q .qm{padding:48px 46px 34px}
+  .q hr{margin:22px 0}
+  .q .inc li{padding:3px 0 3px 22px}
+  .q .inc li::before{top:12px}
+  .q .qs{padding:48px 30px}
   .q.last{page-break-after:auto;break-after:auto}
   .q [contenteditable]{box-shadow:none!important;background:none!important}
   [hidden],#lock{display:none!important}
@@ -184,7 +192,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 </div>
 <div class="row" style="margin-top:12px">
 <label>Local<input type="text" id="local"></label>
-<label>Como enviar<select id="modo"><option value="sep">Foto e vídeo separados</option><option value="junto">Foto e vídeo juntos</option></select></label>
+<label>Como enviar<select id="modo"><option value="sep">Foto e vídeo separados</option><option value="junto">Foto e vídeo juntos</option><option value="opc">Opções: só foto ou foto + vídeo</option></select></label>
 </div>
 <label class="chk" style="margin-top:14px"><input type="checkbox" id="porData" checked> Um orçamento por data</label>
 <p class="muted" id="readInfo" style="margin:12px 0 0;font-size:13px"></p>
@@ -362,23 +370,35 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     if (e.curtos) L.push(cfg.curtoQtd + ' vídeos curtos de até 30s, prontos para as redes');
     return L.concat(['Formatos para redes (vertical) e horizontal, se necessário', 'Entrega em pastas no Google Drive: arquivos brutos e editados, separados entre vídeos e fotos', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo]);
   }
+  function incluiCombo(e) {
+    var n = Math.round(e.horas * cfg.fotosPorHora);
+    var L = ['Reunião de briefing antes do evento para alinhar objetivos e momentos-chave', 'Presença do início ao fim do evento, conforme a programação do briefing', 'Captação com celulares de última geração: ágil, discreta e pronta para as redes',
+      (n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução'];
+    if (cfg.previa) L.push('Prévia com ' + cfg.previa + ', para postar logo após o evento');
+    L.push('Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', com trilha e correção de cor, nos formatos vertical e horizontal');
+    if (e.curtos) L.push(cfg.curtoQtd + ' vídeos curtos de até 30s, prontos para as redes');
+    L.push('Entrega em pastas no Google Drive: brutos e editados, separados entre vídeos e fotos');
+    L.push(cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste no vídeo · fotos ' + cfg.fotoPrazo + ' e vídeo ' + cfg.videoPrazo);
+    return L;
+  }
   function propostas() {
     var P = [];
     var junto = $('#modo').value === 'junto', porData = $('#porData').checked;
     var groups = porData ? evs.map(function (e) { return [e]; }) : (evs.length ? [evs] : []);
     groups.forEach(function (g) {
-      var tipos = junto ? [['foto', 'video']] : [['foto'], ['video']];
+      var opc = $('#modo').value === 'opc';
+      var tipos = opc ? [['foto'], ['foto', 'video']] : junto ? [['foto', 'video']] : [['foto'], ['video']];
       tipos.forEach(function (ts) {
         var linhas = [], incl = [], titulo = [];
         g.forEach(function (e) {
           ts.forEach(function (tp) {
             if ((tp === 'foto' && !e.foto) || (tp === 'video' && !e.video)) return;
             itens(e, tp).forEach(function (it) { linhas.push([(g.length > 1 ? pad(e.d) + '/' + pad(e.m) + ' · ' : '') + it[0], it[1]]); });
-            inclui(e, tp).forEach(function (x) { if (incl.indexOf(x) < 0) incl.push(x); });
+            (ts.length === 2 ? (tp === 'foto' ? incluiCombo(e) : []) : inclui(e, tp)).forEach(function (x) { if (incl.indexOf(x) < 0) incl.push(x); });
           });
         });
         if (!linhas.length) return;
-        var nomeServ = ts.length === 2 ? 'Fotografia e vídeo' : ts[0] === 'foto' ? 'Fotografia' : 'Vídeo';
+        var nomeServ = ts.length === 2 ? (opc ? 'Foto e vídeo' : 'Fotografia e vídeo') : ts[0] === 'foto' ? 'Fotografia' : 'Vídeo';
         P.push({ evs: g, servico: nomeServ, linhas: linhas, total: linhas.reduce(function (a, b) { return a + b[1]; }, 0), incl: incl });
       });
     });
@@ -415,7 +435,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     var t = '*Orçamento — ' + p.servico + '*\nLuah Produção · para ' + c + '\n_' + p.sub + '_\n\n';
     p.evs.forEach(function (e) { t += '📅 ' + dataLonga(e) + ', às ' + horaTxt(e) + '\n' + e.nome + (e.local ? ' · ' + e.local : '') + '\n'; });
     t += '\n';
-    p.linhas.forEach(function (l) { t += '• ' + l[0] + ': ' + brl(l[1]) + '\n'; });
+    p.linhas.forEach(function (l) { if (l[1]) t += '• ' + l[0] + ': ' + brl(l[1]) + '\n'; });
     t += '\n*Total: ' + brl(p.total) + '*\n\nIncluso:\n' + p.incl.map(function (x) { return '✦ ' + x; }).join('\n');
     t += '\n\n' + txt(p.cond) + '\nProposta válida até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + '.';
     t += '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
@@ -429,6 +449,13 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     return { soma: soma, pac: pac, econ: soma - pac, semCurtos: semCurtos, extra: cfg.curtoQtd * cfg.curtoValor };
   }
   function textoResumo(P) {
+    if ($('#modo').value === 'opc') {
+      var c0 = $('#cliente').value || 'cliente', t0 = '*Resumo da proposta*\nLuah Produção · para ' + c0 + '\n';
+      var all = []; P.forEach(function (p) { p.evs.forEach(function (e) { if (all.indexOf(e) < 0) all.push(e); }); });
+      all.forEach(function (e) { t0 += '\n*' + pad(e.d) + '/' + pad(e.m) + ' · ' + e.nome + '*\n'; P.forEach(function (p) { if (p.evs.indexOf(e) > -1) t0 += '• ' + p.servico + ': ' + brl(p.total) + '\n'; }); });
+      t0 += '\n' + grupos(P).map(function (g) { return 'Total — ' + g.nome + ': ' + brl(g.total); }).join('\n');
+      return t0 + '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
+    }
     var k = pacote(P), c = $('#cliente').value || 'cliente';
     var t = '*Resumo da proposta*\nLuah Produção · para ' + c + '\n\n';
     P.forEach(function (p) { t += '• ' + p.servico + ' — ' + p.evs.map(function (e) { return pad(e.d) + '/' + pad(e.m) + ' ' + e.nome; }).join(', ') + ': ' + brl(p.total) + '\n'; });
@@ -450,13 +477,34 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     side += '<div class="k">Serviço</div><p>' + esc(p.servico) + '</p>';
     side += '<div class="qt"><div class="k" style="margin:0">Investimento</div><b data-tot="' + i + '">' + brl(p.total) + '</b></div>';
     var main = '<div class="k2">Proposta para</div><h3 data-ed="cliente"' + CE + '>' + esc(cli) + '</h3><div class="lede" data-ed="sub" data-p="' + i + '"' + CE + '>' + esc(p.sub) + '</div><hr>';
-    main += '<table>' + p.linhas.map(function (l, j) { return '<tr><td data-ed="desc" data-p="' + i + '" data-l="' + j + '"' + CE + '>' + esc(l[0]) + '</td><td data-ed="val" data-p="' + i + '" data-l="' + j + '"' + CE + ' inputmode="decimal">' + brl(l[1]) + '</td></tr>'; }).join('') + '</table><hr>';
+    main += '<table>' + p.linhas.map(function (l, j) { return '<tr' + (l[1] ? '' : ' class="zero" title="Valor zerado: esta linha não sai no PDF"') + '><td data-ed="desc" data-p="' + i + '" data-l="' + j + '"' + CE + '>' + esc(l[0]) + '</td><td data-ed="val" data-p="' + i + '" data-l="' + j + '"' + CE + ' inputmode="decimal">' + brl(l[1]) + '</td></tr>'; }).join('') + '</table><hr>';
     main += '<div class="k2">O que está incluso</div><ul class="inc" data-ed="incl" data-p="' + i + '"' + CE + '>' + p.incl.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul><hr>';
     main += '<div class="cond" data-ed="cond" data-p="' + i + '"' + CE + '>' + p.cond + '</div>' + rodape(p.evs);
     return '<div class="qtools"><button class="btn" type="button" data-copy="' + i + '">Copiar para WhatsApp</button><button class="btn" type="button" data-print="' + i + '">Salvar só esta em PDF</button></div>' +
       '<article class="q" data-q="' + i + '"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
   }
+  function grupos(P) {
+    var G = [];
+    P.forEach(function (p, i) { var g = G.filter(function (x) { return x.nome === p.servico; })[0]; if (!g) { g = { nome: p.servico, total: 0, n: 0 }; G.push(g); } g.total += p.total; g.n++; });
+    return G;
+  }
+  function resumoOpc(P) {
+    var G = grupos(P), all = [], cli = $('#cliente').value || 'Cliente', top = G[G.length - 1];
+    P.forEach(function (p) { p.evs.forEach(function (e) { if (all.indexOf(e) < 0) all.push(e); }); });
+    var side = brand() + '<div class="k">' + (all.length > 1 ? 'Datas' : 'Data') + '</div>' + all.map(function (e) { return '<p>' + diaTxt(e) + '<small>' + horaTxt(e) + ' · ' + esc(e.nome) + '</small></p>'; }).join('') +
+      '<div class="qt"><div class="k" style="margin:0">' + esc(top.nome) + ' · todas as datas</div><b data-r="g' + (G.length - 1) + '">' + brl(top.total) + '</b>' + G.slice(0, -1).map(function (g, gi) { return '<small>' + esc(g.nome) + ': <span data-r="g' + gi + 's">' + brl(g.total) + '</span></small>'; }).join('') + '</div>';
+    var rows = all.map(function (e) {
+      var ps = P.map(function (p, i) { return { p: p, i: i }; }).filter(function (x) { return x.p.evs.indexOf(e) > -1; });
+      return '<tr><td colspan="2" style="padding-top:16px;border-bottom:0"><b style="font:500 19px var(--serif)">' + pad(e.d) + '/' + pad(e.m) + ' · ' + esc(e.nome) + '</b></td></tr>' + ps.map(function (x) { return '<tr><td>' + esc(x.p.servico) + '</td><td data-rt="' + x.i + '">' + brl(x.p.total) + '</td></tr>'; }).join('');
+    }).join('');
+    var main = '<div class="k2">Resumo da proposta</div><h3 data-ed="cliente"' + CE + '>' + esc(cli) + '</h3><div class="lede" data-ed="rsub"' + CE + '>' + esc(ED._rsub != null ? ED._rsub : 'Valores por data, com as duas opções de cobertura') + '</div><hr>' +
+      '<table>' + rows + G.map(function (g, gi) { return '<tr class="' + (gi === G.length - 1 ? 'big' : 'sm') + '"><td>Total — ' + esc(g.nome) + ' (' + g.n + ' data' + (g.n > 1 ? 's' : '') + ')</td><td data-r="g' + gi + '">' + brl(g.total) + '</td></tr>'; }).join('') + '</table>' +
+      '<hr><div class="cond" data-ed="rcond"' + CE + '>' + (ED._rcond != null ? ED._rcond : condPadrao()) + '</div>' + rodape(all);
+    return '<div class="qtools"><button class="btn" type="button" data-copy="R">Copiar resumo</button><button class="btn" type="button" data-print="R">Salvar só o resumo em PDF</button></div>' +
+      '<article class="q rs" data-q="R"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
+  }
   function resumoHtml(P) {
+    if ($('#modo').value === 'opc') return resumoOpc(P);
     var k = pacote(P), all = [], cli = $('#cliente').value || 'Cliente';
     P.forEach(function (p) { p.evs.forEach(function (e) { if (all.indexOf(e) < 0) all.push(e); }); });
     var side = brand() + '<div class="k">' + (all.length > 1 ? 'Datas' : 'Data') + '</div>' + all.map(function (e) { return '<p>' + diaTxt(e) + '<small>' + horaTxt(e) + ' · ' + esc(e.nome) + '</small></p>'; }).join('') +
@@ -478,6 +526,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       var t = out.querySelector('[data-tot="' + i + '"]'); if (t) t.textContent = brl(p.total);
       var r = out.querySelector('[data-rt="' + i + '"]'); if (r) r.textContent = brl(p.total);
     });
+    grupos(P).forEach(function (g, gi) { out.querySelectorAll('[data-r="g' + gi + '"],[data-r="g' + gi + 's"]').forEach(function (el) { el.textContent = brl(g.total); }); });
+    out.querySelectorAll('.q tr').forEach(function (tr) { var v = tr.querySelector('[data-ed="val"]'); if (v) { var pp = P[+v.dataset.p]; tr.classList.toggle('zero', !(pp && pp.linhas[+v.dataset.l][1])); } });
     var k = pacote(P), f = function (s, v) { var el = out.querySelector('[data-r="' + s + '"]'); if (el) el.textContent = v; };
     f('soma', brl(k.soma)); f('pac', brl(k.pac)); f('econ', k.econ > 0 ? 'Economia de ' + brl(k.econ) + ' ao fechar todas as datas e serviços.' : ''); f('econ2', k.econ > 0 ? 'em vez de ' + brl(k.soma) : '');
     var pe = out.querySelector('[data-ed="pac"]'); if (pe && document.activeElement !== pe) pe.textContent = brl(k.pac);
