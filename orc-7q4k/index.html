@@ -97,25 +97,24 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 <p class="warn" id="cfgWarn">Preencha os seus valores uma vez. Eles ficam salvos só neste aparelho e não aparecem no site.</p>
 <p class="sub">Fotografia</p>
 <div class="row">
-<label>Valor por hora (R$)<input type="number" min="0" step="10" data-cfg="fotoHora"></label>
-<label>Mínimo de horas<input type="number" min="0" step="1" data-cfg="fotoMin"></label>
-<label>Fotos tratadas por hora (estimativa)<input type="number" min="0" step="5" data-cfg="fotosPorHora"></label>
+<label>Cobertura integral do evento (R$)<input type="number" min="0" step="10" data-cfg="fotoCobertura"></label>
+<label>Fotos tratadas por hora de evento (estimativa)<input type="number" min="0" step="5" data-cfg="fotosPorHora"></label>
 <label>Prazo de entrega das fotos<input type="text" data-cfg="fotoPrazo"></label>
 </div>
 <p class="sub">Vídeo</p>
 <div class="row">
-<label>Valor por hora de captação (R$)<input type="number" min="0" step="10" data-cfg="videoHora"></label>
-<label>Mínimo de horas<input type="number" min="0" step="1" data-cfg="videoMin"></label>
+<label>Cobertura integral do evento (R$)<input type="number" min="0" step="10" data-cfg="videoCobertura"></label>
 <label>Edição — vídeo de até 1min30 (R$)<input type="number" min="0" step="10" data-cfg="edicaoBase"></label>
 <label>Edição — cada 30s a mais (R$)<input type="number" min="0" step="10" data-cfg="edicaoExtra30"></label>
+<label>Vídeos curtos — quantidade<input type="number" min="1" step="1" data-cfg="curtoQtd"></label>
+<label>Vídeos curtos — valor de cada (R$)<input type="number" min="0" step="5" data-cfg="curtoValor"></label>
 <label>Prazo de entrega do vídeo<input type="text" data-cfg="videoPrazo"></label>
 <label>Rodadas de ajuste no vídeo<input type="number" min="0" step="1" data-cfg="revisoes"></label>
 </div>
 <p class="sub">Adicionais</p>
 <div class="row">
-<label>Data especial / feriado (+%)<input type="number" min="0" step="5" data-cfg="especialPct"></label>
+<label>Data especial / feriado (+% sobre a cobertura)<input type="number" min="0" step="5" data-cfg="especialPct"></label>
 <label>Datas especiais (dd/mm, separadas por vírgula)<input type="text" data-cfg="especialDatas"></label>
-<label>Após 22h (+% sobre horas após 22h)<input type="number" min="0" step="5" data-cfg="noturnoPct"></label>
 <label>Deslocamento por diária (R$)<input type="number" min="0" step="10" data-cfg="deslocamento"></label>
 <label>Publicação em tempo real por diária (R$)<input type="number" min="0" step="10" data-cfg="realtime"></label>
 </div>
@@ -174,9 +173,9 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 (function () {
   var $ = function (s) { return document.querySelector(s); };
   var LOGO = '../assets/img/logo-gold.png';
-  var DEF = { fotoHora: 200, fotoMin: 3, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoHora: 200, videoMin: 3, edicaoBase: 350, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
-    especialPct: 50, especialDatas: '24/12, 25/12, 31/12, 01/01', noturnoPct: 0, deslocamento: 0, realtime: 300, validade: 7,
-    pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem, alimentação da equipe e impressões', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção' };
+  var DEF = { fotoCobertura: 900, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoCobertura: 900, edicaoBase: 350, curtoQtd: 8, curtoValor: 70, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
+    especialPct: 50, especialDatas: '24/12, 25/12, 31/12, 01/01', deslocamento: 0, realtime: 300, validade: 7,
+    pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem e alimentação da equipe; extensão do evento além da programação do briefing ou dia adicional são orçados à parte', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção' };
   var cfg = Object.assign({}, DEF);
   try { Object.assign(cfg, JSON.parse(localStorage.getItem('luahPrecos') || '{}')); } catch (e) {}
   var evs = [];
@@ -200,7 +199,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     el.value = cfg[el.dataset.cfg];
     el.addEventListener('input', function () { cfg[el.dataset.cfg] = el.type === 'number' ? +el.value : el.value; render(); });
   });
-  if (!cfg.fotoHora && !cfg.videoHora) $('#cfg').open = true;
+  if (!cfg.fotoCobertura && !cfg.videoCobertura) $('#cfg').open = true;
   $('#cfgSave').addEventListener('click', function () { localStorage.setItem('luahPrecos', JSON.stringify(cfg)); this.textContent = 'Salvo ✓'; var b = this; setTimeout(function () { b.textContent = 'Salvar tabela'; }, 1800); });
   $('#cfgExport').addEventListener('click', function () { prompt('Copie e guarde este código da sua tabela:', btoa(unescape(encodeURIComponent(JSON.stringify(cfg))))); });
   $('#cfgImport').addEventListener('click', function () {
@@ -226,6 +225,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     var vl = t.match(/(\d+)\s*min(?:uto)?s?\s*(?:e\s*)?(\d{1,2})?\s*(?:s|seg)?/i); var vsec = vl ? (+vl[1]) * 60 + (+(vl[2] || 0)) : 90;
     var sep = /separad/i.test(t); $('#modo').value = sep || (wantFoto && wantVideo) ? 'sep' : 'junto';
     var rt = /tempo\s+real|real\s*time|ao\s+vivo\s+nas\s+redes|stories\s+durante/i.test(t);
+    var curtos = /v[íi]deos?\s+curtos|cortes|sequ[êe]ncia\s+de\s+\d+\s+v[íi]deos/i.test(t);
     var body = t.replace(/\[\s*\d{1,2}\/\d{1,2}\/\d{2,4},?\s*\d{1,2}:\d{2}(?::\d{2})?\s*\]/g, '');
     var lineRe = /^[\s•*\-–]*(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\s*[,–-]?\s*(?:às\s*)?(\d{1,2})(?:[:h](\d{2}))?\s*h?\s*(?:[-–—:]\s*)?([^\n]*)/gm;
     var found = [], l;
@@ -234,7 +234,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       var y = l[3] ? (+l[3] < 100 ? 2000 + +l[3] : +l[3]) : yearFor(d, m);
       var nome = (l[6] || '').replace(/^[\s\-–—:]+/, '').trim() || 'Evento';
       var loc = ''; var pm = nome.match(/\(\s*(?:no|na|em|nos|nas)\s+([^)]+)\)\s*$/i); if (pm) { loc = pm[1].trim(); loc = loc.charAt(0).toUpperCase() + loc.slice(1); }
-      found.push({ d: d, m: m, y: y, hora: pad(+l[4]) + ':' + (l[5] || '00'), nome: nome, horas: over[d] || base, foto: wantFoto, video: wantVideo, vsec: vsec, especial: especialDe(d, m), realtime: rt, local: loc });
+      found.push({ d: d, m: m, y: y, hora: pad(+l[4]) + ':' + (l[5] || '00'), nome: nome, horas: over[d] || base, foto: wantFoto, video: wantVideo, vsec: vsec, especial: especialDe(d, m), realtime: rt, curtos: curtos, local: loc });
     }
     if (found.length) { evs = found; info.push(found.length + ' data' + (found.length > 1 ? 's' : '')); }
     info.push('média de ' + base + 'h'); if (Object.keys(over).length) info.push('exceções: ' + Object.keys(over).map(function (k) { return 'dia ' + k + ' = ' + over[k] + 'h'; }).join(', '));
@@ -242,7 +242,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     $('#readInfo').textContent = 'Identifiquei: ' + info.join(' · ') + '. Confira abaixo.';
     drawEvs(); render();
   });
-  $('#addEv').addEventListener('click', function () { var n = new Date(); evs.push({ d: n.getDate(), m: n.getMonth() + 1, y: n.getFullYear(), hora: '19:00', nome: 'Evento', horas: 4, foto: true, video: true, vsec: 90, especial: false, realtime: false, local: '' }); drawEvs(); render(); });
+  $('#addEv').addEventListener('click', function () { var n = new Date(); evs.push({ d: n.getDate(), m: n.getMonth() + 1, y: n.getFullYear(), hora: '19:00', nome: 'Evento', horas: 4, foto: true, video: true, vsec: 90, especial: false, realtime: false, curtos: false, local: '' }); drawEvs(); render(); });
   $('#clear').addEventListener('click', function () { if (!confirm('Limpar tudo?')) return; evs = []; $('#msg').value = ''; $('#cliente').value = ''; $('#contato').value = ''; $('#local').value = ''; $('#readInfo').textContent = ''; drawEvs(); render(); });
   ['#cliente', '#contato', '#local', '#modo', '#porData'].forEach(function (s) { $(s).addEventListener('input', render); $(s).addEventListener('change', render); });
 
@@ -258,12 +258,13 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
         '<label>Início<input type="time" data-k="hora" value="' + e.hora + '"></label>' +
         '<label>Evento<input type="text" data-k="nome" value="' + esc(e.nome) + '"></label>' +
         '<label>Local<input type="text" data-k="local" value="' + esc(e.local) + '" placeholder="opcional"></label>' +
-        '<label>Horas de cobertura<input type="number" min="0.5" step="0.5" data-k="horas" value="' + e.horas + '"></label>' +
+        '<label>Duração prevista (h)<input type="number" min="0.5" step="0.5" data-k="horas" value="' + e.horas + '"></label>' +
         '<label>Duração do vídeo<select data-k="vsec">' + [60, 90, 120, 180, 240, 300].map(function (v) { return '<option value="' + v + '"' + (v === e.vsec ? ' selected' : '') + '>' + fmtSec(v) + '</option>'; }).join('') + '</select></label>' +
         '</div><div style="display:flex;flex-wrap:wrap;gap:8px 22px">' +
         '<label class="chk"><input type="checkbox" data-k="foto"' + (e.foto ? ' checked' : '') + '> Fotografia</label>' +
         '<label class="chk"><input type="checkbox" data-k="video"' + (e.video ? ' checked' : '') + '> Vídeo</label>' +
         '<label class="chk"><input type="checkbox" data-k="especial"' + (e.especial ? ' checked' : '') + '> Data especial / feriado</label>' +
+        '<label class="chk"><input type="checkbox" data-k="curtos"' + (e.curtos ? ' checked' : '') + '> ' + cfg.curtoQtd + ' vídeos curtos (até 30s)</label>' +
         '<label class="chk"><input type="checkbox" data-k="realtime"' + (e.realtime ? ' checked' : '') + '> Publicação em tempo real</label>' +
         '</div></div>';
     }).join('');
@@ -285,24 +286,25 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   function brl(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
   var DIAS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
   function dataLonga(e) { var dt = new Date(e.y, e.m - 1, e.d); return DIAS[dt.getDay()] + ', ' + e.d + ' de ' + MESES[e.m - 1] + ' de ' + e.y; }
-  function horasNoturnas(e) { var p = e.hora.split(':'), ini = +p[0] + (+p[1] || 0) / 60, fim = ini + e.horas, n = 0; for (var t = ini; t < fim; t += 0.25) { var hh = t % 24; if (hh >= 22 || hh < 6) n += 0.25; } return n; }
   function itens(e, tipo) {
-    var L = [], hrs = Math.max(e.horas, tipo === 'foto' ? cfg.fotoMin : cfg.videoMin), rate = tipo === 'foto' ? cfg.fotoHora : cfg.videoHora;
-    var cap = hrs * rate;
-    L.push([(tipo === 'foto' ? 'Cobertura fotográfica' : 'Captação de vídeo') + ' — ' + String(hrs).replace('.', ',') + 'h', cap]);
+    var L = [], cap = tipo === 'foto' ? cfg.fotoCobertura : cfg.videoCobertura;
+    L.push([(tipo === 'foto' ? 'Cobertura fotográfica integral do evento' : 'Cobertura em vídeo integral do evento'), cap]);
     if (tipo === 'video') {
       var extra = Math.max(0, Math.ceil((e.vsec - 90) / 30)) * cfg.edicaoExtra30;
       L.push(['Edição e finalização — vídeo geral do evento (' + fmtSec(e.vsec) + ')', cfg.edicaoBase + extra]);
+      if (e.curtos) L.push(['Sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s cada)', cfg.curtoQtd * cfg.curtoValor]);
     }
-    var noct = horasNoturnas(e); if (noct > 0 && cfg.noturnoPct) L.push(['Adicional noturno — ' + String(noct).replace('.', ',') + 'h após 22h', noct * rate * cfg.noturnoPct / 100]);
-    if (e.especial && cfg.especialPct) L.push(['Adicional de data especial (' + cfg.especialPct + '%)', cap * cfg.especialPct / 100]);
+    if (e.especial && cfg.especialPct) L.push(['Adicional de data especial (' + cfg.especialPct + '% sobre a cobertura)', cap * cfg.especialPct / 100]);
     if (e.realtime && cfg.realtime && (tipo === 'video' || !e.video)) L.push(['Publicação em tempo real nas redes', cfg.realtime]);
     if (cfg.deslocamento) L.push(['Deslocamento', cfg.deslocamento]);
     return L;
   }
   function inclui(e, tipo) {
-    if (tipo === 'foto') { var n = Math.round(Math.max(e.horas, cfg.fotoMin) * cfg.fotosPorHora); return ['Fotógrafo(a) durante ' + String(e.horas).replace('.', ',') + 'h de evento', (n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Entrega em galeria online ' + cfg.fotoPrazo]; }
-    return ['Captação de vídeo durante ' + String(e.horas).replace('.', ',') + 'h de evento', 'Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor', 'Formatos para redes (vertical) e horizontal, se necessário', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo];
+    var base = ['Reunião de briefing antes do evento para alinhar objetivos e momentos-chave', 'Presença do início ao fim do evento, conforme a programação do briefing'];
+    if (tipo === 'foto') { var n = Math.round(e.horas * cfg.fotosPorHora); return base.concat([(n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Entrega em galeria online ' + cfg.fotoPrazo, 'Todo o material bruto entregue por link']); }
+    var L = base.concat(['Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor']);
+    if (e.curtos) L.push(cfg.curtoQtd + ' vídeos curtos de até 30s, prontos para as redes');
+    return L.concat(['Formatos para redes (vertical) e horizontal, se necessário', 'Todo o material bruto entregue por link', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo]);
   }
   function propostas() {
     var P = [];
@@ -338,7 +340,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   }
   function render() {
     var out = $('#out'), P = propostas();
-    var semPreco = (!cfg.fotoHora && evs.some(function (e) { return e.foto; })) || (!cfg.videoHora && evs.some(function (e) { return e.video; }));
+    var semPreco = (!cfg.fotoCobertura && evs.some(function (e) { return e.foto; })) || (!cfg.videoCobertura && evs.some(function (e) { return e.video; }));
     $('#sum').innerHTML = P.length ? '<span class="muted">' + P.length + ' proposta' + (P.length > 1 ? 's' : '') + '</span><span>Soma de tudo: <b>' + brl(P.reduce(function (a, p) { return a + p.total; }, 0)) + '</b></span>' + (semPreco ? '<span class="warn">Preencha os valores na “Tabela de preços” — alguns itens estão em R$ 0,00.</span>' : '') : '<span class="muted">As propostas aparecem aqui.</span>';
     var hoje = new Date(), val = new Date(hoje.getTime() + cfg.validade * 864e5);
     out.innerHTML = P.map(function (p, i) {
