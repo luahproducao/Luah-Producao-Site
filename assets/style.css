@@ -380,3 +380,7 @@ body{background:var(--bg0)}
   .hero::before{background:linear-gradient(180deg,rgba(7,7,6,.7) 0%,rgba(7,7,6,.55) 40%,rgba(7,7,6,.72) 70%,rgba(7,7,6,.97) 100%)}
 }
 .hero .h1 em{background:none;-webkit-text-fill-color:var(--gold2);color:var(--gold2);animation:none}
+@media (max-width:760px){
+  .hero-media video,.hero-media img{filter:brightness(.5) saturate(.85)}
+  .hero::before{background:linear-gradient(180deg,rgba(7,7,6,.78) 0%,rgba(7,7,6,.7) 50%,rgba(7,7,6,.8) 75%,rgba(7,7,6,.97) 100%)}
+}
