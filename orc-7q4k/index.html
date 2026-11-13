@@ -89,6 +89,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 .q .cond{font-size:10.8px;color:var(--mu);line-height:1.65}
 .q .cond p{margin:0 0 3px}
 .q .cond b{color:var(--tx);font-weight:600}
+.q .cond p.pag{margin-top:10px;padding:10px 12px;background:#EAE1D2;color:var(--tx);font-size:11.5px;line-height:1.6}
 .q .eco{margin:10px 0 0;color:var(--gd2)}
 .q .opt{margin:10px 0 0}
 .q.rs td{padding:7px 0}.q.rs .qs .k{margin-top:30px}.q.rs .qs p+p{margin-top:8px}.q.rs hr{margin:22px 0}.q.rs .qm{padding-top:52px;padding-bottom:36px}
@@ -171,6 +172,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 </div>
 <label>Não incluído<input type="text" data-cfg="naoIncluso"></label>
 <label>Direitos de uso<input type="text" data-cfg="direitos"></label>
+<label style="grid-column:1/-1">Dados para pagamento (Pix, banco, CNPJ)<input type="text" data-cfg="dadosPag" placeholder="Pix: … · Banco … · Agência … · Conta … · CNPJ … · Nome …"></label>
 <label style="grid-column:1/-1">Cancelamento, chuva e arquivos<input type="text" data-cfg="condicoes"></label>
 <label>Prévia rápida de fotos<input type="text" data-cfg="previa"></label>
 <label>Desconto ao fechar tudo (%)<input type="number" min="0" step="1" data-cfg="pacotePct"></label>
@@ -411,7 +413,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   function diaTxt(e) { var dt = new Date(e.y, e.m - 1, e.d), w = DIAS[dt.getDay()]; return w.charAt(0).toUpperCase() + w.slice(1) + ',<br>' + (e.d === 1 ? '1º' : e.d) + ' de ' + MESES[e.m - 1]; }
   function subPadrao(p) { var a = p.servico === 'Vídeo' ? 'Cobertura em vídeo' : p.servico === 'Fotografia' ? 'Cobertura fotográfica' : 'Cobertura em foto e vídeo'; return a + ' — ' + p.evs.map(function (e) { return e.nome; }).join(' e '); }
   function condPadrao() {
-    return '<p><b>Pagamento</b> ' + esc(cfg.pagamento) + '.</p><p><b>Não incluso</b> ' + esc(cfg.naoIncluso) + '.</p>' + (cfg.condicoes ? '<p><b>Condições</b> ' + esc(cfg.condicoes) + '</p>' : '') + '<p><b>Direitos de uso</b> ' + esc(cfg.direitos) + '.</p>';
+    return '<p><b>Pagamento</b> ' + esc(cfg.pagamento) + '.</p><p><b>Não incluso</b> ' + esc(cfg.naoIncluso) + '.</p>' + (cfg.condicoes ? '<p><b>Condições</b> ' + esc(cfg.condicoes) + '</p>' : '') + '<p><b>Direitos de uso</b> ' + esc(cfg.direitos) + '.</p>' + (cfg.dadosPag ? '<p class="pag"><b>Dados para pagamento</b> ' + esc(cfg.dadosPag) + '</p>' : '');
   }
   function txt(html) { var d = document.createElement('div'); d.innerHTML = html.replace(/<\/p>/g, '\n'); return d.textContent.trim(); }
   function parseVal(t) { t = String(t).replace(/[^\d,.]/g, ''); if (/,\d{1,2}$/.test(t)) t = t.replace(/\./g, '').replace(',', '.'); else t = t.replace(/[.,]/g, ''); return +t || 0; }
