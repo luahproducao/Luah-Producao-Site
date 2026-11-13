@@ -111,3 +111,62 @@
 
   var y = document.getElementById('yr'); if (y) y.textContent = new Date().getFullYear();
 })();
+
+/* ===== acabamento: abertura com logo, contagem, paralaxe, cursor ===== */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.querySelector('link[href*="style.css"]').getAttribute('href').split('assets/')[0];
+
+  // abertura com o logo (uma vez por visita)
+  try {
+    if (!reduce && !sessionStorage.getItem('luahIntro')) {
+      sessionStorage.setItem('luahIntro', '1');
+      var pl = document.createElement('div');
+      pl.className = 'preload';
+      pl.innerHTML = '<img src="' + root + 'assets/img/logo-gold.png" alt=""><span>Luah Produção</span><i></i>';
+      document.body.appendChild(pl);
+      setTimeout(function () { pl.classList.add('out'); }, 1500);
+      setTimeout(function () { pl.remove(); }, 2300);
+    }
+  } catch (e) {}
+
+  // contagem dos números
+  if ('IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, end = +el.dataset.count, t0 = null; co.unobserve(el);
+        if (reduce) return;
+        function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 1600); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(function (el) { co.observe(el); });
+  }
+
+  // paralaxe suave
+  var par = Array.prototype.slice.call(document.querySelectorAll('[data-par], .hero-media'));
+  if (par.length && !reduce) {
+    var tick = false;
+    function upd() { var y = window.scrollY; par.forEach(function (el) { var f = +(el.dataset.par || 0.3); el.style.transform = 'translate3d(0,' + (y * f) + 'px,0)'; }); tick = false; }
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+  }
+
+  // cursor dourado (só com mouse)
+  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches && !reduce) {
+    var c = document.createElement('div'); c.className = 'cur'; c.innerHTML = '<span>Ver</span>'; document.body.appendChild(c);
+    var x = -100, y = -100, cx = x, cy = y;
+    document.addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; c.classList.add('on'); });
+    document.addEventListener('mouseleave', function () { c.classList.remove('on'); });
+    (function loop() { cx += (x - cx) * 0.18; cy += (y - cy) * 0.18; c.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('.card, .gal button.ph').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { c.classList.add('big'); });
+      el.addEventListener('mouseleave', function () { c.classList.remove('big'); });
+    });
+    document.querySelectorAll('a, button, input, select, textarea').forEach(function (el) {
+      if (el.closest('.card') || el.closest('.gal')) return;
+      el.addEventListener('mouseenter', function () { c.classList.add('hov'); });
+      el.addEventListener('mouseleave', function () { c.classList.remove('hov'); });
+    });
+  }
+})();
