@@ -91,6 +91,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 .q .cond b{color:var(--tx);font-weight:600}
 .q .eco{margin:10px 0 0;color:var(--gd2)}
 .q .opt{margin:10px 0 0}
+.q.rs td{padding:7px 0}.q.rs .qs .k{margin-top:30px}.q.rs .qs p+p{margin-top:8px}.q.rs hr{margin:22px 0}.q.rs .qm{padding-top:52px;padding-bottom:36px}
 .q .ft{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:11px;color:var(--mu)}
 .q .ft b{color:var(--gd2);font-weight:600}
 .q .ft a{color:var(--gd2);text-decoration:none;font-weight:600}
@@ -467,7 +468,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       (k.semCurtos.length && k.extra ? '<p class="opt" data-ed="opt"' + CE + '>' + (ED._opt != null ? ED._opt : '<b>Opcional:</b> sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s), prontos para as redes, por data: + ' + brl(k.extra) + '.') + '</p>' : '') +
       '<hr><div class="cond" data-ed="rcond"' + CE + '>' + (ED._rcond != null ? ED._rcond : condPadrao()) + '</div>' + rodape(all);
     return '<div class="qtools"><button class="btn" type="button" data-copy="R">Copiar resumo</button><button class="btn" type="button" data-print="R">Salvar só o resumo em PDF</button></div>' +
-      '<article class="q" data-q="R"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
+      '<article class="q rs" data-q="R"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
   }
   function atualizaNums() {
     var P = window._P || [], out = $('#out');
