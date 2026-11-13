@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Orçamentos — Luah Produção (interno)</title>
+<link rel="icon" type="image/png" href="../assets/img/logo-gold.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap">
+<style>
+:root{--bg:#0B0B0C;--bg2:#111112;--bg3:#161617;--line:#2A2927;--line2:#3A3834;--ink:#EDE6DA;--ink2:#C8C1B5;--ink3:#A39C90;--gold:#C9A96E;--gold2:#DCC392;--serif:'Cormorant Garamond',Georgia,serif;--sans:Manrope,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
+a{color:var(--gold)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 80px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px}
+.brand img{height:32px}
+.tag{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line2);padding:5px 10px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4vw,46px);line-height:1.05;margin:0 0 6px}
+h2{font-family:var(--serif);font-weight:500;font-size:26px;margin:0 0 14px}
+h3{margin:0;font-family:var(--serif);font-weight:500;font-size:22px}
+.muted{color:var(--ink3)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--bg2);border:1px solid var(--line);padding:20px}
+label{display:flex;flex-direction:column;gap:6px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)}
+input,select,textarea{width:100%;min-height:44px;padding:8px 12px;background:var(--bg);border:1px solid var(--line2);color:var(--ink);font:400 15px var(--sans);border-radius:0}
+textarea{min-height:200px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border:1px solid var(--line2);background:transparent;color:var(--ink);font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.btn.gold:hover{background:var(--gold2);color:var(--bg)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+details{border:1px solid var(--line);background:var(--bg2);margin-bottom:18px}
+summary{cursor:pointer;padding:16px 20px;font-family:var(--serif);font-size:22px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";color:var(--gold);font-family:var(--sans)}
+details[open] summary::after{content:"–"}
+details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
+.sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:6px 0 0}
+.ev{border:1px solid var(--line);background:var(--bg2);padding:16px;display:flex;flex-direction:column;gap:12px}
+.ev-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.chk{flex-direction:row;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;text-transform:none;color:var(--ink2)}
+.chk input{width:18px;min-height:18px;height:18px;accent-color:var(--gold)}
+.x{background:none;border:0;color:var(--ink3);cursor:pointer;font-size:18px;min-width:40px;min-height:40px}
+.empty{padding:30px;text-align:center;border:1px dashed var(--line2);color:var(--ink3)}
+.warn{border-left:2px solid var(--gold);padding:10px 14px;background:rgba(201,169,110,.07);color:var(--ink2);font-size:14px}
+/* propostas */
+#out{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.q{background:#F7F3EC;color:#1A1815;padding:34px 34px 28px;position:relative}
+.q .qh{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid #D9CFBF;padding-bottom:16px;margin-bottom:16px}
+.q .qb{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px}
+.q .qb img{height:30px}
+.q .qk{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A6D3B}
+.q h3{font-size:30px;line-height:1.1;margin:4px 0 2px;color:#1A1815}
+.q .meta{font-size:13px;color:#5E574C}
+.q table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:14px}
+.q td{padding:9px 0;border-bottom:1px solid #E6DED0;vertical-align:top}
+.q td:last-child{text-align:right;white-space:nowrap;padding-left:16px}
+.q tr.tot td{border-bottom:0;border-top:2px solid #1A1815;font-weight:600;font-size:17px;padding-top:12px}
+.q .inc{margin:12px 0 0;padding:0;list-style:none;font-size:13px;color:#3B362F;display:grid;gap:4px}
+.q .inc li::before{content:"✦ ";color:#B08D57;font-size:10px}
+.q .cond{margin-top:14px;font-size:12px;color:#5E574C;display:grid;gap:3px}
+.q .foot{margin-top:16px;padding-top:12px;border-top:1px solid #D9CFBF;font-size:12px;color:#5E574C;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.qtools{display:flex;flex-wrap:wrap;gap:8px;margin-top:-8px}
+.sum{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding:14px 18px;border:1px solid var(--line);background:var(--bg2)}
+.sum b{font-family:var(--serif);font-size:26px;color:var(--gold);font-weight:500}
+.lock{max-width:420px;margin:12vh auto;display:flex;flex-direction:column;gap:14px;text-align:center}
+@media print{
+  body{background:#fff}
+  .wrap>*:not(#out){display:none!important}
+  #out{gap:0;margin:0}
+  .qtools,.sum{display:none!important}
+  .q{page-break-after:always;break-after:page;padding:10mm 4mm}
+  .q.skip{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="app" hidden>
+
+<header class="top">
+<div class="brand"><img src="../assets/img/logo-gold.png" alt="">Luah Produção</div>
+<span class="tag">Área interna · Orçamentos</span>
+</header>
+
+<h1>Novo orçamento</h1>
+<p class="muted" style="margin:0 0 22px">Cole a mensagem do cliente. A ferramenta identifica as datas, horários, duração e o que foi pedido — você confere, ajusta e gera as propostas.</p>
+
+<details id="cfg">
+<summary>Tabela de preços e condições</summary>
+<div class="in">
+<p class="warn" id="cfgWarn">Preencha os seus valores uma vez. Eles ficam salvos só neste aparelho e não aparecem no site.</p>
+<p class="sub">Fotografia</p>
+<div class="row">
+<label>Valor por hora (R$)<input type="number" min="0" step="10" data-cfg="fotoHora"></label>
+<label>Mínimo de horas<input type="number" min="0" step="1" data-cfg="fotoMin"></label>
+<label>Fotos tratadas por hora (estimativa)<input type="number" min="0" step="5" data-cfg="fotosPorHora"></label>
+<label>Prazo de entrega das fotos<input type="text" data-cfg="fotoPrazo"></label>
+</div>
+<p class="sub">Vídeo</p>
+<div class="row">
+<label>Valor por hora de captação (R$)<input type="number" min="0" step="10" data-cfg="videoHora"></label>
+<label>Mínimo de horas<input type="number" min="0" step="1" data-cfg="videoMin"></label>
+<label>Edição — vídeo de até 1min30 (R$)<input type="number" min="0" step="10" data-cfg="edicaoBase"></label>
+<label>Edição — cada 30s a mais (R$)<input type="number" min="0" step="10" data-cfg="edicaoExtra30"></label>
+<label>Prazo de entrega do vídeo<input type="text" data-cfg="videoPrazo"></label>
+<label>Rodadas de ajuste no vídeo<input type="number" min="0" step="1" data-cfg="revisoes"></label>
+</div>
+<p class="sub">Adicionais</p>
+<div class="row">
+<label>Data especial / feriado (+%)<input type="number" min="0" step="5" data-cfg="especialPct"></label>
+<label>Datas especiais (dd/mm, separadas por vírgula)<input type="text" data-cfg="especialDatas"></label>
+<label>Após 22h (+% sobre horas após 22h)<input type="number" min="0" step="5" data-cfg="noturnoPct"></label>
+<label>Deslocamento por diária (R$)<input type="number" min="0" step="10" data-cfg="deslocamento"></label>
+<label>Publicação em tempo real por diária (R$)<input type="number" min="0" step="10" data-cfg="realtime"></label>
+</div>
+<p class="sub">Condições</p>
+<div class="row">
+<label>Validade da proposta (dias)<input type="number" min="1" step="1" data-cfg="validade"></label>
+<label style="grid-column:span 2">Pagamento<input type="text" data-cfg="pagamento"></label>
+</div>
+<label>Não incluído<input type="text" data-cfg="naoIncluso"></label>
+<label>Direitos de uso<input type="text" data-cfg="direitos"></label>
+<div class="acts"><button class="btn" type="button" id="cfgSave">Salvar tabela</button><button class="btn" type="button" id="cfgExport">Exportar tabela</button><button class="btn" type="button" id="cfgImport">Importar tabela</button></div>
+</div>
+</details>
+
+<div class="grid">
+<div class="panel">
+<h2>1. Mensagem do cliente</h2>
+<textarea id="msg" placeholder="Cole aqui a mensagem do WhatsApp do cliente…"></textarea>
+<div class="acts"><button class="btn gold" type="button" id="read">Ler mensagem</button><button class="btn" type="button" id="addEv">+ Adicionar data</button><button class="btn" type="button" id="clear">Limpar</button></div>
+</div>
+<div class="panel">
+<h2>2. Dados do orçamento</h2>
+<div class="row">
+<label>Cliente<input type="text" id="cliente"></label>
+<label>Contato / responsável<input type="text" id="contato"></label>
+</div>
+<div class="row" style="margin-top:12px">
+<label>Local<input type="text" id="local"></label>
+<label>Como enviar<select id="modo"><option value="sep">Foto e vídeo separados</option><option value="junto">Foto e vídeo juntos</option></select></label>
+</div>
+<label class="chk" style="margin-top:14px"><input type="checkbox" id="porData" checked> Um orçamento por data</label>
+<p class="muted" id="readInfo" style="margin:12px 0 0;font-size:13px"></p>
+</div>
+</div>
+
+<h2 style="margin-top:28px">3. Datas e serviços</h2>
+<div id="evs" style="display:flex;flex-direction:column;gap:12px"><div class="empty">Cole a mensagem e toque em “Ler mensagem”, ou adicione uma data.</div></div>
+
+<h2 style="margin-top:28px">4. Propostas</h2>
+<div class="sum" id="sum"></div>
+<div class="acts" style="margin-bottom:10px"><button class="btn gold" type="button" id="print">Salvar todas em PDF</button><button class="btn" type="button" id="copyAll">Copiar tudo para WhatsApp</button></div>
+<div id="out"></div>
+
+</div>
+
+<div class="lock" id="lock">
+<img src="../assets/img/logo-gold.png" alt="" style="width:54px;margin:0 auto">
+<h1>Área interna</h1>
+<p class="muted">Digite o código de acesso.</p>
+<input type="password" id="pin" autocomplete="off" inputmode="text" aria-label="Código de acesso">
+<button class="btn gold" type="button" id="enter">Entrar</button>
+<p class="muted" style="font-size:12px">Primeiro acesso: o código que você digitar agora vira o código deste aparelho.</p>
+</div>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var LOGO = '../assets/img/logo-gold.png';
+  var DEF = { fotoHora: 0, fotoMin: 2, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoHora: 0, videoMin: 2, edicaoBase: 0, edicaoExtra30: 0, videoPrazo: 'até 10 dias úteis', revisoes: 1,
+    especialPct: 0, especialDatas: '24/12, 25/12, 31/12, 01/01', noturnoPct: 0, deslocamento: 0, realtime: 0, validade: 7,
+    pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem, alimentação da equipe e impressões', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção' };
+  var cfg = Object.assign({}, DEF);
+  try { Object.assign(cfg, JSON.parse(localStorage.getItem('luahPrecos') || '{}')); } catch (e) {}
+  var evs = [];
+
+  // acesso
+  function unlock() { $('#lock').hidden = true; $('#app').hidden = false; }
+  try { if (sessionStorage.getItem('luahOk')) unlock(); } catch (e) {}
+  $('#enter').addEventListener('click', tryPin);
+  $('#pin').addEventListener('keydown', function (e) { if (e.key === 'Enter') tryPin(); });
+  function h(s) { var x = 0; for (var i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) >>> 0; return String(x); }
+  function tryPin() {
+    var v = $('#pin').value.trim(); if (!v) return;
+    var saved = localStorage.getItem('luahPin');
+    if (!saved) localStorage.setItem('luahPin', h(v));
+    if (!saved || saved === h(v)) { sessionStorage.setItem('luahOk', '1'); unlock(); }
+    else { $('#pin').value = ''; $('#pin').placeholder = 'Código incorreto'; }
+  }
+
+  // tabela de preços
+  document.querySelectorAll('[data-cfg]').forEach(function (el) {
+    el.value = cfg[el.dataset.cfg];
+    el.addEventListener('input', function () { cfg[el.dataset.cfg] = el.type === 'number' ? +el.value : el.value; render(); });
+  });
+  if (!cfg.fotoHora && !cfg.videoHora) $('#cfg').open = true;
+  $('#cfgSave').addEventListener('click', function () { localStorage.setItem('luahPrecos', JSON.stringify(cfg)); this.textContent = 'Salvo ✓'; var b = this; setTimeout(function () { b.textContent = 'Salvar tabela'; }, 1800); });
+  $('#cfgExport').addEventListener('click', function () { prompt('Copie e guarde este código da sua tabela:', btoa(unescape(encodeURIComponent(JSON.stringify(cfg))))); });
+  $('#cfgImport').addEventListener('click', function () {
+    var c = prompt('Cole o código da tabela:'); if (!c) return;
+    try { Object.assign(cfg, JSON.parse(decodeURIComponent(escape(atob(c.trim()))))); localStorage.setItem('luahPrecos', JSON.stringify(cfg)); document.querySelectorAll('[data-cfg]').forEach(function (el) { el.value = cfg[el.dataset.cfg]; }); render(); } catch (e) { alert('Código inválido.'); }
+  });
+
+  // leitura da mensagem
+  var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  function yearFor(d, m) { var now = new Date(), y = now.getFullYear(); var t = new Date(y, m - 1, d); if (t < new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)) y++; return y; }
+  function especialDe(d, m) { return (cfg.especialDatas || '').split(',').map(function (s) { return s.trim(); }).indexOf(pad(d) + '/' + pad(m)) > -1; }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  $('#read').addEventListener('click', function () {
+    var t = $('#msg').value; if (!t.trim()) return;
+    var info = [];
+    var cm = t.match(/\]\s*~?\s*([^:\n]{2,60}):/) || t.match(/^~?\s*([^:\n]{2,60}):/m);
+    if (cm && !$('#cliente').value) { $('#cliente').value = cm[1].replace(/^Comunica[cç][aã]o\s+/i, '').trim(); info.push('cliente'); }
+    var base = (t.match(/m[ée]dia\s+de\s+(\d+(?:[.,]\d+)?)\s*h/i) || t.match(/(\d+(?:[.,]\d+)?)\s*horas?\s+cada/i) || [])[1];
+    base = base ? parseFloat(base.replace(',', '.')) : 4;
+    var over = {}; var re = /\bd[oa]\s+(\d{1,2})\b[^.\n]{0,60}?(\d+(?:[.,]\d+)?)\s*h(?:oras?)?/gi, mm;
+    while ((mm = re.exec(t))) over[+mm[1]] = parseFloat(mm[2].replace(',', '.'));
+    var wantFoto = /\bfoto/i.test(t), wantVideo = /v[íi]deo/i.test(t); if (!wantFoto && !wantVideo) { wantFoto = wantVideo = true; }
+    var vl = t.match(/(\d+)\s*min(?:uto)?s?\s*(?:e\s*)?(\d{1,2})?\s*(?:s|seg)?/i); var vsec = vl ? (+vl[1]) * 60 + (+(vl[2] || 0)) : 90;
+    var sep = /separad/i.test(t); $('#modo').value = sep || (wantFoto && wantVideo) ? 'sep' : 'junto';
+    var rt = /tempo\s+real|real\s*time|ao\s+vivo\s+nas\s+redes|stories\s+durante/i.test(t);
+    var body = t.replace(/\[\s*\d{1,2}\/\d{1,2}\/\d{2,4},?\s*\d{1,2}:\d{2}(?::\d{2})?\s*\]/g, '');
+    var lineRe = /^[\s•*\-–]*(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\s*[,–-]?\s*(?:às\s*)?(\d{1,2})(?:[:h](\d{2}))?\s*h?\s*(?:[-–—:]\s*)?([^\n]*)/gm;
+    var found = [], l;
+    while ((l = lineRe.exec(body))) {
+      var d = +l[1], m = +l[2]; if (m < 1 || m > 12 || d < 1 || d > 31) continue;
+      var y = l[3] ? (+l[3] < 100 ? 2000 + +l[3] : +l[3]) : yearFor(d, m);
+      var nome = (l[6] || '').replace(/^[\s\-–—:]+/, '').trim() || 'Evento';
+      var loc = ''; var pm = nome.match(/\(\s*(?:no|na|em|nos|nas)\s+([^)]+)\)\s*$/i); if (pm) { loc = pm[1].trim(); loc = loc.charAt(0).toUpperCase() + loc.slice(1); }
+      found.push({ d: d, m: m, y: y, hora: pad(+l[4]) + ':' + (l[5] || '00'), nome: nome, horas: over[d] || base, foto: wantFoto, video: wantVideo, vsec: vsec, especial: especialDe(d, m), realtime: rt, local: loc });
+    }
+    if (found.length) { evs = found; info.push(found.length + ' data' + (found.length > 1 ? 's' : '')); }
+    info.push('média de ' + base + 'h'); if (Object.keys(over).length) info.push('exceções: ' + Object.keys(over).map(function (k) { return 'dia ' + k + ' = ' + over[k] + 'h'; }).join(', '));
+    info.push((wantFoto ? 'foto' : '') + (wantFoto && wantVideo ? ' + ' : '') + (wantVideo ? 'vídeo' : '')); if (wantVideo) info.push('vídeo de ' + fmtSec(vsec)); if (sep) info.push('separados');
+    $('#readInfo').textContent = 'Identifiquei: ' + info.join(' · ') + '. Confira abaixo.';
+    drawEvs(); render();
+  });
+  $('#addEv').addEventListener('click', function () { var n = new Date(); evs.push({ d: n.getDate(), m: n.getMonth() + 1, y: n.getFullYear(), hora: '19:00', nome: 'Evento', horas: 4, foto: true, video: true, vsec: 90, especial: false, realtime: false, local: '' }); drawEvs(); render(); });
+  $('#clear').addEventListener('click', function () { if (!confirm('Limpar tudo?')) return; evs = []; $('#msg').value = ''; $('#cliente').value = ''; $('#contato').value = ''; $('#local').value = ''; $('#readInfo').textContent = ''; drawEvs(); render(); });
+  ['#cliente', '#contato', '#local', '#modo', '#porData'].forEach(function (s) { $(s).addEventListener('input', render); $(s).addEventListener('change', render); });
+
+  function fmtSec(s) { var m = Math.floor(s / 60), r = s % 60; return m + 'min' + (r ? pad(r) : ''); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function drawEvs() {
+    var box = $('#evs');
+    if (!evs.length) { box.innerHTML = '<div class="empty">Cole a mensagem e toque em “Ler mensagem”, ou adicione uma data.</div>'; return; }
+    box.innerHTML = evs.map(function (e, i) {
+      return '<div class="ev" data-i="' + i + '"><div class="ev-head"><h3>' + pad(e.d) + '/' + pad(e.m) + ' · ' + esc(e.nome) + '</h3><button class="x" type="button" data-del="' + i + '" aria-label="Remover data">✕</button></div>' +
+        '<div class="row">' +
+        '<label>Data<input type="date" data-k="data" value="' + e.y + '-' + pad(e.m) + '-' + pad(e.d) + '"></label>' +
+        '<label>Início<input type="time" data-k="hora" value="' + e.hora + '"></label>' +
+        '<label>Evento<input type="text" data-k="nome" value="' + esc(e.nome) + '"></label>' +
+        '<label>Local<input type="text" data-k="local" value="' + esc(e.local) + '" placeholder="opcional"></label>' +
+        '<label>Horas de cobertura<input type="number" min="0.5" step="0.5" data-k="horas" value="' + e.horas + '"></label>' +
+        '<label>Duração do vídeo<select data-k="vsec">' + [60, 90, 120, 180, 240, 300].map(function (v) { return '<option value="' + v + '"' + (v === e.vsec ? ' selected' : '') + '>' + fmtSec(v) + '</option>'; }).join('') + '</select></label>' +
+        '</div><div style="display:flex;flex-wrap:wrap;gap:8px 22px">' +
+        '<label class="chk"><input type="checkbox" data-k="foto"' + (e.foto ? ' checked' : '') + '> Fotografia</label>' +
+        '<label class="chk"><input type="checkbox" data-k="video"' + (e.video ? ' checked' : '') + '> Vídeo</label>' +
+        '<label class="chk"><input type="checkbox" data-k="especial"' + (e.especial ? ' checked' : '') + '> Data especial / feriado</label>' +
+        '<label class="chk"><input type="checkbox" data-k="realtime"' + (e.realtime ? ' checked' : '') + '> Publicação em tempo real</label>' +
+        '</div></div>';
+    }).join('');
+    box.querySelectorAll('[data-del]').forEach(function (b) { b.addEventListener('click', function () { evs.splice(+b.dataset.del, 1); drawEvs(); render(); }); });
+    box.querySelectorAll('[data-k]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var e = evs[+inp.closest('.ev').dataset.i], k = inp.dataset.k;
+        if (inp.type === 'checkbox') e[k] = inp.checked;
+        else if (k === 'data') { var p = inp.value.split('-'); if (p.length === 3) { e.y = +p[0]; e.m = +p[1]; e.d = +p[2]; } }
+        else if (k === 'horas' || k === 'vsec') e[k] = +inp.value;
+        else e[k] = inp.value;
+        inp.closest('.ev').querySelector('h3').textContent = pad(e.d) + '/' + pad(e.m) + ' · ' + e.nome;
+        render();
+      });
+    });
+  }
+
+  // cálculo
+  function brl(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+  var DIAS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+  function dataLonga(e) { var dt = new Date(e.y, e.m - 1, e.d); return DIAS[dt.getDay()] + ', ' + e.d + ' de ' + MESES[e.m - 1] + ' de ' + e.y; }
+  function horasNoturnas(e) { var p = e.hora.split(':'), ini = +p[0] + (+p[1] || 0) / 60, fim = ini + e.horas, n = 0; for (var t = ini; t < fim; t += 0.25) { var hh = t % 24; if (hh >= 22 || hh < 6) n += 0.25; } return n; }
+  function itens(e, tipo) {
+    var L = [], hrs = Math.max(e.horas, tipo === 'foto' ? cfg.fotoMin : cfg.videoMin), rate = tipo === 'foto' ? cfg.fotoHora : cfg.videoHora;
+    var cap = hrs * rate;
+    L.push([(tipo === 'foto' ? 'Cobertura fotográfica' : 'Captação de vídeo') + ' — ' + String(hrs).replace('.', ',') + 'h', cap]);
+    if (tipo === 'video') {
+      var extra = Math.max(0, Math.ceil((e.vsec - 90) / 30)) * cfg.edicaoExtra30;
+      L.push(['Edição e finalização — vídeo geral do evento (' + fmtSec(e.vsec) + ')', cfg.edicaoBase + extra]);
+    }
+    var noct = horasNoturnas(e); if (noct > 0 && cfg.noturnoPct) L.push(['Adicional noturno — ' + String(noct).replace('.', ',') + 'h após 22h', noct * rate * cfg.noturnoPct / 100]);
+    if (e.especial && cfg.especialPct) L.push(['Adicional de data especial (' + cfg.especialPct + '%)', cap * cfg.especialPct / 100]);
+    if (e.realtime && cfg.realtime && (tipo === 'video' || !e.video)) L.push(['Publicação em tempo real nas redes', cfg.realtime]);
+    if (cfg.deslocamento) L.push(['Deslocamento', cfg.deslocamento]);
+    return L;
+  }
+  function inclui(e, tipo) {
+    if (tipo === 'foto') { var n = Math.round(Math.max(e.horas, cfg.fotoMin) * cfg.fotosPorHora); return ['Fotógrafo(a) durante ' + String(e.horas).replace('.', ',') + 'h de evento', (n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Entrega em galeria online ' + cfg.fotoPrazo]; }
+    return ['Captação de vídeo durante ' + String(e.horas).replace('.', ',') + 'h de evento', 'Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor', 'Formatos para redes (vertical) e horizontal, se necessário', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo];
+  }
+  function propostas() {
+    var P = [];
+    var junto = $('#modo').value === 'junto', porData = $('#porData').checked;
+    var groups = porData ? evs.map(function (e) { return [e]; }) : (evs.length ? [evs] : []);
+    groups.forEach(function (g) {
+      var tipos = junto ? [['foto', 'video']] : [['foto'], ['video']];
+      tipos.forEach(function (ts) {
+        var linhas = [], incl = [], titulo = [];
+        g.forEach(function (e) {
+          ts.forEach(function (tp) {
+            if ((tp === 'foto' && !e.foto) || (tp === 'video' && !e.video)) return;
+            itens(e, tp).forEach(function (it) { linhas.push([(g.length > 1 ? pad(e.d) + '/' + pad(e.m) + ' · ' : '') + it[0], it[1]]); });
+            inclui(e, tp).forEach(function (x) { if (incl.indexOf(x) < 0) incl.push(x); });
+          });
+        });
+        if (!linhas.length) return;
+        var nomeServ = ts.length === 2 ? 'Fotografia e vídeo' : ts[0] === 'foto' ? 'Fotografia' : 'Vídeo';
+        P.push({ evs: g, servico: nomeServ, linhas: linhas, total: linhas.reduce(function (a, b) { return a + b[1]; }, 0), incl: incl });
+      });
+    });
+    return P;
+  }
+  function textoWA(p) {
+    var c = $('#cliente').value || 'cliente';
+    var t = '*Orçamento — ' + p.servico + '*\nLuah Produção · para ' + c + '\n\n';
+    p.evs.forEach(function (e) { t += '📅 ' + dataLonga(e) + ', às ' + e.hora.replace(':00', 'h').replace(':', 'h') + '\n' + e.nome + (e.local ? ' · ' + e.local : '') + '\n'; });
+    t += '\n';
+    p.linhas.forEach(function (l) { t += '• ' + l[0] + ': ' + brl(l[1]) + '\n'; });
+    t += '\n*Total: ' + brl(p.total) + '*\n\nIncluso:\n' + p.incl.map(function (x) { return '✦ ' + x; }).join('\n');
+    t += '\n\nPagamento: ' + cfg.pagamento + '\nNão incluso: ' + cfg.naoIncluso + '\nProposta válida por ' + cfg.validade + ' dias.';
+    return t;
+  }
+  function render() {
+    var out = $('#out'), P = propostas();
+    var semPreco = (!cfg.fotoHora && evs.some(function (e) { return e.foto; })) || (!cfg.videoHora && evs.some(function (e) { return e.video; }));
+    $('#sum').innerHTML = P.length ? '<span class="muted">' + P.length + ' proposta' + (P.length > 1 ? 's' : '') + '</span><span>Soma de tudo: <b>' + brl(P.reduce(function (a, p) { return a + p.total; }, 0)) + '</b></span>' + (semPreco ? '<span class="warn">Preencha os valores na “Tabela de preços” — alguns itens estão em R$ 0,00.</span>' : '') : '<span class="muted">As propostas aparecem aqui.</span>';
+    var hoje = new Date(), val = new Date(hoje.getTime() + cfg.validade * 864e5);
+    out.innerHTML = P.map(function (p, i) {
+      var evh = p.evs.map(function (e) { return dataLonga(e) + ', às ' + e.hora.replace(':', 'h') + ' — ' + esc(e.nome) + (e.local ? ' · ' + esc(e.local) : ''); }).join('<br>');
+      return '<div class="qtools"><button class="btn" type="button" data-copy="' + i + '">Copiar para WhatsApp</button><button class="btn" type="button" data-print="' + i + '">Salvar só esta em PDF</button></div>' +
+        '<article class="q" data-q="' + i + '"><div class="qh"><div><div class="qk">Orçamento · ' + esc(p.servico) + '</div><h3>' + esc($('#cliente').value || 'Cliente') + '</h3><div class="meta">' + evh + ($('#local').value ? '<br>' + esc($('#local').value) : '') + '</div></div><div class="qb"><img src="' + LOGO + '" alt="">Luah Produção</div></div>' +
+        '<table>' + p.linhas.map(function (l) { return '<tr><td>' + esc(l[0]) + '</td><td>' + brl(l[1]) + '</td></tr>'; }).join('') + '<tr class="tot"><td>Total</td><td>' + brl(p.total) + '</td></tr></table>' +
+        '<ul class="inc">' + p.incl.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+        '<div class="cond"><span><b>Pagamento:</b> ' + esc(cfg.pagamento) + '</span><span><b>Não incluso:</b> ' + esc(cfg.naoIncluso) + '</span><span><b>Direitos de uso:</b> ' + esc(cfg.direitos) + '</span></div>' +
+        '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + val.toLocaleDateString('pt-BR') + ($('#contato').value ? ' · A/C ' + esc($('#contato').value) : '') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
+    }).join('');
+    out.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copy(textoWA(P[+b.dataset.copy]), b); }); });
+    out.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { var k = b.dataset.print; out.querySelectorAll('.q').forEach(function (q) { q.classList.toggle('skip', q.dataset.q !== k); }); window.print(); out.querySelectorAll('.q').forEach(function (q) { q.classList.remove('skip'); }); }); });
+    window._P = P;
+  }
+  function copy(t, b) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { var o = b.textContent; b.textContent = 'Copiado ✓'; setTimeout(function () { b.textContent = o; }, 1800); }, function () { prompt('Copie o texto:', t); }); }
+  $('#print').addEventListener('click', function () { window.print(); });
+  $('#copyAll').addEventListener('click', function () { copy((window._P || []).map(textoWA).join('\n\n— — —\n\n'), this); });
+  drawEvs(); render();
+})();
+</script>
+</body>
+</html>
