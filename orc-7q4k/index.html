@@ -152,7 +152,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 <p class="sub">Adicionais</p>
 <div class="row">
 <label>Data especial / feriado (+% sobre a cobertura)<input type="number" min="0" step="5" data-cfg="especialPct"></label>
-<label>Datas especiais (dd/mm, separadas por vírgula)<input type="text" data-cfg="especialDatas"></label>
+<label>Datas especiais (dd/mm ou dd/mm:% — ex.: 31/12:100)<input type="text" data-cfg="especialDatas"></label>
 <label>Deslocamento por diária (R$)<input type="number" min="0" step="10" data-cfg="deslocamento"></label>
 <label>Publicação em tempo real por diária (R$)<input type="number" min="0" step="10" data-cfg="realtime"></label>
 </div>
@@ -216,12 +216,12 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   var $ = function (s) { return document.querySelector(s); };
   var LOGO = '../assets/img/logo-gold.png';
   var DEF = { fotoCobertura: 900, fotosPorHora: 25, fotoPrazo: 'até 7 dias úteis', videoCobertura: 900, edicaoBase: 350, curtoQtd: 8, curtoValor: 70, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
-    especialPct: 50, especialDatas: '24/12, 25/12, 31/12, 01/01', deslocamento: 0, realtime: 300, validade: 7,
+    especialPct: 50, especialDatas: '24/12, 25/12, 31/12:100', deslocamento: 0, realtime: 300, validade: 7,
     pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem e alimentação da equipe; extensão do evento além da programação do briefing ou dia adicional são orçados à parte', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, incluindo o material bruto, com crédito à Luah Produção também nas peças feitas a partir dele',
     condicoes: 'O sinal de 50% garante a data e não é devolvido em caso de cancelamento; remarcação sem custo para nova data em até 90 dias, conforme disponibilidade (vale também para chuva ou adiamento). Os arquivos ficam disponíveis no Drive por 60 dias após a entrega.',
-    previa: '10 fotos tratadas em até 24h', pacotePct: 10, v: 3 };
+    previa: '10 fotos tratadas em até 24h', pacotePct: 10, v: 4 };
   var cfg = Object.assign({}, DEF);
-  try { var sv = JSON.parse(localStorage.getItem('luahPrecos') || '{}'); if (!sv.v || sv.v < 3) { if (sv.naoIncluso === 'Hospedagem, alimentação da equipe e impressões') delete sv.naoIncluso; if (sv.direitos === 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção') delete sv.direitos; if (sv.fotosPorHora === 40) delete sv.fotosPorHora; ['fotoHora','fotoMin','videoHora','videoMin','noturnoPct'].forEach(function (k) { delete sv[k]; }); sv.v = 3; } Object.assign(cfg, sv); } catch (e) {}
+  try { var sv = JSON.parse(localStorage.getItem('luahPrecos') || '{}'); if (!sv.v || sv.v < 4) { if (sv.naoIncluso === 'Hospedagem, alimentação da equipe e impressões') delete sv.naoIncluso; if (sv.direitos === 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção') delete sv.direitos; if (sv.fotosPorHora === 40) delete sv.fotosPorHora; if (sv.especialDatas === '24/12, 25/12, 31/12, 01/01') delete sv.especialDatas; ['fotoHora','fotoMin','videoHora','videoMin','noturnoPct'].forEach(function (k) { delete sv[k]; }); sv.v = 4; } Object.assign(cfg, sv); } catch (e) {}
   var evs = [];
 
   // acesso
@@ -254,7 +254,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   // leitura da mensagem
   var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
   function yearFor(d, m) { var now = new Date(), y = now.getFullYear(); var t = new Date(y, m - 1, d); if (t < new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)) y++; return y; }
-  function especialDe(d, m) { return (cfg.especialDatas || '').split(',').map(function (s) { return s.trim(); }).indexOf(pad(d) + '/' + pad(m)) > -1; }
+  function pctEspecial(d, m) { var k = pad(d) + '/' + pad(m), r = 0; (cfg.especialDatas || '').split(',').forEach(function (x) { var a = x.trim().split(':'), dm = a[0].split('/'); if (dm.length === 2 && pad(+dm[0]) + '/' + pad(+dm[1]) === k) r = a[1] ? +a[1] : (cfg.especialPct || 0); }); return r; }
+  function especialDe(d, m) { return pctEspecial(d, m) > 0; }
   function pad(n) { return String(n).padStart(2, '0'); }
   $('#read').addEventListener('click', function () {
     var t = $('#msg').value; if (!t.trim()) return;
@@ -332,7 +333,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   function dataLonga(e) { var dt = new Date(e.y, e.m - 1, e.d); return DIAS[dt.getDay()] + ', ' + e.d + ' de ' + MESES[e.m - 1] + ' de ' + e.y; }
   function nomeEspecial(e) {
     var k = pad(e.d) + '/' + pad(e.m), N = { '24/12': 'véspera de Natal', '25/12': 'Natal', '31/12': 'Réveillon', '01/01': '1º de janeiro' };
-    return 'Valor de feriado — ' + (N[k] || k);
+    return k === '31/12' ? 'Valor de Réveillon' : 'Valor de feriado — ' + (N[k] || k);
   }
   function validoAte(evsList) {
     var hoje = new Date(), v = new Date(hoje.getTime() + cfg.validade * 864e5);
@@ -349,7 +350,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       L.push(['Edição e finalização — vídeo geral do evento (' + fmtSec(e.vsec) + ')', cfg.edicaoBase + extra]);
       if (e.curtos) L.push(['Sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s cada)', cfg.curtoQtd * cfg.curtoValor]);
     }
-    if (e.especial && cfg.especialPct) L.push([nomeEspecial(e), cap * cfg.especialPct / 100]);
+    var pe = e.especial ? (pctEspecial(e.d, e.m) || cfg.especialPct) : 0; if (pe) L.push([nomeEspecial(e), cap * pe / 100]);
     if (e.realtime && cfg.realtime && (tipo === 'video' || !e.video)) L.push(['Publicação em tempo real nas redes', cfg.realtime]);
     if (cfg.deslocamento) L.push(['Deslocamento', cfg.deslocamento]);
     return L;
