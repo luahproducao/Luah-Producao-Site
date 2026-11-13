@@ -411,3 +411,18 @@ body{background:var(--bg0)}
 .cur span{font:600 10px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--bg);opacity:0;transition:opacity .25s}
 .cur.big span{opacity:1}
 @media (pointer:fine){.card,.gal button.ph{cursor:none}}
+
+/* ===== revisão: acessibilidade e usabilidade ===== */
+.sr:focus{position:fixed;left:16px;top:16px;z-index:300;width:auto;height:auto;clip:auto;padding:12px 18px;background:var(--gold);color:var(--bg);font-weight:600;text-decoration:none}
+.nav a{display:inline-flex;align-items:center;min-height:44px}
+section[id],main [id]{scroll-margin-top:84px}
+.vc figcaption a{display:inline-flex;align-items:center;min-height:40px}
+.card .more b{min-height:24px}
+.rail-nav{display:flex;align-items:center;gap:10px}
+.rbtn{display:none;width:52px;height:52px;border-radius:999px;border:1px solid var(--line3);background:transparent;color:var(--ink);font-size:18px;cursor:pointer;transition:all .3s}
+.rbtn:hover{border-color:var(--gold);color:var(--gold)}
+@media (pointer:fine){.rbtn{display:inline-flex;align-items:center;justify-content:center}.rail-nav .rail-hint{display:none}}
+.form-ok{margin:0;min-height:1.2em;font-size:14px;color:var(--gold);text-align:center}
+.form ::placeholder{color:#6F6A61}
+.lb img{max-height:calc(100svh - 120px)}
+.lnk,.plan-acts a{display:inline-flex;align-items:center;min-height:40px}

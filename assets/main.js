@@ -170,3 +170,25 @@
     });
   }
 })();
+
+/* ===== revisão: setas do carrossel e retorno do formulário ===== */
+(function () {
+  document.querySelectorAll('.rbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var r = document.querySelector('.rail'); if (!r) return;
+      var card = r.querySelector('.vc'); var step = card ? card.getBoundingClientRect().width + 14 : 300;
+      r.scrollBy({ left: step * 2 * (+b.dataset.dir), behavior: 'smooth' });
+    });
+  });
+  var f = document.getElementById('form');
+  if (f) f.addEventListener('submit', function () {
+    var ok = f.querySelector('.form-ok'); if (ok) ok.textContent = 'Abrindo o WhatsApp com a sua mensagem…';
+  });
+  // lightbox: manter o foco dentro
+  document.addEventListener('keydown', function (e) {
+    var lb = document.querySelector('.lb.open'); if (!lb || e.key !== 'Tab') return;
+    var bs = lb.querySelectorAll('button'), first = bs[0], last = bs[bs.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+})();
