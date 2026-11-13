@@ -6,10 +6,16 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Orçamentos — Luah Produção (interno)</title>
 <link rel="icon" type="image/png" href="../assets/img/logo-gold.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap">
 <style>
+@font-face{font-family:'Cormorant Garamond';src:url('../assets/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../assets/fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../assets/fonts/cormorant-garamond-latin-600-normal.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../assets/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../assets/fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2');font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:'Manrope';src:url('../assets/fonts/manrope-latin-300-normal.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url('../assets/fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url('../assets/fonts/manrope-latin-500-normal.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Manrope';src:url('../assets/fonts/manrope-latin-600-normal.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
 :root{--bg:#0B0B0C;--bg2:#111112;--bg3:#161617;--line:#2A2927;--line2:#3A3834;--ink:#EDE6DA;--ink2:#C8C1B5;--ink3:#A39C90;--gold:#C9A96E;--gold2:#DCC392;--serif:'Cormorant Garamond',Georgia,serif;--sans:Manrope,system-ui,sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
@@ -49,39 +55,64 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 .x{background:none;border:0;color:var(--ink3);cursor:pointer;font-size:18px;min-width:40px;min-height:40px}
 .empty{padding:30px;text-align:center;border:1px dashed var(--line2);color:var(--ink3)}
 .warn{border-left:2px solid var(--gold);padding:10px 14px;background:rgba(201,169,110,.07);color:var(--ink2);font-size:14px}
-/* propostas */
-#out{display:flex;flex-direction:column;gap:18px;margin-top:8px}
-.q{background:#F7F3EC;color:#1A1815;padding:34px 34px 28px;position:relative}
-.q .qh{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-bottom:1px solid #D9CFBF;padding-bottom:16px;margin-bottom:16px}
-.q .qb{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px}
-.q .qb img{height:30px}
-.q .qk{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8A6D3B}
-.q h3{font-size:30px;line-height:1.1;margin:4px 0 2px;color:#1A1815}
-.q .meta{font-size:13px;color:#5E574C}
-.q table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:14px}
-.q td{padding:9px 0;border-bottom:1px solid #E6DED0;vertical-align:top}
-.q td:last-child{text-align:right;white-space:nowrap;padding-left:16px}
-.q tr.tot td{border-bottom:0;border-top:2px solid #1A1815;font-weight:600;font-size:17px;padding-top:12px}
-.q .inc{margin:12px 0 0;padding:0;list-style:none;font-size:13px;color:#3B362F;display:grid;gap:4px}
-.q .inc li::before{content:"✦ ";color:#B08D57;font-size:10px}
-.q .cond{margin-top:14px;font-size:12px;color:#5E574C;display:grid;gap:3px}
-.q .cta{margin-top:14px;padding:12px 14px;background:#EFE7D9;font-size:13px;color:#1A1815;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 14px}
-.q .cta a{color:#8A6D3B;text-decoration:none;font-weight:600}
-.q .eco{margin:6px 0 0;font-size:13px;color:#8A6D3B}
-.q .opt{margin:10px 0 0;font-size:13px;color:#3B362F}
-.q .foot{margin-top:16px;padding-top:12px;border-top:1px solid #D9CFBF;font-size:12px;color:#5E574C;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.qtools{display:flex;flex-wrap:wrap;gap:8px;margin-top:-8px}
+/* propostas — modelo coluna lateral */
+#out{display:flex;flex-direction:column;gap:22px;margin-top:8px}
+.qtools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:-12px}
+.hint{font-size:13px;color:var(--ink3);margin:0 0 12px}
+.q{--cr:#F3EDE3;--dk:#1A1816;--gd:#C9A96E;--gd2:#8A6D3B;--tx:#1F1C18;--mu:#5E574C;
+  display:grid;grid-template-columns:250px minmax(0,1fr);width:100%;max-width:820px;min-height:1123px;background:var(--cr);color:var(--tx);font:400 13px/1.55 var(--sans);position:relative}
+.q .qs{background:var(--dk);color:#E9E2D6;padding:56px 34px;display:flex;flex-direction:column}
+.q .qs .br{display:flex;align-items:center;gap:10px;font:500 22px/1 var(--serif)}
+.q .qs .br img{height:36px}
+.q .qs .k{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gd);margin:40px 0 6px}
+.q .qs p{margin:0;font:500 20px/1.28 var(--serif)}
+.q .qs p+p{margin-top:10px}
+.q .qs small{display:block;font:400 12px/1.4 var(--sans);color:#A39C90;margin-top:4px}
+.q .qs .qt{margin-top:auto;border-top:1px solid #4A443B;padding-top:18px}
+.q .qs .qt b{display:block;font:500 44px/1 var(--serif);color:#DCC392;margin-top:8px;outline:none}
+.q .qs .qt small{margin-top:8px}
+.q .qm{padding:60px 52px 44px;display:flex;flex-direction:column}
+.q .k2{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gd2)}
+.q h3{font:400 50px/1.02 var(--serif);margin:10px 0 6px;color:var(--tx)}
+.q .lede{font:italic 400 20px/1.35 var(--serif);color:#6B6358}
+.q hr{border:0;border-top:1px solid #CFC4B2;margin:28px 0}
+.q table{width:100%;border-collapse:collapse;font-size:14px;color:inherit}
+.q td{padding:11px 0;border-bottom:1px dotted #BDB09A;vertical-align:top}
+.q td:last-child{text-align:right;white-space:nowrap;padding-left:18px;font:500 18px var(--serif)}
+.q td small{display:block;font-size:11px;color:var(--mu);letter-spacing:.04em}
+.q tr.sm td{border-bottom:0;padding-top:16px;color:var(--mu)}
+.q tr.big td{border-top:1px solid var(--tx);border-bottom:0;padding-top:14px;font-weight:600}
+.q tr.big td:last-child{font-size:30px;color:var(--gd2)}
+.q .inc{margin:14px 0 0;padding:0;list-style:none}
+.q .inc li{padding:5px 0 5px 22px;position:relative}
+.q .inc li::before{content:"";position:absolute;left:0;top:14px;width:12px;height:1px;background:var(--gd2)}
+.q .cond{font-size:10.8px;color:var(--mu);line-height:1.65}
+.q .cond p{margin:0 0 3px}
+.q .cond b{color:var(--tx);font-weight:600}
+.q .eco{margin:10px 0 0;color:var(--gd2)}
+.q .opt{margin:10px 0 0}
+.q .ft{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:11px;color:var(--mu)}
+.q .ft b{color:var(--gd2);font-weight:600}
+.q .ft a{color:var(--gd2);text-decoration:none;font-weight:600}
+.q [contenteditable]{outline:none;border-radius:2px;transition:background .2s,box-shadow .2s}
+.q [contenteditable]:hover{box-shadow:0 0 0 1px rgba(138,109,59,.35)}
+.q [contenteditable]:focus{background:rgba(201,169,110,.14);box-shadow:0 0 0 1px var(--gd2)}
+.q .qs [contenteditable]:focus{background:rgba(201,169,110,.12)}
+@media (max-width:760px){.q{grid-template-columns:1fr;min-height:0}.q .qs{padding:30px 24px}.q .qs .k{margin-top:22px}.q .qs .qt{margin-top:26px}.q .qm{padding:30px 22px}.q h3{font-size:38px}}
 .sum{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding:14px 18px;border:1px solid var(--line);background:var(--bg2)}
 .sum b{font-family:var(--serif);font-size:26px;color:var(--gold);font-weight:500}
 .lock{max-width:420px;margin:12vh auto;display:flex;flex-direction:column;gap:14px;text-align:center}
+@page{size:A4;margin:0}
 @media print{
-  body{background:#fff}
+  html,body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:none;padding:0;margin:0}
   .wrap>*:not(#out){display:none!important}
-  #out{gap:0;margin:0}
-  .qtools,.sum{display:none!important}
-  .q{page-break-after:always;break-after:page;padding:10mm 4mm}
-  .q.skip{display:none}
-  article.q:last-of-type{page-break-after:auto;break-after:auto}
+  #out{gap:0;margin:0;display:block}
+  .qtools,.hint,.sum{display:none!important}
+  .q{width:210mm;max-width:none;min-height:297mm;grid-template-columns:66mm minmax(0,1fr);page-break-after:always;break-after:page;page-break-inside:avoid}
+  .q.skip{display:none!important}
+  .q.last{page-break-after:auto;break-after:auto}
+  .q [contenteditable]{box-shadow:none!important;background:none!important}
   [hidden],#lock{display:none!important}
 }
 </style>
@@ -164,7 +195,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 
 <h2 style="margin-top:28px">4. Propostas</h2>
 <div class="sum" id="sum"></div>
-<div class="acts" style="margin-bottom:10px"><button class="btn gold" type="button" id="print">Salvar todas em PDF</button><button class="btn" type="button" id="copyAll">Copiar tudo para WhatsApp</button></div>
+<div class="acts" style="margin-bottom:10px"><button class="btn gold" type="button" id="print">Salvar proposta completa em PDF</button><button class="btn" type="button" id="copyAll">Copiar tudo para WhatsApp</button><button class="btn" type="button" id="undoEd">Desfazer edições</button></div>
+<p class="hint">Toque em qualquer texto ou valor da proposta para editar. O total e o resumo se atualizam sozinhos.</p>
 <div id="out"></div>
 
 </div>
@@ -294,7 +326,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   }
 
   // cálculo
-  function brl(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+  function brl(v) { var i = Math.round(v * 100) % 100 === 0; return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: i ? 0 : 2, maximumFractionDigits: 2 }); }
   var DIAS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
   function dataLonga(e) { var dt = new Date(e.y, e.m - 1, e.d); return DIAS[dt.getDay()] + ', ' + e.d + ' de ' + MESES[e.m - 1] + ' de ' + e.y; }
   function nomeEspecial(e) {
@@ -350,20 +382,47 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     });
     return P;
   }
+  // edições feitas direto na proposta
+  var ED = {};
+  function sig(p) { return p.servico + '|' + p.evs.map(function (e) { return e.y + '-' + e.m + '-' + e.d; }).join(','); }
+  function horaTxt(e) { var h = e.hora.split(':'); return (+h[0]) + 'h' + (h[1] && h[1] !== '00' ? h[1] : ''); }
+  function diaTxt(e) { var dt = new Date(e.y, e.m - 1, e.d), w = DIAS[dt.getDay()]; return w.charAt(0).toUpperCase() + w.slice(1) + ',<br>' + (e.d === 1 ? '1º' : e.d) + ' de ' + MESES[e.m - 1]; }
+  function subPadrao(p) { var a = p.servico === 'Vídeo' ? 'Cobertura em vídeo' : p.servico === 'Fotografia' ? 'Cobertura fotográfica' : 'Cobertura em foto e vídeo'; return a + ' — ' + p.evs.map(function (e) { return e.nome; }).join(' e '); }
+  function condPadrao() {
+    return '<p><b>Pagamento</b> ' + esc(cfg.pagamento) + '.</p><p><b>Não incluso</b> ' + esc(cfg.naoIncluso) + '.</p>' + (cfg.condicoes ? '<p><b>Condições</b> ' + esc(cfg.condicoes) + '</p>' : '') + '<p><b>Direitos de uso</b> ' + esc(cfg.direitos) + '.</p>';
+  }
+  function txt(html) { var d = document.createElement('div'); d.innerHTML = html.replace(/<\/p>/g, '\n'); return d.textContent.trim(); }
+  function parseVal(t) { t = String(t).replace(/[^\d,.]/g, ''); if (/,\d{1,2}$/.test(t)) t = t.replace(/\./g, '').replace(',', '.'); else t = t.replace(/[.,]/g, ''); return +t || 0; }
+  function aplicaEd(P) {
+    P.forEach(function (p) {
+      p.sig = sig(p); p.sub = subPadrao(p); p.cond = condPadrao();
+      p.linhas = p.linhas.map(function (l) { return [l[0], l[1], l[0]]; });
+      var x = ED[p.sig];
+      if (x) {
+        if (x.sub != null) p.sub = x.sub;
+        if (x.cond != null) p.cond = x.cond;
+        if (x.incl) p.incl = x.incl.slice();
+        if (x.lines) p.linhas.forEach(function (l) { var o = x.lines[l[2]]; if (o) { if (o.d != null) l[0] = o.d; if (o.v != null) l[1] = o.v; } });
+      }
+      p.total = p.linhas.reduce(function (a, b) { return a + b[1]; }, 0);
+    });
+  }
+  function edOf(p) { return ED[p.sig] || (ED[p.sig] = {}); }
   function textoWA(p) {
     var c = $('#cliente').value || 'cliente';
-    var t = '*Orçamento — ' + p.servico + '*\nLuah Produção · para ' + c + '\n\n';
-    p.evs.forEach(function (e) { t += '📅 ' + dataLonga(e) + ', às ' + e.hora.replace(':00', 'h').replace(':', 'h') + '\n' + e.nome + (e.local ? ' · ' + e.local : '') + '\n'; });
+    var t = '*Orçamento — ' + p.servico + '*\nLuah Produção · para ' + c + '\n_' + p.sub + '_\n\n';
+    p.evs.forEach(function (e) { t += '📅 ' + dataLonga(e) + ', às ' + horaTxt(e) + '\n' + e.nome + (e.local ? ' · ' + e.local : '') + '\n'; });
     t += '\n';
     p.linhas.forEach(function (l) { t += '• ' + l[0] + ': ' + brl(l[1]) + '\n'; });
     t += '\n*Total: ' + brl(p.total) + '*\n\nIncluso:\n' + p.incl.map(function (x) { return '✦ ' + x; }).join('\n');
-    t += '\n\nPagamento: ' + cfg.pagamento + '\nNão incluso: ' + cfg.naoIncluso + (cfg.condicoes ? '\nCondições: ' + cfg.condicoes : '') + '\nProposta válida até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + '.';
+    t += '\n\n' + txt(p.cond) + '\nProposta válida até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + '.';
     t += '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
     return t;
   }
   function pacote(P) {
     var soma = P.reduce(function (a, p) { return a + p.total; }, 0);
     var pac = cfg.pacotePct ? Math.round(soma * (1 - cfg.pacotePct / 100) / 100) * 100 : soma;
+    if (ED._pac != null) pac = ED._pac;
     var semCurtos = evs.filter(function (e) { return e.video && !e.curtos; });
     return { soma: soma, pac: pac, econ: soma - pac, semCurtos: semCurtos, extra: cfg.curtoQtd * cfg.curtoValor };
   }
@@ -376,40 +435,102 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     t += '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
     return t;
   }
+  var CE = ' contenteditable="true" spellcheck="false"';
+  function brand() { return '<div class="br"><img src="' + LOGO + '" alt="">Luah Produção</div>'; }
+  function rodape(lista) { return '<div class="ft"><span><b>' + CTA + '</b> Válido até ' + validoAte(lista).toLocaleDateString('pt-BR') + '.</span><a href="https://' + SITE + '/">' + SITE + '</a></div>'; }
+  function cardHtml(p, i) {
+    var cli = $('#cliente').value || 'Cliente', lc = $('#local').value;
+    var side = brand();
+    side += '<div class="k">' + (p.evs.length > 1 ? 'Datas' : 'Data') + '</div>' + p.evs.map(function (e) { return '<p>' + diaTxt(e) + (e.y !== new Date().getFullYear() ? '<small>' + e.y + '</small>' : '') + '</p>'; }).join('');
+    side += '<div class="k">Horário</div>' + p.evs.map(function (e) { return '<p>' + horaTxt(e) + '<small>cerca de ' + String(e.horas).replace('.', ',') + 'h de evento</small></p>'; }).join('');
+    side += '<div class="k">Evento</div>' + p.evs.map(function (e) { return '<p>' + esc(e.nome) + (e.local ? '<small>' + esc(e.local) + '</small>' : '') + '</p>'; }).join('');
+    if (lc) side += '<div class="k">Local</div><p>' + esc(lc) + '</p>';
+    side += '<div class="k">Serviço</div><p>' + esc(p.servico) + '</p>';
+    side += '<div class="qt"><div class="k" style="margin:0">Investimento</div><b data-tot="' + i + '">' + brl(p.total) + '</b></div>';
+    var main = '<div class="k2">Proposta para</div><h3 data-ed="cliente"' + CE + '>' + esc(cli) + '</h3><div class="lede" data-ed="sub" data-p="' + i + '"' + CE + '>' + esc(p.sub) + '</div><hr>';
+    main += '<table>' + p.linhas.map(function (l, j) { return '<tr><td data-ed="desc" data-p="' + i + '" data-l="' + j + '"' + CE + '>' + esc(l[0]) + '</td><td data-ed="val" data-p="' + i + '" data-l="' + j + '"' + CE + ' inputmode="decimal">' + brl(l[1]) + '</td></tr>'; }).join('') + '</table><hr>';
+    main += '<div class="k2">O que está incluso</div><ul class="inc" data-ed="incl" data-p="' + i + '"' + CE + '>' + p.incl.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul><hr>';
+    main += '<div class="cond" data-ed="cond" data-p="' + i + '"' + CE + '>' + p.cond + '</div>' + rodape(p.evs);
+    return '<div class="qtools"><button class="btn" type="button" data-copy="' + i + '">Copiar para WhatsApp</button><button class="btn" type="button" data-print="' + i + '">Salvar só esta em PDF</button></div>' +
+      '<article class="q" data-q="' + i + '"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
+  }
+  function resumoHtml(P) {
+    var k = pacote(P), all = [], cli = $('#cliente').value || 'Cliente';
+    P.forEach(function (p) { p.evs.forEach(function (e) { if (all.indexOf(e) < 0) all.push(e); }); });
+    var side = brand() + '<div class="k">' + (all.length > 1 ? 'Datas' : 'Data') + '</div>' + all.map(function (e) { return '<p>' + diaTxt(e) + '<small>' + horaTxt(e) + ' · ' + esc(e.nome) + '</small></p>'; }).join('') +
+      '<div class="k">Orçamentos</div><p>' + P.length + ' propostas</p>' +
+      '<div class="qt"><div class="k" style="margin:0">Fechando tudo</div><b data-ed="pac"' + CE + ' inputmode="decimal">' + brl(k.pac) + '</b><small data-r="econ2">' + (k.econ > 0 ? 'em vez de ' + brl(k.soma) : '') + '</small></div>';
+    var main = '<div class="k2">Resumo da proposta</div><h3 data-ed="cliente"' + CE + '>' + esc(cli) + '</h3><div class="lede" data-ed="rsub"' + CE + '>' + esc(ED._rsub != null ? ED._rsub : 'Todas as datas e serviços em um só lugar') + '</div><hr>' +
+      '<table>' + P.map(function (p, i) { return '<tr><td>' + esc(p.servico) + '<small>' + p.evs.map(function (e) { return pad(e.d) + '/' + pad(e.m) + ' · ' + esc(e.nome); }).join(', ') + '</small></td><td data-rt="' + i + '">' + brl(p.total) + '</td></tr>'; }).join('') +
+      '<tr class="sm"><td>Soma</td><td data-r="soma">' + brl(k.soma) + '</td></tr><tr class="big"><td>Fechando tudo com a Luah</td><td data-r="pac">' + brl(k.pac) + '</td></tr></table>' +
+      '<p class="eco" data-r="econ">' + (k.econ > 0 ? 'Economia de ' + brl(k.econ) + ' ao fechar todas as datas e serviços.' : '') + '</p>' +
+      (k.semCurtos.length && k.extra ? '<p class="opt" data-ed="opt"' + CE + '>' + (ED._opt != null ? ED._opt : '<b>Opcional:</b> sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s), prontos para as redes, por data: + ' + brl(k.extra) + '.') + '</p>' : '') +
+      '<hr><div class="cond" data-ed="rcond"' + CE + '>' + (ED._rcond != null ? ED._rcond : condPadrao()) + '</div>' + rodape(all);
+    return '<div class="qtools"><button class="btn" type="button" data-copy="R">Copiar resumo</button><button class="btn" type="button" data-print="R">Salvar só o resumo em PDF</button></div>' +
+      '<article class="q" data-q="R"><aside class="qs">' + side + '</aside><div class="qm">' + main + '</div></article>';
+  }
+  function atualizaNums() {
+    var P = window._P || [], out = $('#out');
+    P.forEach(function (p, i) {
+      p.total = p.linhas.reduce(function (a, b) { return a + b[1]; }, 0);
+      var t = out.querySelector('[data-tot="' + i + '"]'); if (t) t.textContent = brl(p.total);
+      var r = out.querySelector('[data-rt="' + i + '"]'); if (r) r.textContent = brl(p.total);
+    });
+    var k = pacote(P), f = function (s, v) { var el = out.querySelector('[data-r="' + s + '"]'); if (el) el.textContent = v; };
+    f('soma', brl(k.soma)); f('pac', brl(k.pac)); f('econ', k.econ > 0 ? 'Economia de ' + brl(k.econ) + ' ao fechar todas as datas e serviços.' : ''); f('econ2', k.econ > 0 ? 'em vez de ' + brl(k.soma) : '');
+    var pe = out.querySelector('[data-ed="pac"]'); if (pe && document.activeElement !== pe) pe.textContent = brl(k.pac);
+    resumoTopo(P);
+  }
+  function resumoTopo(P) {
+    var semPreco = (!cfg.fotoCobertura && evs.some(function (e) { return e.foto; })) || (!cfg.videoCobertura && evs.some(function (e) { return e.video; }));
+    var k = pacote(P);
+    $('#sum').innerHTML = P.length ? '<span class="muted">' + P.length + ' proposta' + (P.length > 1 ? 's' : '') + '</span><span>Soma: <b>' + brl(k.soma) + '</b></span>' + (P.length > 1 && k.econ > 0 ? '<span>Fechando tudo: <b>' + brl(k.pac) + '</b></span>' : '') + (semPreco ? '<span class="warn">Preencha os valores na “Tabela de preços” — alguns itens estão em R$ 0,00.</span>' : '') : '<span class="muted">As propostas aparecem aqui.</span>';
+  }
   function render() {
     var out = $('#out'), P = propostas();
-    var semPreco = (!cfg.fotoCobertura && evs.some(function (e) { return e.foto; })) || (!cfg.videoCobertura && evs.some(function (e) { return e.video; }));
-    $('#sum').innerHTML = P.length ? '<span class="muted">' + P.length + ' proposta' + (P.length > 1 ? 's' : '') + '</span><span>Soma de tudo: <b>' + brl(P.reduce(function (a, p) { return a + p.total; }, 0)) + '</b></span>' + (semPreco ? '<span class="warn">Preencha os valores na “Tabela de preços” — alguns itens estão em R$ 0,00.</span>' : '') : '<span class="muted">As propostas aparecem aqui.</span>';
-    var hoje = new Date();
-    out.innerHTML = P.map(function (p, i) {
-      var evh = p.evs.map(function (e) { return dataLonga(e) + ', às ' + e.hora.replace(':', 'h') + ' — ' + esc(e.nome) + (e.local ? ' · ' + esc(e.local) : ''); }).join('<br>');
-      return '<div class="qtools"><button class="btn" type="button" data-copy="' + i + '">Copiar para WhatsApp</button><button class="btn" type="button" data-print="' + i + '">Salvar só esta em PDF</button></div>' +
-        '<article class="q" data-q="' + i + '"><div class="qh"><div><div class="qk">Orçamento · ' + esc(p.servico) + '</div><h3>' + esc($('#cliente').value || 'Cliente') + '</h3><div class="meta">' + evh + ($('#local').value ? '<br>' + esc($('#local').value) : '') + '</div></div><div class="qb"><img src="' + LOGO + '" alt="">Luah Produção</div></div>' +
-        '<table>' + p.linhas.map(function (l) { return '<tr><td>' + esc(l[0]) + '</td><td>' + brl(l[1]) + '</td></tr>'; }).join('') + '<tr class="tot"><td>Total</td><td>' + brl(p.total) + '</td></tr></table>' +
-        '<ul class="inc">' + p.incl.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-        '<div class="cond"><span><b>Pagamento:</b> ' + esc(cfg.pagamento) + '</span><span><b>Não incluso:</b> ' + esc(cfg.naoIncluso) + '</span><span><b>Direitos de uso:</b> ' + esc(cfg.direitos) + '</span>' + (cfg.condicoes ? '<span><b>Condições:</b> ' + esc(cfg.condicoes) + '</span>' : '') + '</div>' + ctaHtml() +
-        '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + ($('#contato').value ? ' · A/C ' + esc($('#contato').value) : '') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
-    }).join('');
-    if (P.length > 1) out.innerHTML = resumoHtml(P, hoje) + out.innerHTML;
-    out.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copy(b.dataset.copy === 'R' ? textoResumo(P) : textoWA(P[+b.dataset.copy]), b); }); });
-    out.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { var k = b.dataset.print; out.querySelectorAll('.q').forEach(function (q) { q.classList.toggle('skip', q.dataset.q !== k); }); window.print(); out.querySelectorAll('.q').forEach(function (q) { q.classList.remove('skip'); }); }); });
-    window._P = P;
+    aplicaEd(P); window._P = P;
+    resumoTopo(P);
+    out.innerHTML = P.map(cardHtml).join('') + (P.length > 1 ? resumoHtml(P) : '');
+    out.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copy(b.dataset.copy === 'R' ? textoResumo(window._P) : textoWA(window._P[+b.dataset.copy]), b); }); });
+    out.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { imprimir(b.dataset.print); }); });
   }
-  function ctaHtml() { return '<div class="cta"><span>' + CTA + '</span><a href="https://' + SITE + '/">Conheça nosso trabalho → ' + SITE + '</a></div>'; }
-  function resumoHtml(P, hoje) {
-    var k = pacote(P), all = []; P.forEach(function (p) { all = all.concat(p.evs); });
-    return '<div class="qtools"><button class="btn" type="button" data-copy="R">Copiar resumo</button><button class="btn" type="button" data-print="R">Salvar só o resumo em PDF</button></div>' +
-      '<article class="q" data-q="R"><div class="qh"><div><div class="qk">Resumo da proposta</div><h3>' + esc($('#cliente').value || 'Cliente') + '</h3><div class="meta">Todas as datas e serviços em um só lugar</div></div><div class="qb"><img src="' + LOGO + '" alt="">Luah Produção</div></div>' +
-      '<table>' + P.map(function (p) { return '<tr><td>' + esc(p.servico) + ' — ' + p.evs.map(function (e) { return pad(e.d) + '/' + pad(e.m) + ' · ' + esc(e.nome); }).join(', ') + '</td><td>' + brl(p.total) + '</td></tr>'; }).join('') +
-      '<tr><td>Soma</td><td>' + brl(k.soma) + '</td></tr>' +
-      (k.econ > 0 ? '<tr class="tot"><td>Fechando tudo com a Luah</td><td>' + brl(k.pac) + '</td></tr>' : '<tr class="tot"><td>Total</td><td>' + brl(k.soma) + '</td></tr>') + '</table>' +
-      (k.econ > 0 ? '<p class="eco">Economia de ' + brl(k.econ) + ' ao fechar todas as datas e serviços.</p>' : '') +
-      (k.semCurtos.length && k.extra ? '<p class="opt"><b>Opcional:</b> sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s), prontos para as redes, por data: + ' + brl(k.extra) + '.</p>' : '') +
-      ctaHtml() +
-      '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + validoAte(all).toLocaleDateString('pt-BR') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
+  function imprimir(k) {
+    var qs = $('#out').querySelectorAll('.q'), vis = [];
+    qs.forEach(function (q) { var sk = k != null && q.dataset.q !== k; q.classList.toggle('skip', sk); q.classList.remove('last'); if (!sk) vis.push(q); });
+    if (vis.length) vis[vis.length - 1].classList.add('last');
+    window.print();
+    qs.forEach(function (q) { q.classList.remove('skip', 'last'); });
   }
+  window._imprimir = imprimir;
+  // edição ao vivo
+  $('#out').addEventListener('input', function (ev) {
+    var el = ev.target.closest('[data-ed]'); if (!el) return;
+    var P = window._P || [], t = el.dataset.ed, p = P[+el.dataset.p];
+    if (t === 'cliente') { $('#cliente').value = el.textContent.trim(); $('#out').querySelectorAll('[data-ed="cliente"]').forEach(function (o) { if (o !== el) o.textContent = el.textContent; }); return; }
+    if (t === 'rsub') { ED._rsub = el.textContent; return; }
+    if (t === 'rcond') { ED._rcond = el.innerHTML; return; }
+    if (t === 'opt') { ED._opt = el.innerHTML; return; }
+    if (t === 'pac') { ED._pac = parseVal(el.textContent); atualizaNums(); return; }
+    if (!p) return;
+    var x = edOf(p);
+    if (t === 'sub') { x.sub = p.sub = el.textContent; }
+    else if (t === 'cond') { x.cond = p.cond = el.innerHTML; }
+    else if (t === 'incl') { x.incl = p.incl = Array.prototype.map.call(el.querySelectorAll('li'), function (li) { return li.textContent.trim(); }).filter(Boolean); }
+    else if (t === 'desc' || t === 'val') {
+      var l = p.linhas[+el.dataset.l]; x.lines = x.lines || {}; var o = x.lines[l[2]] || (x.lines[l[2]] = {});
+      if (t === 'desc') o.d = l[0] = el.textContent.trim(); else { o.v = l[1] = parseVal(el.textContent); atualizaNums(); }
+    }
+  });
+  $('#out').addEventListener('focusout', function (ev) {
+    var el = ev.target; if (!el.dataset) return;
+    if (el.dataset.ed === 'val') { var p = (window._P || [])[+el.dataset.p]; if (p) el.textContent = brl(p.linhas[+el.dataset.l][1]); }
+    if (el.dataset.ed === 'pac') el.textContent = brl(pacote(window._P || []).pac);
+    if (el.dataset.ed === 'cliente') render();
+  });
+  $('#out').addEventListener('keydown', function (ev) { var el = ev.target; if (ev.key === 'Enter' && el.dataset && /^(val|desc|cliente|sub|rsub|pac)$/.test(el.dataset.ed)) { ev.preventDefault(); el.blur(); } });
+  $('#undoEd').addEventListener('click', function () { if (!confirm('Desfazer todas as edições feitas na proposta?')) return; ED = {}; render(); });
   function copy(t, b) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { var o = b.textContent; b.textContent = 'Copiado ✓'; setTimeout(function () { b.textContent = o; }, 1800); }, function () { prompt('Copie o texto:', t); }); }
-  $('#print').addEventListener('click', function () { window.print(); });
+  $('#print').addEventListener('click', function () { imprimir(null); });
   $('#copyAll').addEventListener('click', function () { var PP = window._P || []; copy(PP.map(textoWA).concat(PP.length > 1 ? [textoResumo(PP)] : []).join('\n\n— — —\n\n'), this); });
   drawEvs(); render();
 })();
