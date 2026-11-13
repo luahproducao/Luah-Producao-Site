@@ -301,10 +301,10 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   }
   function inclui(e, tipo) {
     var base = ['Reunião de briefing antes do evento para alinhar objetivos e momentos-chave', 'Presença do início ao fim do evento, conforme a programação do briefing'];
-    if (tipo === 'foto') { var n = Math.round(e.horas * cfg.fotosPorHora); return base.concat([(n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Entrega em galeria online ' + cfg.fotoPrazo, 'Todo o material bruto entregue por link']); }
-    var L = base.concat(['Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor']);
+    if (tipo === 'foto') { var n = Math.round(e.horas * cfg.fotosPorHora); return base.concat([(n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Captação com celulares de última geração: ágil, discreta e pronta para as redes', 'Entrega em pastas no Google Drive (arquivos brutos e editados) ' + cfg.fotoPrazo]); }
+    var L = base.concat(['Captação com celulares de última geração: ágil, discreta e pronta para as redes', 'Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor']);
     if (e.curtos) L.push(cfg.curtoQtd + ' vídeos curtos de até 30s, prontos para as redes');
-    return L.concat(['Formatos para redes (vertical) e horizontal, se necessário', 'Todo o material bruto entregue por link', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo]);
+    return L.concat(['Formatos para redes (vertical) e horizontal, se necessário', 'Entrega em pastas no Google Drive: arquivos brutos e editados, separados entre vídeos e fotos', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo]);
   }
   function propostas() {
     var P = [];
