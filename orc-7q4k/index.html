@@ -65,6 +65,10 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 .q .inc{margin:12px 0 0;padding:0;list-style:none;font-size:13px;color:#3B362F;display:grid;gap:4px}
 .q .inc li::before{content:"✦ ";color:#B08D57;font-size:10px}
 .q .cond{margin-top:14px;font-size:12px;color:#5E574C;display:grid;gap:3px}
+.q .cta{margin-top:14px;padding:12px 14px;background:#EFE7D9;font-size:13px;color:#1A1815;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 14px}
+.q .cta a{color:#8A6D3B;text-decoration:none;font-weight:600}
+.q .eco{margin:6px 0 0;font-size:13px;color:#8A6D3B}
+.q .opt{margin:10px 0 0;font-size:13px;color:#3B362F}
 .q .foot{margin-top:16px;padding-top:12px;border-top:1px solid #D9CFBF;font-size:12px;color:#5E574C;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .qtools{display:flex;flex-wrap:wrap;gap:8px;margin-top:-8px}
 .sum{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding:14px 18px;border:1px solid var(--line);background:var(--bg2)}
@@ -77,6 +81,8 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   .qtools,.sum{display:none!important}
   .q{page-break-after:always;break-after:page;padding:10mm 4mm}
   .q.skip{display:none}
+  article.q:last-of-type{page-break-after:auto;break-after:auto}
+  [hidden],#lock{display:none!important}
 }
 </style>
 </head>
@@ -125,6 +131,9 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 </div>
 <label>Não incluído<input type="text" data-cfg="naoIncluso"></label>
 <label>Direitos de uso<input type="text" data-cfg="direitos"></label>
+<label style="grid-column:1/-1">Cancelamento, chuva e arquivos<input type="text" data-cfg="condicoes"></label>
+<label>Prévia rápida de fotos<input type="text" data-cfg="previa"></label>
+<label>Desconto ao fechar tudo (%)<input type="number" min="0" step="1" data-cfg="pacotePct"></label>
 <div class="acts"><button class="btn" type="button" id="cfgSave">Salvar tabela</button><button class="btn" type="button" id="cfgExport">Exportar tabela</button><button class="btn" type="button" id="cfgImport">Importar tabela</button></div>
 </div>
 </details>
@@ -173,11 +182,13 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
 (function () {
   var $ = function (s) { return document.querySelector(s); };
   var LOGO = '../assets/img/logo-gold.png';
-  var DEF = { fotoCobertura: 900, fotosPorHora: 40, fotoPrazo: 'até 7 dias úteis', videoCobertura: 900, edicaoBase: 350, curtoQtd: 8, curtoValor: 70, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
+  var DEF = { fotoCobertura: 900, fotosPorHora: 25, fotoPrazo: 'até 7 dias úteis', videoCobertura: 900, edicaoBase: 350, curtoQtd: 8, curtoValor: 70, edicaoExtra30: 100, videoPrazo: 'até 10 dias úteis', revisoes: 1,
     especialPct: 50, especialDatas: '24/12, 25/12, 31/12, 01/01', deslocamento: 0, realtime: 300, validade: 7,
-    pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem e alimentação da equipe; extensão do evento além da programação do briefing ou dia adicional são orçados à parte', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção' };
+    pagamento: '50% na confirmação da data e 50% até o dia do evento', naoIncluso: 'Hospedagem e alimentação da equipe; extensão do evento além da programação do briefing ou dia adicional são orçados à parte', direitos: 'Uso nas redes sociais e materiais de divulgação do contratante, incluindo o material bruto, com crédito à Luah Produção também nas peças feitas a partir dele',
+    condicoes: 'O sinal de 50% garante a data e não é devolvido em caso de cancelamento; remarcação sem custo para nova data em até 90 dias, conforme disponibilidade (vale também para chuva ou adiamento). Os arquivos ficam disponíveis no Drive por 60 dias após a entrega.',
+    previa: '10 fotos tratadas em até 24h', pacotePct: 10, v: 3 };
   var cfg = Object.assign({}, DEF);
-  try { Object.assign(cfg, JSON.parse(localStorage.getItem('luahPrecos') || '{}')); } catch (e) {}
+  try { var sv = JSON.parse(localStorage.getItem('luahPrecos') || '{}'); if (!sv.v || sv.v < 3) { if (sv.naoIncluso === 'Hospedagem, alimentação da equipe e impressões') delete sv.naoIncluso; if (sv.direitos === 'Uso nas redes sociais e materiais de divulgação do contratante, com crédito à Luah Produção') delete sv.direitos; if (sv.fotosPorHora === 40) delete sv.fotosPorHora; ['fotoHora','fotoMin','videoHora','videoMin','noturnoPct'].forEach(function (k) { delete sv[k]; }); sv.v = 3; } Object.assign(cfg, sv); } catch (e) {}
   var evs = [];
 
   // acesso
@@ -233,7 +244,7 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       var d = +l[1], m = +l[2]; if (m < 1 || m > 12 || d < 1 || d > 31) continue;
       var y = l[3] ? (+l[3] < 100 ? 2000 + +l[3] : +l[3]) : yearFor(d, m);
       var nome = (l[6] || '').replace(/^[\s\-–—:]+/, '').trim() || 'Evento';
-      var loc = ''; var pm = nome.match(/\(\s*(?:no|na|em|nos|nas)\s+([^)]+)\)\s*$/i); if (pm) { loc = pm[1].trim(); loc = loc.charAt(0).toUpperCase() + loc.slice(1); }
+      var loc = ''; var pm = nome.match(/\(\s*(?:no|na|em|nos|nas)\s+([^)]+)\)\s*$/i); if (pm) { loc = pm[1].trim(); loc = loc.charAt(0).toUpperCase() + loc.slice(1); nome = nome.replace(pm[0], '').trim() || 'Evento'; }
       found.push({ d: d, m: m, y: y, hora: pad(+l[4]) + ':' + (l[5] || '00'), nome: nome, horas: over[d] || base, foto: wantFoto, video: wantVideo, vsec: vsec, especial: especialDe(d, m), realtime: rt, curtos: curtos, local: loc });
     }
     if (found.length) { evs = found; info.push(found.length + ' data' + (found.length > 1 ? 's' : '')); }
@@ -286,6 +297,17 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
   function brl(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
   var DIAS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
   function dataLonga(e) { var dt = new Date(e.y, e.m - 1, e.d); return DIAS[dt.getDay()] + ', ' + e.d + ' de ' + MESES[e.m - 1] + ' de ' + e.y; }
+  function nomeEspecial(e) {
+    var k = pad(e.d) + '/' + pad(e.m), N = { '24/12': 'véspera de Natal', '25/12': 'Natal', '31/12': 'Réveillon', '01/01': '1º de janeiro' };
+    return 'Valor de feriado — ' + (N[k] || k);
+  }
+  function validoAte(evsList) {
+    var hoje = new Date(), v = new Date(hoje.getTime() + cfg.validade * 864e5);
+    evsList.forEach(function (e) { var lim = new Date(e.y, e.m - 1, e.d - 2); if (lim < v) v = lim; });
+    return v < hoje ? hoje : v;
+  }
+  var SITE = 'luahproducao.github.io/Luah-Producao-Site';
+  var CTA = 'Para reservar a data, é só responder esta mensagem.';
   function itens(e, tipo) {
     var L = [], cap = tipo === 'foto' ? cfg.fotoCobertura : cfg.videoCobertura;
     L.push([(tipo === 'foto' ? 'Cobertura fotográfica integral do evento' : 'Cobertura em vídeo integral do evento'), cap]);
@@ -294,14 +316,14 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
       L.push(['Edição e finalização — vídeo geral do evento (' + fmtSec(e.vsec) + ')', cfg.edicaoBase + extra]);
       if (e.curtos) L.push(['Sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s cada)', cfg.curtoQtd * cfg.curtoValor]);
     }
-    if (e.especial && cfg.especialPct) L.push(['Adicional de data especial (' + cfg.especialPct + '% sobre a cobertura)', cap * cfg.especialPct / 100]);
+    if (e.especial && cfg.especialPct) L.push([nomeEspecial(e), cap * cfg.especialPct / 100]);
     if (e.realtime && cfg.realtime && (tipo === 'video' || !e.video)) L.push(['Publicação em tempo real nas redes', cfg.realtime]);
     if (cfg.deslocamento) L.push(['Deslocamento', cfg.deslocamento]);
     return L;
   }
   function inclui(e, tipo) {
     var base = ['Reunião de briefing antes do evento para alinhar objetivos e momentos-chave', 'Presença do início ao fim do evento, conforme a programação do briefing'];
-    if (tipo === 'foto') { var n = Math.round(e.horas * cfg.fotosPorHora); return base.concat([(n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução', 'Captação com celulares de última geração: ágil, discreta e pronta para as redes', 'Entrega em pastas no Google Drive (arquivos brutos e editados) ' + cfg.fotoPrazo]); }
+    if (tipo === 'foto') { var n = Math.round(e.horas * cfg.fotosPorHora); return base.concat([(n ? 'Cerca de ' + n + ' fotos selecionadas e tratadas' : 'Fotos selecionadas e tratadas') + ', em alta resolução'].concat(cfg.previa ? ['Prévia com ' + cfg.previa + ', para postar logo após o evento'] : []).concat([ 'Captação com celulares de última geração: ágil, discreta e pronta para as redes', 'Entrega em pastas no Google Drive (arquivos brutos e editados) ' + cfg.fotoPrazo])); }
     var L = base.concat(['Captação com celulares de última geração: ágil, discreta e pronta para as redes', 'Vídeo geral do evento com cerca de ' + fmtSec(e.vsec) + ', editado com trilha e correção de cor']);
     if (e.curtos) L.push(cfg.curtoQtd + ' vídeos curtos de até 30s, prontos para as redes');
     return L.concat(['Formatos para redes (vertical) e horizontal, se necessário', 'Entrega em pastas no Google Drive: arquivos brutos e editados, separados entre vídeos e fotos', cfg.revisoes + ' rodada' + (cfg.revisoes === 1 ? '' : 's') + ' de ajuste · entrega ' + cfg.videoPrazo]);
@@ -335,30 +357,60 @@ details .in{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     t += '\n';
     p.linhas.forEach(function (l) { t += '• ' + l[0] + ': ' + brl(l[1]) + '\n'; });
     t += '\n*Total: ' + brl(p.total) + '*\n\nIncluso:\n' + p.incl.map(function (x) { return '✦ ' + x; }).join('\n');
-    t += '\n\nPagamento: ' + cfg.pagamento + '\nNão incluso: ' + cfg.naoIncluso + '\nProposta válida por ' + cfg.validade + ' dias.';
+    t += '\n\nPagamento: ' + cfg.pagamento + '\nNão incluso: ' + cfg.naoIncluso + (cfg.condicoes ? '\nCondições: ' + cfg.condicoes : '') + '\nProposta válida até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + '.';
+    t += '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
+    return t;
+  }
+  function pacote(P) {
+    var soma = P.reduce(function (a, p) { return a + p.total; }, 0);
+    var pac = cfg.pacotePct ? Math.round(soma * (1 - cfg.pacotePct / 100) / 100) * 100 : soma;
+    var semCurtos = evs.filter(function (e) { return e.video && !e.curtos; });
+    return { soma: soma, pac: pac, econ: soma - pac, semCurtos: semCurtos, extra: cfg.curtoQtd * cfg.curtoValor };
+  }
+  function textoResumo(P) {
+    var k = pacote(P), c = $('#cliente').value || 'cliente';
+    var t = '*Resumo da proposta*\nLuah Produção · para ' + c + '\n\n';
+    P.forEach(function (p) { t += '• ' + p.servico + ' — ' + p.evs.map(function (e) { return pad(e.d) + '/' + pad(e.m) + ' ' + e.nome; }).join(', ') + ': ' + brl(p.total) + '\n'; });
+    t += '\nSoma: ' + brl(k.soma) + (k.econ > 0 ? '\n*Fechando tudo: ' + brl(k.pac) + '* (economia de ' + brl(k.econ) + ')' : '');
+    if (k.semCurtos.length && k.extra) t += '\n\nOpcional: sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s) por data, + ' + brl(k.extra) + '.';
+    t += '\n\nConheça nosso trabalho: https://' + SITE + '/\n' + CTA;
     return t;
   }
   function render() {
     var out = $('#out'), P = propostas();
     var semPreco = (!cfg.fotoCobertura && evs.some(function (e) { return e.foto; })) || (!cfg.videoCobertura && evs.some(function (e) { return e.video; }));
     $('#sum').innerHTML = P.length ? '<span class="muted">' + P.length + ' proposta' + (P.length > 1 ? 's' : '') + '</span><span>Soma de tudo: <b>' + brl(P.reduce(function (a, p) { return a + p.total; }, 0)) + '</b></span>' + (semPreco ? '<span class="warn">Preencha os valores na “Tabela de preços” — alguns itens estão em R$ 0,00.</span>' : '') : '<span class="muted">As propostas aparecem aqui.</span>';
-    var hoje = new Date(), val = new Date(hoje.getTime() + cfg.validade * 864e5);
+    var hoje = new Date();
     out.innerHTML = P.map(function (p, i) {
       var evh = p.evs.map(function (e) { return dataLonga(e) + ', às ' + e.hora.replace(':', 'h') + ' — ' + esc(e.nome) + (e.local ? ' · ' + esc(e.local) : ''); }).join('<br>');
       return '<div class="qtools"><button class="btn" type="button" data-copy="' + i + '">Copiar para WhatsApp</button><button class="btn" type="button" data-print="' + i + '">Salvar só esta em PDF</button></div>' +
         '<article class="q" data-q="' + i + '"><div class="qh"><div><div class="qk">Orçamento · ' + esc(p.servico) + '</div><h3>' + esc($('#cliente').value || 'Cliente') + '</h3><div class="meta">' + evh + ($('#local').value ? '<br>' + esc($('#local').value) : '') + '</div></div><div class="qb"><img src="' + LOGO + '" alt="">Luah Produção</div></div>' +
         '<table>' + p.linhas.map(function (l) { return '<tr><td>' + esc(l[0]) + '</td><td>' + brl(l[1]) + '</td></tr>'; }).join('') + '<tr class="tot"><td>Total</td><td>' + brl(p.total) + '</td></tr></table>' +
         '<ul class="inc">' + p.incl.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-        '<div class="cond"><span><b>Pagamento:</b> ' + esc(cfg.pagamento) + '</span><span><b>Não incluso:</b> ' + esc(cfg.naoIncluso) + '</span><span><b>Direitos de uso:</b> ' + esc(cfg.direitos) + '</span></div>' +
-        '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + val.toLocaleDateString('pt-BR') + ($('#contato').value ? ' · A/C ' + esc($('#contato').value) : '') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
+        '<div class="cond"><span><b>Pagamento:</b> ' + esc(cfg.pagamento) + '</span><span><b>Não incluso:</b> ' + esc(cfg.naoIncluso) + '</span><span><b>Direitos de uso:</b> ' + esc(cfg.direitos) + '</span>' + (cfg.condicoes ? '<span><b>Condições:</b> ' + esc(cfg.condicoes) + '</span>' : '') + '</div>' + ctaHtml() +
+        '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + validoAte(p.evs).toLocaleDateString('pt-BR') + ($('#contato').value ? ' · A/C ' + esc($('#contato').value) : '') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
     }).join('');
-    out.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copy(textoWA(P[+b.dataset.copy]), b); }); });
+    if (P.length > 1) out.innerHTML = resumoHtml(P, hoje) + out.innerHTML;
+    out.querySelectorAll('[data-copy]').forEach(function (b) { b.addEventListener('click', function () { copy(b.dataset.copy === 'R' ? textoResumo(P) : textoWA(P[+b.dataset.copy]), b); }); });
     out.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { var k = b.dataset.print; out.querySelectorAll('.q').forEach(function (q) { q.classList.toggle('skip', q.dataset.q !== k); }); window.print(); out.querySelectorAll('.q').forEach(function (q) { q.classList.remove('skip'); }); }); });
     window._P = P;
   }
+  function ctaHtml() { return '<div class="cta"><span>' + CTA + '</span><a href="https://' + SITE + '/">Conheça nosso trabalho → ' + SITE + '</a></div>'; }
+  function resumoHtml(P, hoje) {
+    var k = pacote(P), all = []; P.forEach(function (p) { all = all.concat(p.evs); });
+    return '<div class="qtools"><button class="btn" type="button" data-copy="R">Copiar resumo</button><button class="btn" type="button" data-print="R">Salvar só o resumo em PDF</button></div>' +
+      '<article class="q" data-q="R"><div class="qh"><div><div class="qk">Resumo da proposta</div><h3>' + esc($('#cliente').value || 'Cliente') + '</h3><div class="meta">Todas as datas e serviços em um só lugar</div></div><div class="qb"><img src="' + LOGO + '" alt="">Luah Produção</div></div>' +
+      '<table>' + P.map(function (p) { return '<tr><td>' + esc(p.servico) + ' — ' + p.evs.map(function (e) { return pad(e.d) + '/' + pad(e.m) + ' · ' + esc(e.nome); }).join(', ') + '</td><td>' + brl(p.total) + '</td></tr>'; }).join('') +
+      '<tr><td>Soma</td><td>' + brl(k.soma) + '</td></tr>' +
+      (k.econ > 0 ? '<tr class="tot"><td>Fechando tudo com a Luah</td><td>' + brl(k.pac) + '</td></tr>' : '<tr class="tot"><td>Total</td><td>' + brl(k.soma) + '</td></tr>') + '</table>' +
+      (k.econ > 0 ? '<p class="eco">Economia de ' + brl(k.econ) + ' ao fechar todas as datas e serviços.</p>' : '') +
+      (k.semCurtos.length && k.extra ? '<p class="opt"><b>Opcional:</b> sequência de ' + cfg.curtoQtd + ' vídeos curtos (até 30s), prontos para as redes, por data: + ' + brl(k.extra) + '.</p>' : '') +
+      ctaHtml() +
+      '<div class="foot"><span>Emitido em ' + hoje.toLocaleDateString('pt-BR') + ' · válido até ' + validoAte(all).toLocaleDateString('pt-BR') + '</span><span>WhatsApp (71) 99264-7606 · luahproducao@gmail.com</span></div></article>';
+  }
   function copy(t, b) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { var o = b.textContent; b.textContent = 'Copiado ✓'; setTimeout(function () { b.textContent = o; }, 1800); }, function () { prompt('Copie o texto:', t); }); }
   $('#print').addEventListener('click', function () { window.print(); });
-  $('#copyAll').addEventListener('click', function () { copy((window._P || []).map(textoWA).join('\n\n— — —\n\n'), this); });
+  $('#copyAll').addEventListener('click', function () { var PP = window._P || []; copy(PP.map(textoWA).concat(PP.length > 1 ? [textoResumo(PP)] : []).join('\n\n— — —\n\n'), this); });
   drawEvs(); render();
 })();
 </script>
