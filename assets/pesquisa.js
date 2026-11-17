@@ -1,6 +1,6 @@
 (function(){
 var ENDPOINT = window.LUAH_ENDPOINT || '';
-var WHATS = '5571992647606';
+var WHATS = '5571994035546';
 var p = new URLSearchParams(location.search);
 var tipo = (p.get('tipo')||'').toLowerCase().indexOf('mark')===0 ? 'marketing' : (p.get('tipo') ? 'show' : '');
 var nome = (p.get('nome')||'').trim();

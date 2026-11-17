@@ -1,7 +1,7 @@
 (function () {
   var doc = document.documentElement;
   doc.classList.add('js');
-  var WA = '5571992647606';
+  var WA = '5571994035546';
 
   // header: solid on scroll + mobile menu
   var hdr = document.querySelector('.hdr');
