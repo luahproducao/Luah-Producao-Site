@@ -3,218 +3,306 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#F6F1EA">
+<meta name="theme-color" content="#F4EEE6">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Laila Vitória">
-<title>Laila Vitória · Painel da marca</title>
+<meta name="apple-mobile-web-app-title" content="Luah · Hoje">
+<title>Hoje · Luah Produção</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ===== Identidade do cliente: troque só este bloco para outro cliente ===== */
 :root{
-  --bg:#F6F1EA; --surface:#FFFFFF; --ink:#1F2A2B; --muted:#5E6B6A; --line:#E4DCD1;
-  --accent:#0E6F6A; --accent-soft:#DDEFEC; --accent-ink:#FFFFFF;
-  --sun:#D9714E; --sun-soft:#F8E3D9;
-  --ok:#2A7A58; --ok-soft:#DDF0E6; --warn:#955700; --warn-soft:#FBEBCB; --bad:#B3261E; --bad-soft:#FADDDA;
-  --hero:#123A3A; --hero-ink:#FFFFFF; --hero-muted:#BFD9D6;
-  --serif:'Cormorant Garamond',Georgia,serif; --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  --paper:#F4EEE6; --card:#FBF8F3; --ink:#1B1714; --soft:#6C625A; --rule:#DCD2C5;
+  --accent:#B4532A; --sea:#1E4A4A; --ok:#2F6B4F;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter','Segoe UI',system-ui,sans-serif;
 }
-@media (prefers-color-scheme: dark){:root{
-  --bg:#0F1717; --surface:#182222; --ink:#EEF3F2; --muted:#A7B6B4; --line:#2B3A39;
-  --accent:#5CC2BA; --accent-soft:#16332F; --accent-ink:#0B1414; --sun:#F09A7A; --sun-soft:#3A2219;
-  --ok:#6FD0A2; --ok-soft:#1D3A2E; --warn:#F2BC63; --warn-soft:#3B2D12; --bad:#FF8C84; --bad-soft:#44201E;
-  --hero:#163332; --hero-ink:#FFFFFF; --hero-muted:#A9CCC8; color-scheme:dark}}
+@media (prefers-color-scheme: dark){:root{--paper:#14110F;--card:#1D1916;--ink:#F1EAE1;--soft:#A99E93;--rule:#38302A;--accent:#E07A4E;--sea:#7FC2BD;--ok:#7FCB9F;color-scheme:dark}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
-  padding:16px max(16px,env(safe-area-inset-right)) 104px max(16px,env(safe-area-inset-left))}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
+  padding:0 max(20px,env(safe-area-inset-right)) 96px max(20px,env(safe-area-inset-left))}
 [hidden]{display:none!important}
-.wrap{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
-h1,h2{font-family:var(--serif);font-weight:600}
-h1{font-size:34px} h2{font-size:28px} h3{font-size:17px;font-weight:700}
-.kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.muted{color:var(--muted)} .small{font-size:13px}
-.top{display:flex;justify-content:space-between;align-items:center}
-.brand{font-family:var(--serif);font-size:24px;font-weight:600}
-.brand i{color:var(--sun)}
-.hero{background:var(--hero);color:var(--hero-ink);border-radius:22px;padding:22px}
-.hero .kicker{color:var(--hero-muted)}
-.hero p{margin:.4em 0 0;color:var(--hero-muted)}
-.hero .big{font-family:var(--serif);font-size:48px;line-height:1;margin-top:6px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.stat .v{font-family:var(--serif);font-size:32px;line-height:1.1;font-variant-numeric:tabular-nums}
-.stat .d{font-size:13px;font-weight:700}
-.up{color:var(--ok)} .down{color:var(--bad)}
-.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--accent-soft);color:var(--accent)}
-.pill.sun{background:var(--sun-soft);color:var(--sun)}
-.btn{appearance:none;border:0;border-radius:14px;padding:12px 16px;font:inherit;font-weight:700;background:var(--accent);color:var(--accent-ink);cursor:pointer}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
-.btn:disabled{opacity:.5}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.list{display:flex;flex-direction:column;gap:10px}
-.item{display:flex;gap:12px;align-items:flex-start}
-.item input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent);margin-top:2px;flex:0 0 auto}
-.item.done .t{text-decoration:line-through;color:var(--muted)}
-label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
-input.in,select.in{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
-.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--accent)}
-.bar.full i{background:var(--ok)}
-.drop{border:2px dashed var(--line);border-radius:18px;padding:22px;text-align:center;cursor:pointer}
-.drop:hover{border-color:var(--accent)}
-.thumb{max-height:220px;border-radius:12px;display:block;margin:10px auto 0}
-.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.chart svg{width:100%;height:auto;display:block}
-.chart text{fill:var(--muted);font-size:11px;font-family:var(--body)}
-.tip{font-size:13px;color:var(--muted);min-height:1.5em}
-table{width:100%;border-collapse:collapse;font-size:14px}
-td,th{padding:8px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:12px;color:var(--muted)} td.n{text-align:right;font-variant-numeric:tabular-nums}
-nav.bottom{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
-nav.bottom .in{max-width:680px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
-nav.bottom button{appearance:none;border:0;background:none;color:var(--muted);font:inherit;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;cursor:pointer}
-nav.bottom button svg{width:22px;height:22px}
-nav.bottom button[aria-current=page]{color:var(--accent)}
-.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--hero);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:9}
-.status{font-size:13px;color:var(--muted)}
+.wrap{max-width:620px;margin:0 auto}
+a{color:inherit}
+/* cabeçalho de revista */
+.mast{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 10px;border-bottom:2px solid var(--ink)}
+.mast .nome{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.mast .ed{font-size:12px;max-width:45%;color:var(--soft);text-align:right}
+.sub span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:10px}.sub span:last-child{white-space:nowrap}.sub{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);padding:6px 0 0;border-top:1px solid var(--rule);margin-top:2px}
+.kick{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;line-height:1.02;text-wrap:balance}
+.manchete{font-size:clamp(46px,13vw,72px);font-style:italic;margin:14px 0 18px;letter-spacing:-.01em}
+h2{font-size:34px} h3{font-size:22px}
+.quote{font-family:var(--serif);font-size:24px;line-height:1.25;font-style:italic;border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 22px}
+.quote small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+section{padding:22px 0;border-bottom:1px solid var(--rule)}
+section:last-child{border-bottom:0}
+.passos{list-style:none;margin:12px 0 0;padding:0;counter-reset:p}
+.passos li{counter-increment:p;display:grid;grid-template-columns:44px 1fr;gap:6px;padding:10px 0;border-top:1px solid var(--rule)}
+.passos li::before{content:counter(p,decimal-leading-zero);font-family:var(--serif);font-size:30px;line-height:1;color:var(--accent)}
+.meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--soft);margin-top:14px}
+.meta b{color:var(--ink);font-weight:600}
+.acoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.btn{appearance:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:14px 10px;font:600 15px var(--sans);cursor:pointer;transition:background .15s,color .15s}
+.btn.on{background:var(--ink);color:var(--paper)}
+.btn.acc{border-color:var(--accent);color:var(--accent)} .btn.acc.on{background:var(--accent);color:#fff}
+.btn.mini{padding:6px 14px;font-size:13px}
+.prox{display:flex;gap:14px;align-items:baseline;cursor:pointer}
+.prox .d{font-family:var(--serif);font-size:44px;line-height:1;color:var(--accent);min-width:56px}
+.prox .t{font-family:var(--serif);font-size:22px;line-height:1.15}
+.prox .p{font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+.indice .prox{padding:14px 0;border-top:1px solid var(--rule)}
+.indice .prox.feito .t{text-decoration:line-through;color:var(--soft)}
+.indice .prox.hoje .d{color:var(--sea)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:1px 8px;color:var(--sea);margin-left:6px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:14px;border-top:2px solid var(--ink)}
+.nums div{padding:12px 8px 4px 0;border-right:1px solid var(--rule)} .nums div:last-child{border-right:0;padding-left:8px}
+.nums div:nth-child(2){padding-left:8px}
+.nums .v{font-family:var(--serif);font-size:38px;line-height:1;font-variant-numeric:lining-nums}
+.nums .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.nums .x{font-size:12px;font-weight:600} .up{color:var(--ok)} .dn{color:var(--accent)}
+.leitura{font-family:var(--serif);font-size:22px;line-height:1.35}
+.leitura::first-letter{float:left;font-size:64px;line-height:.8;padding:6px 8px 0 0;color:var(--accent);font-weight:700}
+.repita{background:var(--sea);color:#fff;border-radius:18px;padding:18px;margin-top:16px}
+.repita .kick{color:#F7C9A9}
+.repita div:last-child{font-family:var(--serif);font-size:24px;line-height:1.2;margin-top:4px}
+.top li{display:grid;grid-template-columns:28px 1fr auto;gap:8px;padding:10px 0;border-top:1px solid var(--rule);align-items:baseline}
+.top{list-style:none;margin:10px 0 0;padding:0}
+.top .r{font-family:var(--serif);font-size:22px;color:var(--soft)}
+.top .n{font-variant-numeric:tabular-nums;font-weight:600}
+.top small{display:block;color:var(--soft);font-size:12px}
+.barra{height:6px;background:var(--rule);border-radius:3px;overflow:hidden;margin:8px 0 2px}.barra i{display:block;height:100%;background:var(--accent)}
+.barra.ok i{background:var(--ok)}
+.mrow{padding:12px 0;border-top:1px solid var(--rule)}
+.mrow .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mrow .h b{font-family:var(--serif);font-size:20px;font-weight:600}
+.spark svg{width:100%;height:auto;display:block;margin-top:10px}
+.spark text{fill:var(--soft);font:11px var(--sans)}
+details summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--sea)}
+.drop{border:1.5px dashed var(--rule);border-radius:16px;padding:18px;text-align:center;margin-top:12px;cursor:pointer}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.form label{display:flex;flex-direction:column;font-size:12px;color:var(--soft);gap:3px}
+.form input,.form select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:9px 10px}
+.idea{padding:14px 0;border-top:1px solid var(--rule)}
+.idea .t{font-family:var(--serif);font-size:21px;line-height:1.2}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-top:12px}
+.chip{flex:0 0 auto;border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;font:13px var(--sans);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.estado{font-size:12px;color:var(--soft);margin-top:10px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:2px solid var(--ink);padding:0 0 env(safe-area-inset-bottom)}
+nav.tabs .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+nav.tabs button{appearance:none;border:0;background:none;color:var(--soft);font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:16px 0;cursor:pointer}
+nav.tabs button[aria-current=page]{color:var(--ink);box-shadow:inset 0 3px 0 var(--accent)}
+.toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:999px;font-size:13px;z-index:9}
+.vazio{color:var(--soft);font-style:italic;font-family:var(--serif);font-size:20px}
 </style></head>
 <body>
 <div class="wrap">
-  <div class="top"><div class="brand">Laila <i>Vitória</i></div><div class="small muted" id="saved">Salvando neste aparelho</div></div>
+  <header>
+    <div class="mast"><div class="nome" id="nome">—</div><div class="ed" id="edicao"></div></div>
+    <div class="sub"><span id="assin"></span><span id="sync"></span></div>
+  </header>
   <main id="view"></main>
 </div>
-<nav class="bottom"><div class="in" id="nav"></div></nav>
+<nav class="tabs"><div class="in" id="tabs"></div></nav>
 <div class="toast" id="toast" hidden></div>
 <input type="file" id="file" accept="image/*" multiple hidden>
-
 <script>
-/* ============ CONFIGURAÇÃO DO CLIENTE (modelo Luah Produção) ============ */
-var CLIENTE = {
-  nome: "Laila Vitória",
-  perfis: [{rede: "Instagram", user: "@laaivitoria"}, {rede: "TikTok", user: "@odaara2"}],
-  posicionamento: "Vida leve no Litoral Norte da Bahia: praia, autocuidado, favoritos e vida real.",
-  pilares: ["Litoral Norte", "Autocuidado", "Favoritos", "Vida real"],
-  metas: [
-    {id: "seguindo", nome: "Seguindo no Instagram abaixo de", alvo: 1500, menor: true, auto: "seguindo"},
-    {id: "videos", nome: "Vídeos publicados no mês", alvo: 30},
-    {id: "contatos", nome: "Contatos de marcas ou lugares", alvo: 10},
-    {id: "parcerias", nome: "Parcerias de UGC ou permuta fechadas", alvo: 1}
-  ],
-  semana: [
-    {dia: 4, pilar: "Litoral Norte", titulo: "Pôr do sol em Imbassaí, rio encontrando o mar", gancho: "Moro onde o rio encontra o mar, e todo fim de tarde é assim"},
-    {dia: 5, pilar: "Favoritos", titulo: "3 favoritos que mudaram minha casa", gancho: "Coisas de até R$ 50 que eu uso todo dia"},
-    {dia: 6, pilar: "Vida real", titulo: "Bastidor de um show que você filma", gancho: "Meu sábado de trabalho é assim"},
-    {dia: 0, pilar: "Autocuidado", titulo: "Cachos e maresia: o óleo que funciona", gancho: "O óleo que salvou meus cachos da maresia"},
-    {dia: 1, pilar: "Litoral Norte", titulo: "Uma praia ou cachoeira pouco conhecida", gancho: "Poucos turistas conhecem esse lugar a 20 min de Imbassaí"},
-    {dia: 2, pilar: "Vida real", titulo: "Uma coisa que aprendi este ano, em 3 frases", gancho: "Uma coisa que eu aprendi este ano"},
-    {dia: 3, pilar: "Favoritos", titulo: "Produto testado de verdade, antes e depois", gancho: "Comprei porque viralizou. Vale a pena?"}
-  ]
-};
-/* Dados iniciais lidos em 18/11/2026 pela Luah Produção */
-var SEMENTE = {
-  leituras: [
-    {data: "2026-11-18", rede: "Instagram", seguidores: 4439, seguindo: 3682, origem: "perfil"},
-    {data: "2026-11-18", rede: "TikTok", seguidores: 764, seguindo: 394, curtidas: 17000, origem: "perfil"}
-  ],
-  reels: [
-    ["Arrume-se comigo para a trilha", "Autocuidado", 4441], ["Villa Allma em colaboração", "Litoral Norte", 3093],
-    ["Trend com música", "Vida real", 3053], ["Estreia O Diabo Veste Prada", "Vida real", 2418],
-    ["Poço do Diabo, parte 1", "Litoral Norte", 2382], ["Noite no Hermanos Imbassaí", "Litoral Norte", 2050],
-    ["Cachoeira do Mosquito", "Litoral Norte", 648], ["Praia sem rosto, sem legenda", "Litoral Norte", 530]
-  ],
-  mediaReels: 1601,
-  pautas: [
-    ["Mesmo formato do humor \"jovem senhora caseira\", com a vida em Imbassaí", "Vida real", "@micaeladicorrado"],
-    ["Looks para festa temática (Afropunk, festa no litoral)", "Autocuidado", "@camilareisof"],
-    ["A história por trás do nome da Cachoeira do Mosquito", "Litoral Norte", "@welove"],
-    ["Transição pulando no rio de Imbassaí", "Litoral Norte", "@laurenagans"],
-    ["Caminhada na praia de Imbassaí ao pôr do sol", "Litoral Norte", "@costadosauipe"],
-    ["Meu dia: produtora, mãe e praia", "Vida real", "@malucelestino_"],
-    ["Reflexão curta sobre fazer diferente", "Vida real", "@katrialouise"],
-    ["Trend estética com cenário de praia", "Vida real", "@nicamperoni"],
-    ["Receita caseira para cachos com maresia", "Autocuidado", "@nossavidaviva"],
-    ["Não é Caribe: é o Litoral Norte da Bahia", "Litoral Norte", "@seliganoroteiro"],
-    ["Mala para fim de semana na Chapada", "Litoral Norte", "@jessicamariazago"],
-    ["Meu luxo: o rio encontrando o mar", "Litoral Norte", "@lar_monica.s2"],
-    ["Cantinho da casa bonito e barato", "Favoritos", "@arq.gustavoguimaraes"],
-    ["Tour do banheiro com o preço dos produtos", "Favoritos", "@lucasrocha"],
-    ["Proposta de permuta com pousada da região", "Litoral Norte", "@bellatrixecolodge"]
-  ]
-};
+/* Modelo Luah Produção: o link ?c=<id da planilha> abre o app de cada cliente. A planilha é a fonte: config, agenda, boletim, videos, ideias. */
+var PLANILHA = new URLSearchParams(location.search).get("c") || "1vpqmSPrVjbcMqCBZ22xaUEVlhUct5js_pwjEa0wj80s";
+var ABAS = ["config", "agenda", "boletim", "videos", "ideias"];
+var KEY = "luah-hoje-" + PLANILHA.slice(0, 10);
+var D = {config: {}, agenda: [], boletim: [], videos: [], ideias: []};
+var S = (function () { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })();
+S.feitos = S.feitos || {}; S.metas = S.metas || {}; S.prints = S.prints || []; S.cache = S.cache || null;
+function salvar(msg) { try { localStorage.setItem(KEY, JSON.stringify(S)); if (msg) toast(msg); } catch (e) { toast("Não foi possível salvar"); } }
+function toast(t) { var e = document.getElementById("toast"); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { e.hidden = true; }, 1500); }
 
-/* ============ ESTADO (salvo só neste aparelho) ============ */
-var KEY = "luah-app-" + CLIENTE.nome.toLowerCase().replace(/\W+/g, "-");
-var S = load();
-function load() {
-  try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && s.v === 1) return s; } catch (e) {}
-  return {v: 1, leituras: SEMENTE.leituras.slice(), pautas: {}, metas: {}, feitos: {}, extras: []};
+/* ---------- utilidades ---------- */
+function el(t, a, k) { var e = document.createElement(t); for (var x in a || {}) { if (x === "text") e.textContent = a[x]; else if (x.slice(0, 2) === "on") e.addEventListener(x.slice(2), a[x]); else if (a[x] != null && a[x] !== false) e.setAttribute(x, a[x] === true ? "" : a[x]); } (k || []).forEach(function (c) { if (c != null) e.append(c.nodeType ? c : document.createTextNode(c)); }); return e; }
+function n(v) { return v == null || v === "" || isNaN(v) ? "—" : Math.round(+v).toLocaleString("pt-BR"); }
+function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function hoje() { return iso(new Date()); }
+function dt(s) { var p = String(s).split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+var DIAS = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"], MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+function longa(s) { var d = dt(s); return DIAS[d.getDay()] + ", " + d.getDate() + " de " + MESES[d.getMonth()]; }
+function csv(t) {
+  var rows = [], row = [], f = "", q = false;
+  for (var i = 0; i < t.length; i++) { var c = t[i];
+    if (q) { if (c === '"' && t[i + 1] === '"') { f += '"'; i++; } else if (c === '"') q = false; else f += c; }
+    else if (c === '"') q = true; else if (c === ",") { row.push(f); f = ""; } else if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; } else if (c !== "\r") f += c; }
+  if (f || row.length) { row.push(f); rows.push(row); }
+  var h = rows.shift() || [];
+  return rows.filter(function (r) { return r.some(function (x) { return x !== ""; }); }).map(function (r) { var o = {}; h.forEach(function (k, i) { o[k.trim()] = (r[i] || "").trim(); }); return o; });
 }
-function save() {
-  try { localStorage.setItem(KEY, JSON.stringify(S)); flash("Salvo"); } catch (e) { flash("Não foi possível salvar neste aparelho"); }
-}
-function flash(t) { var el = document.getElementById("toast"); el.textContent = t; el.hidden = false; clearTimeout(flash.t); flash.t = setTimeout(function () { el.hidden = true; }, 1600); }
+function num(v) { if (v == null || v === "") return null; var x = +String(v).replace(/\./g, "").replace(",", "."); return isNaN(x) ? null : x; }
+function normData(s) { var m = String(s).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/); return m ? m[3] + "-" + m[2].padStart(2, "0") + "-" + m[1].padStart(2, "0") : s; }
 
-/* ============ UTILIDADES ============ */
-function el(tag, attrs, kids) {
-  var e = document.createElement(tag);
-  for (var k in attrs || {}) {
-    if (k === "text") e.textContent = attrs[k];
-    else if (k.slice(0, 2) === "on") e.addEventListener(k.slice(2), attrs[k]);
-    else if (attrs[k] !== false && attrs[k] != null) e.setAttribute(k, attrs[k] === true ? "" : attrs[k]);
+/* ---------- dados da planilha ---------- */
+function aplicar(raw) {
+  D.config = {}; raw.config.forEach(function (r) { D.config[r.chave] = r.valor; });
+  D.agenda = raw.agenda.map(function (r) { r.data = normData(r.data); return r; }).sort(function (a, b) { return a.data < b.data ? -1 : 1; });
+  D.boletim = raw.boletim.map(function (r) { r.data = normData(r.data); return r; }).sort(function (a, b) { return a.data < b.data ? -1 : 1; });
+  D.videos = raw.videos.sort(function (a, b) { return num(b.views) - num(a.views); });
+  D.ideias = raw.ideias;
+  if (D.config.cor) document.documentElement.style.setProperty("--accent", D.config.cor);
+}
+async function carregar() {
+  if (S.cache) { aplicar(S.cache.raw); render(); }
+  try {
+    var raw = {};
+    await Promise.all(ABAS.map(async function (a) {
+      var r = await fetch("https://docs.google.com/spreadsheets/d/" + PLANILHA + "/gviz/tq?tqx=out:csv&headers=1&sheet=" + encodeURIComponent(a), {cache: "no-store"});
+      if (!r.ok) throw new Error(a); raw[a] = csv(await r.text());
+    }));
+    S.cache = {raw: raw, em: new Date().toISOString()}; salvar(); aplicar(raw);
+  } catch (e) { if (!S.cache) { document.getElementById("view").replaceChildren(el("p", {class: "vazio", text: "Não consegui abrir a planilha. Confira a internet e tente de novo."})); return; } }
+  render();
+}
+
+/* ---------- telas ---------- */
+var TELAS = [["hoje", "Hoje"], ["agenda", "Agenda"], ["boletim", "Boletim"], ["ideias", "Ideias"]];
+var atual = (location.hash || "#hoje").slice(1), dia = null;
+function ir(t, d) { atual = t; dia = d || null; history.replaceState(null, "", location.search + "#" + t); render(); scrollTo(0, 0); }
+function render() {
+  document.getElementById("nome").textContent = D.config.nome || "—";
+  document.getElementById("assin").textContent = D.config.assinatura || "";
+  document.getElementById("edicao").textContent = "Edição de " + longa(hoje());
+  document.getElementById("sync").textContent = S.cache ? "atualizado " + new Date(S.cache.em).toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"}) : "";
+  var tb = document.getElementById("tabs"); tb.replaceChildren();
+  TELAS.forEach(function (t) { tb.append(el("button", {"aria-current": atual === t[0] ? "page" : false, text: t[1], onclick: function () { ir(t[0]); }})); });
+  var v = document.getElementById("view"); v.replaceChildren();
+  ({hoje: telaHoje, agenda: telaAgenda, boletim: telaBoletim, ideias: telaIdeias}[atual] || telaHoje)(v);
+}
+function pautaDe(d) { return D.agenda.find(function (a) { return a.data === d; }); }
+function marcador(d, k, rot, cls) {
+  var st = S.feitos[d] || {};
+  return el("button", {class: "btn " + (cls || "") + (st[k] ? " on" : ""), "aria-pressed": String(!!st[k]), text: (st[k] ? "✓ " : "") + rot, onclick: function () { st[k] = !st[k]; S.feitos[d] = st; salvar(st[k] ? "Anotado" : "Desmarcado"); render(); }});
+}
+function telaHoje(v) {
+  var d = dia || hoje(), p = pautaDe(d);
+  if (!p) { var fut = D.agenda.find(function (a) { return a.data > d; }); p = fut; if (p) d = p.data; }
+  if (!p) { v.append(el("section", {}, [el("p", {class: "vazio", text: "Sem pauta marcada. A Luah Produção atualiza a agenda toda semana."})])); return; }
+  var passos = el("ol", {class: "passos"}); String(p.roteiro || "").split("|").map(function (x) { return x.replace(/^\s*\d+\.\s*/, "").trim(); }).filter(Boolean).forEach(function (x) { passos.append(el("li", {}, [el("span", {text: x})])); });
+  v.append(el("section", {}, [
+    el("div", {class: "kick", text: (d === hoje() ? "Pauta de hoje" : "Próxima pauta · " + longa(d)) + " · " + p.pilar}),
+    el("h1", {class: "manchete", text: p.titulo}),
+    el("p", {class: "quote"}, [el("small", {text: "Comece dizendo"}), "“" + p.gancho + "”"]),
+    el("div", {class: "kick", text: "Como gravar", style: "color:var(--soft)"}), passos,
+    el("div", {class: "meta"}, [p.onde ? el("span", {}, ["Onde: ", el("b", {text: p.onde})]) : null, p.referencia ? el("span", {}, ["Referência: ", el("a", {href: "https://www.instagram.com/" + p.referencia.replace("@", "") + "/", target: "_blank", rel: "noopener", text: p.referencia})]) : null, D.config.horario ? el("span", {text: D.config.horario}) : null]),
+    el("div", {class: "acoes"}, [marcador(d, "gravei", "Gravei"), marcador(d, "postei", "Postei", "acc")])
+  ]));
+  var seguinte = D.agenda.filter(function (a) { return a.data > d; }).slice(0, 2);
+  if (seguinte.length) {
+    var s = el("section", {}, [el("div", {class: "kick", text: "Nos próximos dias", style: "color:var(--soft)"})]);
+    seguinte.forEach(function (a) { s.append(linhaPauta(a, true)); });
+    v.append(s);
   }
-  (kids || []).forEach(function (c) { if (c != null) e.append(c.nodeType ? c : document.createTextNode(c)); });
-  return e;
+  var b = D.boletim[D.boletim.length - 1];
+  if (b) v.append(el("section", {}, [el("div", {class: "kick", text: "Seu boletim", style: "color:var(--soft)"}), el("p", {class: "leitura", style: "font-size:19px;margin:10px 0 0", text: b.leitura}), el("button", {class: "btn mini", style: "margin-top:12px", text: "Ver boletim", onclick: function () { ir("boletim"); }})]));
 }
-function n(v) { return v == null || isNaN(v) ? "—" : Math.round(v).toLocaleString("pt-BR"); }
-function dBR(iso) { var p = iso.split("-"); return p[2] + "/" + p[1]; }
-function hoje() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
-function serie(rede, campo) {
-  return S.leituras.filter(function (l) { return l.rede === rede && l[campo] != null; })
-    .sort(function (a, b) { return a.data < b.data ? -1 : 1; });
+function linhaPauta(a, compacto) {
+  var st = S.feitos[a.data] || {}, dd = dt(a.data);
+  return el("div", {class: "prox" + (st.postei ? " feito" : "") + (a.data === hoje() ? " hoje" : ""), role: "button", tabindex: "0", onclick: function () { ir("hoje", a.data); }, onkeydown: function (e) { if (e.key === "Enter") ir("hoje", a.data); }, style: compacto ? "padding:12px 0" : ""}, [
+    el("div", {class: "d", text: String(dd.getDate()).padStart(2, "0")}),
+    el("div", {}, [el("div", {class: "p"}, [DIAS[dd.getDay()] + " · " + a.pilar, st.postei ? el("span", {class: "tag", text: "postado"}) : st.gravei ? el("span", {class: "tag", text: "gravado"}) : null]), el("div", {class: "t", text: a.titulo})])
+  ]);
 }
-function ultimo(rede, campo) { var s = serie(rede, campo); return s.length ? s[s.length - 1][campo] : null; }
-function variacao(rede, campo) {
-  var s = serie(rede, campo); if (s.length < 2) return null;
-  return {d: s[s.length - 1][campo] - s[s.length - 2][campo], desde: s[s.length - 2].data};
-}
-
-/* ============ GRÁFICO DE LINHA (sem bibliotecas) ============ */
-function linha(series, opts) {
-  var W = 640, H = 220, m = {t: 14, r: 16, b: 26, l: 48};
-  var pts = [].concat.apply([], series.map(function (s) { return s.pts; }));
-  var box = el("div", {class: "chart"});
-  if (pts.length < 2 || new Set(pts.map(function (p) { return p.x; })).size < 2) {
-    box.append(el("p", {class: "muted small", text: "A linha aparece a partir da segunda leitura. Importe um print novo na próxima semana."}));
-    return box;
-  }
-  var xs = pts.map(function (p) { return new Date(p.x).getTime(); }), ys = pts.map(function (p) { return p.y; });
-  var x0 = Math.min.apply(0, xs), x1 = Math.max.apply(0, xs), y1 = Math.max.apply(0, ys) * 1.1, y0 = opts && opts.zero === false ? Math.min.apply(0, ys) * 0.9 : 0;
-  var X = function (v) { return m.l + (new Date(v).getTime() - x0) / (x1 - x0) * (W - m.l - m.r); };
-  var Y = function (v) { return H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b); };
-  var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", (opts && opts.label) || "Evolução");
-  function add(t, a, txt) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.append(e); return e; }
-  for (var i = 0; i <= 4; i++) { var v = y0 + (y1 - y0) * i / 4; add("line", {x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: "var(--line)"}); add("text", {x: m.l - 6, y: Y(v) + 4, "text-anchor": "end"}, n(v)); }
-  var cores = ["var(--accent)", "var(--sun)"], tip = el("div", {class: "tip"});
-  series.forEach(function (s, si) {
-    add("path", {d: s.pts.map(function (p, i) { return (i ? "L" : "M") + X(p.x) + "," + Y(p.y); }).join(""), fill: "none", stroke: cores[si % 2], "stroke-width": 2.5});
-    s.pts.forEach(function (p) {
-      var c = add("circle", {cx: X(p.x), cy: Y(p.y), r: 5, fill: cores[si % 2]});
-      var f = function () { tip.textContent = s.nome + " · " + dBR(p.x) + ": " + n(p.y); };
-      c.addEventListener("pointerenter", f); c.addEventListener("click", f);
-    });
+function telaAgenda(v) {
+  var feitos = D.agenda.filter(function (a) { return (S.feitos[a.data] || {}).postei; }).length;
+  var s = el("section", {class: "indice"}, [el("div", {class: "kick", text: "Agenda"}), el("h2", {text: "Próximas pautas", style: "margin:8px 0 6px"}), el("p", {class: "estado", text: feitos + " de " + D.agenda.length + " postadas. Toque numa pauta para ver o roteiro."})]);
+  var mes = null;
+  D.agenda.filter(function (a) { return a.data >= iso(new Date(Date.now() - 3 * 864e5)); }).forEach(function (a) {
+    var m = MESES[dt(a.data).getMonth()]; if (m !== mes) { mes = m; s.append(el("div", {class: "kick", text: m, style: "margin-top:16px;color:var(--soft)"})); }
+    s.append(linhaPauta(a));
   });
-  var datas = Array.from(new Set(pts.map(function (p) { return p.x; }))).sort();
-  datas.forEach(function (d, i) { if (datas.length <= 6 || i % Math.ceil(datas.length / 6) === 0) add("text", {x: X(d), y: H - 6, "text-anchor": "middle"}, dBR(d)); });
-  box.append(svg, tip);
-  return box;
+  v.append(s);
 }
-
-/* ============ LEITURA DE PRINT (OCR no aparelho, gratuito) ============ */
+function sparkline(pts) {
+  if (pts.length < 2) return el("p", {class: "estado", text: "A linha de crescimento aparece a partir do segundo boletim."});
+  var W = 600, H = 120, m = 22, ys = pts.map(function (p) { return p.y; }), lo = Math.min.apply(0, ys), hi = Math.max.apply(0, ys); if (hi === lo) { hi += 1; lo -= 1; }
+  var X = function (i) { return m + i / (pts.length - 1) * (W - 2 * m); }, Y = function (y) { return H - m - (y - lo) / (hi - lo) * (H - 2 * m); };
+  var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img"); svg.setAttribute("aria-label", "Seguidores no Instagram por boletim");
+  function a(t, o, tx) { var e = document.createElementNS(NS, t); for (var k in o) e.setAttribute(k, o[k]); if (tx != null) e.textContent = tx; svg.append(e); }
+  a("path", {d: pts.map(function (p, i) { return (i ? "L" : "M") + X(i) + "," + Y(p.y); }).join(""), fill: "none", stroke: "var(--accent)", "stroke-width": 3});
+  pts.forEach(function (p, i) { a("circle", {cx: X(i), cy: Y(p.y), r: 4, fill: "var(--accent)"}); if (i === 0 || i === pts.length - 1) { a("text", {x: X(i), y: H - 4, "text-anchor": i ? "end" : "start"}, p.x.slice(8, 10) + "/" + p.x.slice(5, 7)); a("text", {x: X(i), y: Y(p.y) - 9, "text-anchor": i ? "end" : "start"}, n(p.y)); } });
+  return el("div", {class: "spark"}, [svg]);
+}
+function telaBoletim(v) {
+  var linhas = D.boletim.concat(S.prints.map(function (p) { return {data: p.data, ig_seguidores: p.rede === "Instagram" ? p.seguidores : "", tt_seguidores: p.rede === "TikTok" ? p.seguidores : "", _print: p}; }))
+    .sort(function (a, b) { return a.data < b.data ? -1 : 1; });
+  var b = D.boletim[D.boletim.length - 1] || {};
+  function ultimo(c) { for (var i = linhas.length - 1; i >= 0; i--) if (num(linhas[i][c]) != null) return {v: num(linhas[i][c]), i: i}; return null; }
+  function antes(c, i) { for (var j = i - 1; j >= 0; j--) if (num(linhas[j][c]) != null) return num(linhas[j][c]); return null; }
+  function cel(c, rot) { var u = ultimo(c), a = u ? antes(c, u.i) : null, dlt = u && a != null ? u.v - a : null;
+    return el("div", {}, [el("div", {class: "v", text: n(u && u.v)}), el("div", {class: "l", text: rot}), el("div", {class: "x " + (dlt == null ? "" : dlt >= 0 ? "up" : "dn"), text: dlt == null ? "primeiro registro" : (dlt >= 0 ? "+" : "") + n(dlt) + " na semana"})]); }
+  v.append(el("section", {}, [
+    el("div", {class: "kick", text: "Boletim da semana" + (b.data ? " · " + longa(b.data) : "")}),
+    el("div", {class: "nums"}, [cel("ig_seguidores", "Instagram"), cel("tt_seguidores", "TikTok"), cel("media_views", "Média por Reel")]),
+    b.leitura ? el("p", {class: "leitura", style: "margin:22px 0 0", text: b.leitura}) : null,
+    b.repita ? el("div", {class: "repita"}, [el("div", {class: "kick", text: "Repita esta semana"}), el("div", {text: b.repita})]) : null,
+    sparkline(linhas.filter(function (l) { return num(l.ig_seguidores) != null; }).map(function (l) { return {x: l.data, y: num(l.ig_seguidores)}; }))
+  ]));
+  if (D.videos.length) {
+    var ol = el("ol", {class: "top"}), media = num(b.media_views);
+    D.videos.slice(0, 5).forEach(function (x, i) { ol.append(el("li", {}, [el("span", {class: "r", text: i + 1}), el("span", {}, [x.link ? el("a", {href: x.link, target: "_blank", rel: "noopener", text: x.titulo}) : x.titulo, el("small", {text: x.formato + " · " + x.pilar})]), el("span", {class: "n " + (media && num(x.views) >= media ? "up" : ""), text: n(num(x.views))})])); });
+    v.append(el("section", {}, [el("div", {class: "kick", text: "Seus vídeos que mais renderam"}), ol]));
+  }
+  var mes = hoje().slice(0, 7), postados = Object.keys(S.feitos).filter(function (k) { return k.slice(0, 7) === mes && S.feitos[k].postei; }).length;
+  var metas = [
+    {id: "videos", nome: "Vídeos postados no mês", val: postados, alvo: num(D.config.meta_videos), auto: true},
+    {id: "contatos", nome: "Contatos com marcas e lugares", val: +S.metas.contatos || 0, alvo: num(D.config.meta_contatos)},
+    {id: "parcerias", nome: "Parcerias fechadas", val: +S.metas.parcerias || 0, alvo: num(D.config.meta_parcerias)}
+  ];
+  var sm = el("section", {}, [el("div", {class: "kick", text: "Metas de " + MESES[new Date().getMonth()]})]);
+  var seg = ultimo("ig_seguindo");
+  if (seg && D.config.meta_seguindo) metas.unshift({id: "seguindo", nome: "Seguindo no Instagram", val: seg.v, alvo: num(D.config.meta_seguindo), menor: true, auto: true});
+  metas.forEach(function (m) {
+    if (!m.alvo) return;
+    var pct = m.menor ? Math.min(1, m.alvo / m.val) : Math.min(1, m.val / m.alvo), ok = m.menor ? m.val <= m.alvo : m.val >= m.alvo;
+    sm.append(el("div", {class: "mrow"}, [
+      el("div", {class: "h"}, [el("b", {text: m.nome}), el("span", {class: "n", text: n(m.val) + (m.menor ? " · meta abaixo de " + n(m.alvo) : " de " + n(m.alvo))})]),
+      el("div", {class: "barra" + (ok ? " ok" : "")}, [el("i", {style: "width:" + Math.round(pct * 100) + "%"})]),
+      m.auto ? el("div", {class: "estado", style: "margin:0", text: m.id === "videos" ? "Conta sozinho quando você toca em Postei" : "Vem do boletim"}) :
+        el("div", {style: "display:flex;gap:8px;margin-top:6px"}, [
+          el("button", {class: "btn mini", text: "−", "aria-label": "Diminuir " + m.nome, onclick: function () { S.metas[m.id] = Math.max(0, m.val - 1); salvar(); render(); }}),
+          el("button", {class: "btn mini", text: "+ 1", "aria-label": "Aumentar " + m.nome, onclick: function () { S.metas[m.id] = m.val + 1; salvar("Anotado"); render(); }})])
+    ]));
+  });
+  v.append(sm);
+  var area = el("div"), status = el("p", {class: "estado"});
+  var drop = el("div", {class: "drop", role: "button", tabindex: "0", onclick: function () { document.getElementById("file").click(); }}, [el("b", {text: "Escolher print do Insights"}), el("div", {class: "estado", text: "Instagram ou TikTok. O app lê os números aqui mesmo."})]);
+  document.getElementById("file").onchange = async function () {
+    var fs = Array.from(this.files || []); this.value = ""; if (!fs.length) return;
+    var junto = {}, txt = ""; area.replaceChildren();
+    for (var i = 0; i < fs.length; i++) { try { var t = await lerPrint(fs[i], function (m) { status.textContent = m; }); txt += t; var e = extrair(t); for (var k in e) if (junto[k] == null) junto[k] = e[k]; } catch (err) { status.textContent = "Não consegui ler o print. Digite os números abaixo."; } }
+    if (Object.keys(junto).length) status.textContent = "Confira os números e salve.";
+    formPrint(area, junto);
+  };
+  v.append(el("section", {}, [el("details", {}, [el("summary", {text: "Atualizar com print do Insights"}), drop, status, area])]));
+}
+function formPrint(box, val) {
+  var f = el("div", {class: "form"}), rede = el("select", {}, [el("option", {text: "Instagram"}), el("option", {text: "TikTok"})]); rede.value = val.rede || "Instagram";
+  var data = el("input", {type: "date", value: hoje()}), ins = {};
+  f.append(el("label", {}, ["Rede", rede]), el("label", {}, ["Data", data]));
+  CAMPOS.forEach(function (c) { ins[c.id] = el("input", {inputmode: "numeric", value: val[c.id] != null ? String(val[c.id]) : "", placeholder: "—"}); f.append(el("label", {}, [c.nome, ins[c.id]])); });
+  f.append(el("button", {class: "btn on", style: "grid-column:1/-1", text: "Salvar", onclick: function () {
+    var p = {data: data.value || hoje(), rede: rede.value, periodo: val.periodo || ""}, tem = false;
+    CAMPOS.forEach(function (c) { var x = numero(ins[c.id].value); if (x != null) { p[c.id] = x; tem = true; } });
+    if (!tem) { toast("Preencha pelo menos um número"); return; }
+    S.prints = S.prints.filter(function (o) { return !(o.data === p.data && o.rede === p.rede); }); S.prints.push(p); salvar("Salvo no boletim"); render();
+  }}));
+  box.append(f);
+}
+function telaIdeias(v) {
+  var pil = (D.config.pilares || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean), f = telaIdeias.f || "";
+  var chips = el("div", {class: "chips"}); [""].concat(pil).forEach(function (p) { chips.append(el("button", {class: "chip", "aria-pressed": String(p === f), text: p || "Todas", onclick: function () { telaIdeias.f = p; render(); }})); });
+  var s = el("section", {}, [el("div", {class: "kick", text: "Banco de ideias"}), el("h2", {text: "Para quando bater a dúvida", style: "margin:8px 0 0"}), chips]);
+  D.ideias.filter(function (i) { return !f || i.pilar === f; }).forEach(function (i) {
+    s.append(el("div", {class: "idea"}, [el("div", {class: "p kick", style: "color:var(--soft)", text: i.pilar}), el("div", {class: "t", text: i.ideia}), i.referencia ? el("a", {class: "estado", href: "https://www.instagram.com/" + i.referencia.replace("@", "") + "/", target: "_blank", rel: "noopener", text: "Ver referência " + i.referencia}) : null]));
+  });
+  if (!D.ideias.length) s.append(el("p", {class: "vazio", text: "Nenhuma ideia ainda."}));
+  v.append(s);
+}
 var CAMPOS = [
   {id: "seguidores", nome: "Seguidores", re: /^seguidores$|seguidores totais|total de seguidores|followers/i},
   {id: "seguindo", nome: "Seguindo", re: /^seguindo$|following/i},
@@ -267,197 +355,13 @@ function carregarOCR() {
 }
 async function lerPrint(file, status) {
   var T = await carregarOCR();
-  status("Lendo o print… (a primeira vez demora um pouco)");
+  status("Lendo o print… a primeira vez demora um pouco");
   var r = await T.recognize(file, "por+eng", {logger: function (m) { if (m.status === "recognizing text") status("Lendo o print… " + Math.round(m.progress * 100) + "%"); }});
   return r.data.text;
 }
 
-/* ============ TELAS ============ */
-var TELAS = [
-  {id: "hoje", nome: "Hoje", ico: "M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8"},
-  {id: "metricas", nome: "Métricas", ico: "M4 20V10M10 20V4M16 20v-7M22 20H2"},
-  {id: "importar", nome: "Print", ico: "M12 16V4M7 9l5-5 5 5M4 20h16"},
-  {id: "pautas", nome: "Pautas", ico: "M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"},
-  {id: "metas", nome: "Metas", ico: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"}
-];
-var atual = (location.hash || "#hoje").slice(1);
-function nav() {
-  var box = document.getElementById("nav"); box.replaceChildren();
-  TELAS.forEach(function (t) {
-    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), p = document.createElementNS(NS, "path");
-    svg.setAttribute("viewBox", "0 0 24 24"); svg.setAttribute("fill", "none"); svg.setAttribute("stroke", "currentColor"); svg.setAttribute("stroke-width", "2"); svg.setAttribute("stroke-linecap", "round"); svg.setAttribute("stroke-linejoin", "round");
-    p.setAttribute("d", t.ico); svg.append(p);
-    box.append(el("button", {"aria-current": atual === t.id ? "page" : false, onclick: function () { ir(t.id); }}, [svg, t.nome]));
-  });
-}
-function ir(id) { atual = id; history.replaceState(null, "", "#" + id); render(); scrollTo(0, 0); }
-function render() {
-  nav();
-  var v = document.getElementById("view"); v.replaceChildren();
-  ({hoje: telaHoje, metricas: telaMetricas, importar: telaImportar, pautas: telaPautas, metas: telaMetas}[atual] || telaHoje)(v);
-}
-
-function telaHoje(v) {
-  var d = new Date().getDay(), p = CLIENTE.semana.find(function (s) { return s.dia === d; });
-  var chave = hoje(), feito = S.feitos[chave] || {};
-  var nomes = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
-  v.append(el("section", {class: "hero"}, [
-    el("div", {class: "kicker", text: "Hoje é " + nomes[d] + " · " + p.pilar}),
-    el("h1", {text: p.titulo, style: "margin-top:6px"}),
-    el("p", {text: "Gancho: “" + p.gancho + "”"})
-  ]));
-  var passos = [["gravar", "Gravar o vídeo (vertical, você na tela, lugar com nome)"], ["editar", "Editar com texto na tela em serifa"], ["postar", "Postar entre 18h e 20h no Reels e no TikTok"], ["stories", "3 a 5 stories do dia, um com enquete ou caixinha"], ["marcar", "Marcar o lugar, a marca ou quem aparece"]];
-  var lista = el("div", {class: "list"});
-  passos.forEach(function (ps) {
-    var cb = el("input", {type: "checkbox", id: "p-" + ps[0]}); cb.checked = !!feito[ps[0]];
-    var it = el("div", {class: "item" + (cb.checked ? " done" : "")}, [cb, el("label", {class: "t", for: "p-" + ps[0], text: ps[1]})]);
-    cb.addEventListener("change", function () { feito[ps[0]] = cb.checked; S.feitos[chave] = feito; it.classList.toggle("done", cb.checked); if (ps[0] === "postar" && cb.checked) { S.metas.videos = (+S.metas.videos || 0) + 1; } save(); });
-    lista.append(it);
-  });
-  v.append(el("section", {class: "card"}, [el("h3", {text: "Checklist do dia", style: "margin-bottom:10px"}), lista]));
-  var ig = ultimo("Instagram", "seguidores"), vi = variacao("Instagram", "seguidores");
-  v.append(el("section", {class: "grid"}, [
-    stat("Seguidores no Instagram", ig, vi), stat("Seguidores no TikTok", ultimo("TikTok", "seguidores"), variacao("TikTok", "seguidores"))
-  ]));
-  var semana = el("div", {class: "list"});
-  [1, 2, 3, 4, 5, 6, 0].forEach(function (dd) {
-    var s = CLIENTE.semana.find(function (x) { return x.dia === dd; });
-    semana.append(el("div", {class: "item"}, [el("span", {class: "pill" + (dd === d ? "" : " sun"), text: nomes[dd].slice(0, 3)}), el("div", {}, [el("div", {text: s.titulo}), el("div", {class: "small muted", text: s.pilar})])]));
-  });
-  v.append(el("section", {class: "card"}, [el("h3", {text: "A semana", style: "margin-bottom:10px"}), semana]));
-}
-function stat(nome, val, varr) {
-  return el("div", {class: "card stat"}, [
-    el("div", {class: "kicker", text: nome}), el("div", {class: "v", text: n(val)}),
-    el("div", {class: "d " + (varr ? (varr.d >= 0 ? "up" : "down") : "muted"), text: varr ? (varr.d >= 0 ? "+" : "") + n(varr.d) + " desde " + dBR(varr.desde) : "primeira leitura"})
-  ]);
-}
-
-function telaMetricas(v) {
-  var rede = telaMetricas.rede || "Instagram";
-  var chips = el("div", {class: "chips"});
-  CLIENTE.perfis.forEach(function (p) { chips.append(el("button", {class: "chip", "aria-pressed": String(p.rede === rede), text: p.rede + " " + p.user, onclick: function () { telaMetricas.rede = p.rede; render(); }})); });
-  v.append(el("h2", {text: "Métricas"}), chips);
-  var seg = ultimo(rede, "seguidores"), vs = variacao(rede, "seguidores");
-  var ult = serie(rede, "seguidores").slice(-1)[0];
-  v.append(el("section", {class: "hero"}, [el("div", {class: "kicker", text: "Seguidores · " + rede}), el("div", {class: "big", text: n(seg)}),
-    el("p", {text: vs ? (vs.d >= 0 ? "+" : "") + n(vs.d) + " desde " + dBR(vs.desde) : "Primeira leitura em " + (ult ? dBR(ult.data) : "—") + ". Importe um print toda segunda."})]));
-  var g = el("section", {class: "grid"});
-  ["alcance", "visualizacoes", "engajadas", "interacoes", "salvamentos", "compartilhamentos", "visitas", "seguindo"].forEach(function (c) {
-    var val = ultimo(rede, c); if (val == null) return;
-    var nome = (CAMPOS.find(function (x) { return x.id === c; }) || {}).nome;
-    g.append(stat(nome, val, variacao(rede, c)));
-  });
-  if (!g.children.length) g.append(el("div", {class: "card small muted", style: "grid-column:1/-1", text: "Alcance, interações e salvamentos aparecem aqui depois que você importar um print do Insights."}));
-  v.append(g);
-  var taxa = ultimo(rede, "engajadas"), alc = ultimo(rede, "alcance");
-  if (taxa && alc) v.append(el("section", {class: "card"}, [el("div", {class: "kicker", text: "Taxa de engajamento"}), el("div", {class: "stat"}, [el("div", {class: "v", text: (taxa / alc * 100).toFixed(1).replace(".", ",") + "%"})]), el("p", {class: "small muted", text: "Contas com engajamento ÷ contas alcançadas, no período do último print. É o número que as marcas pedem."})]));
-  var series = [{nome: "Seguidores", pts: serie(rede, "seguidores").map(function (l) { return {x: l.data, y: l.seguidores}; })}];
-  v.append(el("section", {class: "card"}, [el("h3", {text: "Seguidores por semana"}), linha(series, {zero: false, label: "Seguidores por semana no " + rede})]));
-  var alcS = serie(rede, "alcance");
-  if (alcS.length) v.append(el("section", {class: "card"}, [el("h3", {text: "Alcance por leitura"}), linha([{nome: "Alcance", pts: alcS.map(function (l) { return {x: l.data, y: l.alcance}; })}], {label: "Alcance por leitura"})]));
-  if (rede === "Instagram") {
-    var t = el("table", {}, [el("thead", {}, [el("tr", {}, [el("th", {text: "Reel"}), el("th", {text: "Pilar"}), el("th", {text: "Visualizações", style: "text-align:right"})])])]), tb = el("tbody");
-    SEMENTE.reels.forEach(function (r) { tb.append(el("tr", {}, [el("td", {text: r[0]}), el("td", {class: "muted", text: r[1]}), el("td", {class: "n " + (r[2] >= SEMENTE.mediaReels ? "up" : "down"), text: n(r[2])})])); });
-    t.append(tb);
-    v.append(el("section", {class: "card"}, [el("h3", {text: "O que funciona"}), el("p", {class: "small muted", text: "Média dos últimos 24 Reels: " + n(SEMENTE.mediaReels) + " visualizações. Você na tela, com o lugar nomeado e gente marcada, rende 2 a 3 vezes mais."}), t]));
-  }
-  var hist = el("div", {class: "list"});
-  S.leituras.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }).filter(function (l) { return l.rede === rede; }).slice(0, 8).forEach(function (l) {
-    var det = CAMPOS.filter(function (c) { return l[c.id] != null; }).map(function (c) { return c.nome + " " + n(l[c.id]); }).join(" · ");
-    hist.append(el("div", {class: "small"}, [el("b", {text: dBR(l.data) + " "}), el("span", {class: "muted", text: (l.origem === "print" ? "print" + (l.periodo ? " (" + l.periodo + ")" : "") : "perfil") + " · " + det})]));
-  });
-  v.append(el("section", {class: "card"}, [el("h3", {text: "Leituras salvas", style: "margin-bottom:8px"}), hist]));
-}
-
-function telaImportar(v) {
-  v.append(el("h2", {text: "Importar print"}), el("p", {class: "muted", text: "Tire print do Insights do Instagram ou da Análise do TikTok. O app lê os números aqui mesmo, no seu aparelho. Confira e salve."}));
-  var status = el("p", {class: "status"}), area = el("div");
-  var drop = el("div", {class: "drop", role: "button", tabindex: "0"}, [el("div", {style: "font-size:34px", text: "＋"}), el("b", {text: "Escolher print"}), el("div", {class: "small muted", text: "Pode escolher mais de um"})]);
-  var file = document.getElementById("file");
-  drop.addEventListener("click", function () { file.click(); });
-  drop.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") file.click(); });
-  file.onchange = async function () {
-    var fs = Array.from(file.files || []); file.value = ""; if (!fs.length) return;
-    area.replaceChildren(); var junto = {}, textos = "";
-    for (var i = 0; i < fs.length; i++) {
-      area.append(el("img", {class: "thumb", src: URL.createObjectURL(fs[i]), alt: "Print " + (i + 1)}));
-      try { var tx = await lerPrint(fs[i], function (s) { status.textContent = "Print " + (i + 1) + " de " + fs.length + ": " + s; }); textos += "\n" + tx; var e = extrair(tx); for (var k in e) if (junto[k] == null) junto[k] = e[k]; }
-      catch (err) { status.textContent = "Não consegui ler: precisa de internet na primeira leitura. Você pode digitar os números abaixo."; }
-    }
-    if (!status.textContent.startsWith("Não")) status.textContent = Object.keys(junto).length > 1 ? "Pronto. Confira os números antes de salvar." : "Não achei números conhecidos. Digite abaixo.";
-    formulario(area, junto, textos);
-  };
-  v.append(el("section", {class: "card"}, [drop, status, area]));
-  var manual = el("div"); formulario(manual, {}, "");
-  v.append(el("details", {class: "card"}, [el("summary", {text: "Digitar números sem print"}), manual]));
-}
-function formulario(box, val, texto) {
-  var form = el("div", {class: "form", style: "margin-top:14px"});
-  var rede = el("select", {class: "in"}); CLIENTE.perfis.forEach(function (p) { var o = el("option", {text: p.rede}); if (val.rede === p.rede) o.selected = true; rede.append(o); });
-  var data = el("input", {class: "in", type: "date", value: hoje()});
-  var per = el("input", {class: "in", value: val.periodo || "7 dias"});
-  form.append(el("label", {class: "f"}, ["Rede", rede]), el("label", {class: "f"}, ["Data", data]), el("label", {class: "f", style: "grid-column:1/-1"}, ["Período do Insights", per]));
-  var ins = {};
-  CAMPOS.forEach(function (c) { ins[c.id] = el("input", {class: "in", inputmode: "numeric", value: val[c.id] != null ? String(val[c.id]) : "", placeholder: "—"}); form.append(el("label", {class: "f"}, [c.nome, ins[c.id]])); });
-  var ok = el("button", {class: "btn", text: "Salvar leitura", style: "grid-column:1/-1", onclick: function () {
-    var l = {data: data.value || hoje(), rede: rede.value, origem: texto ? "print" : "manual", periodo: per.value}, tem = false;
-    CAMPOS.forEach(function (c) { var x = numero(ins[c.id].value); if (x != null) { l[c.id] = x; tem = true; } });
-    if (!tem) { flash("Preencha pelo menos um número"); return; }
-    S.leituras = S.leituras.filter(function (o) { return !(o.data === l.data && o.rede === l.rede && o.origem === l.origem); });
-    S.leituras.push(l); save(); telaMetricas.rede = l.rede; ir("metricas");
-  }});
-  form.append(ok);
-  if (texto) form.append(el("details", {style: "grid-column:1/-1"}, [el("summary", {class: "small muted", text: "Ver o texto lido"}), el("pre", {class: "small muted", style: "white-space:pre-wrap", text: texto.trim()})]));
-  box.append(form);
-}
-
-function telaPautas(v) {
-  var filtro = telaPautas.f || "";
-  var chips = el("div", {class: "chips"});
-  [""].concat(CLIENTE.pilares).forEach(function (p) { chips.append(el("button", {class: "chip", "aria-pressed": String(p === filtro), text: p || "Todas", onclick: function () { telaPautas.f = p; render(); }})); });
-  var todas = SEMENTE.pautas.concat(S.extras);
-  var feitas = todas.filter(function (p) { return (S.pautas[p[0]] || {}).postada; }).length;
-  v.append(el("h2", {text: "Pautas"}), el("p", {class: "muted", text: feitas + " de " + todas.length + " postadas. Ideias tiradas dos seus salvos, na sua versão."}), chips);
-  var lista = el("div", {class: "list"});
-  todas.filter(function (p) { return !filtro || p[1] === filtro; }).forEach(function (p) {
-    var st = S.pautas[p[0]] || {};
-    function box(k, nome) { var c = el("input", {type: "checkbox", "aria-label": nome}); c.checked = !!st[k]; c.addEventListener("change", function () { st[k] = c.checked; S.pautas[p[0]] = st; save(); render(); }); return el("label", {class: "row small muted"}, [c, nome]); }
-    lista.append(el("div", {class: "card" + (st.postada ? " done" : "")}, [
-      el("div", {class: "row", style: "justify-content:space-between"}, [el("span", {class: "pill", text: p[1]}), el("span", {class: "small muted", text: p[2] || ""})]),
-      el("div", {text: p[0], style: "margin:8px 0;font-weight:500" + (st.postada ? ";text-decoration:line-through;color:var(--muted)" : "")}),
-      el("div", {class: "row"}, [box("gravada", "Gravada"), box("postada", "Postada")])
-    ]));
-  });
-  v.append(lista);
-  var txt = el("input", {class: "in", placeholder: "Nova ideia de pauta"}), pil = el("select", {class: "in"});
-  CLIENTE.pilares.forEach(function (p) { pil.append(el("option", {text: p})); });
-  v.append(el("section", {class: "card"}, [el("h3", {text: "Adicionar pauta", style: "margin-bottom:8px"}), el("div", {class: "form"}, [el("label", {class: "f", style: "grid-column:1/-1"}, ["Ideia", txt]), el("label", {class: "f"}, ["Pilar", pil]),
-    el("button", {class: "btn", text: "Adicionar", onclick: function () { if (!txt.value.trim()) return; S.extras.push([txt.value.trim(), pil.value, "minha ideia"]); save(); render(); }})])]));
-}
-
-function telaMetas(v) {
-  v.append(el("h2", {text: "Metas do mês"}), el("p", {class: "muted", text: "Os vídeos sobem sozinhos quando você marca \"Postar\" no Hoje. O resto você ajusta aqui."}));
-  CLIENTE.metas.forEach(function (m) {
-    var val = m.auto ? ultimo("Instagram", m.auto) : (+S.metas[m.id] || 0);
-    var pct = m.menor ? (val != null && val <= m.alvo ? 1 : Math.max(0, Math.min(1, m.alvo / (val || 1)))) : Math.min(1, val / m.alvo);
-    var ctrl = m.auto ? el("span", {class: "small muted", text: "Atualiza pelo print ou pela leitura do perfil"}) : el("div", {class: "row"}, [
-      el("button", {class: "btn ghost", text: "−", "aria-label": "Diminuir", onclick: function () { S.metas[m.id] = Math.max(0, (+S.metas[m.id] || 0) - 1); save(); render(); }}),
-      el("button", {class: "btn ghost", text: "+", "aria-label": "Aumentar", onclick: function () { S.metas[m.id] = (+S.metas[m.id] || 0) + 1; save(); render(); }})
-    ]);
-    v.append(el("section", {class: "card"}, [
-      el("div", {class: "row", style: "justify-content:space-between"}, [el("h3", {text: m.nome + (m.menor ? " " + n(m.alvo) : "")}), el("span", {class: "pill" + (pct >= 1 ? "" : " sun"), text: n(val) + (m.menor ? "" : " de " + n(m.alvo))})]),
-      el("div", {class: "bar" + (pct >= 1 ? " full" : ""), style: "margin:12px 0"}, [el("i", {style: "width:" + Math.round(pct * 100) + "%"})]), ctrl
-    ]));
-  });
-  v.append(el("section", {class: "card"}, [el("h3", {text: "Cópia de segurança"}), el("p", {class: "small muted", text: "Os dados ficam só neste aparelho. Baixe uma cópia de vez em quando ou para passar para outro celular."}),
-    el("div", {class: "row"}, [
-      el("button", {class: "btn ghost", text: "Baixar cópia", onclick: function () { var a = el("a", {href: URL.createObjectURL(new Blob([JSON.stringify(S)], {type: "application/json"})), download: "backup-" + KEY + "-" + hoje() + ".json"}); document.body.append(a); a.click(); a.remove(); }}),
-      el("button", {class: "btn ghost", text: "Restaurar cópia", onclick: function () { var i = el("input", {type: "file", accept: "application/json"}); i.onchange = async function () { try { var s = JSON.parse(await i.files[0].text()); if (s.v === 1) { S = s; save(); render(); } } catch (e) { flash("Arquivo inválido"); } }; i.click(); }})
-    ])]));
-}
 
 window.addEventListener("hashchange", function () { atual = (location.hash || "#hoje").slice(1); render(); });
-render();
+carregar();
 </script>
 </body></html>
