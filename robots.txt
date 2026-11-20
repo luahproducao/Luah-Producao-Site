@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
 Sitemap: https://luahproducao.github.io/Luah-Producao-Site/sitemap.xml
+
+User-agent: *
+Disallow: /central-l7x9/

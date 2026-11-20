@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#14100D">
+<title>Central da Luah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cafe:#14100D;--marrom:#4A3426;--areia:#D8C7AE;--off:#EFE6D8;--ouro:#C5A059;--card:#FBF7F0;--linha:#E2D6C3;--muted:#7A6A5B;--ok:#3F7D4E;--bad:#B0412E;--warn:#B07A1E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--off);color:var(--cafe);font:15px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+header{background:var(--cafe);color:var(--off);padding:22px 18px 18px}
+header h1{font:400 30px/1.1 'Playfair Display',serif;margin:0}
+header h1 i{color:var(--ouro)}
+header p{margin:6px 0 0;color:var(--areia);font-size:14px}
+.upd{font-size:12px;color:var(--areia);opacity:.8;margin-top:8px}
+.upd.old{color:#F2B8A8;opacity:1}
+nav{position:sticky;top:0;z-index:5;background:var(--off);display:flex;gap:6px;overflow-x:auto;padding:10px 14px;border-bottom:1px solid var(--linha)}
+nav button{flex:0 0 auto;font:500 13px Inter,sans-serif;border:1px solid var(--areia);background:transparent;color:var(--marrom);border-radius:999px;padding:7px 14px;cursor:pointer}
+nav button.on{background:var(--marrom);border-color:var(--marrom);color:var(--off)}
+main{max-width:980px;margin:0 auto;padding:16px 14px 60px}
+section.tab{display:none;flex-direction:column;gap:14px}
+section.tab.on{display:flex}
+.card{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:16px}
+h2{font:600 16px Inter,sans-serif;margin:0 0 10px;color:var(--marrom)}
+h2 small{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px}
+.lead{font:400 18px/1.45 'Playfair Display',serif;margin:0}
+.lead b{color:var(--marrom)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:14px}
+.kpi .v{font:400 30px/1 'Playfair Display',serif}
+.kpi .l{font-size:12px;color:var(--muted);margin-top:6px}
+.kpi.alert .v{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:12px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:var(--off);border:1px solid var(--linha);color:var(--muted);margin-right:6px}
+.st{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.st.ok{color:var(--ok)}.st.bad{color:var(--bad)}.st.warn{color:var(--warn)}
+.late{color:var(--bad);font-weight:600}
+a{color:var(--marrom)}
+.done td{opacity:.45;text-decoration:line-through}
+input[type=checkbox]{accent-color:var(--marrom);width:18px;height:18px}
+.bar{height:8px;border-radius:99px;background:var(--off);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--ouro)}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{font:11px Inter,sans-serif;fill:var(--muted)}
+.tip{position:absolute;pointer-events:none;background:var(--cafe);color:var(--off);font-size:12px;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .1s}
+ul.list{list-style:none;margin:0;padding:0}
+ul.list li{padding:8px 0;border-bottom:1px solid var(--linha);font-size:13px}
+ul.list li b{color:var(--marrom);margin-right:6px}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.acts a{text-decoration:none;border:1px solid var(--areia);border-radius:999px;padding:7px 12px;font-size:13px;background:var(--card)}
+.sub{color:var(--muted);font-size:12px;margin:8px 0 0}
+.pend li{display:flex;gap:10px;align-items:flex-start}.pend li .tx{flex:1}.pend li .meta{display:block;font-size:11px;color:var(--muted);margin-top:2px}.pend li.done .tx{opacity:.45;text-decoration:line-through}details summary{cursor:pointer;margin-top:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Central da <i>Luah</i></h1>
+  <p>Luah Produção · Laila Luah · Bruno Luah</p>
+  <div class="upd" id="upd">Carregando…</div>
+</header>
+<nav id="nav">
+  <button data-t="hoje" class="on">Hoje</button>
+  <button data-t="conteudo">Conteúdo</button>
+  <button data-t="metricas">Métricas</button>
+  <button data-t="comercial">Comercial</button>
+  <button data-t="rotinas">Rotinas</button>
+  <button data-t="atalhos">Atalhos</button>
+</nav>
+<main>
+  <section class="tab on" id="hoje">
+    <p class="lead" id="frase">—</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="k-minhas">—</div><div class="l">Pendências suas</div></div>
+      <div class="kpi" id="k-atr-box"><div class="v" id="k-atr">—</div><div class="l">Atrasadas</div></div>
+      <div class="kpi"><div class="v" id="k-posts">—</div><div class="l">Posts previstos hoje</div></div>
+      <div class="kpi"><div class="v" id="k-falhas">—</div><div class="l">Rotinas com problema</div></div>
+    </div>
+    <div class="card"><h2>Pendências <small>marque o que já fez (fica salvo neste aparelho)</small></h2><ul class="list pend" id="t-pend"></ul></div>
+    <div class="card"><h2>Rotinas que precisam de atenção</h2><ul class="list" id="t-saude"></ul><details><summary class="sub">Ver todas as execuções</summary><ul class="list" id="t-saude-all"></ul></details></div>
+    <div class="card"><h2>O que sai hoje</h2><div class="scroll"><table><thead><tr><th>Perfil</th><th>Rede</th><th class="n">Posts</th><th>Como</th></tr></thead><tbody id="t-hoje"></tbody></table></div></div>
+    <div class="card"><h2>Próximos eventos</h2><ul class="list" id="l-prox"></ul></div>
+  </section>
+
+  <section class="tab" id="conteudo">
+    <div class="card"><h2>Plano de publicações</h2><div class="scroll"><table><thead><tr><th>Dia</th><th>Perfil</th><th>Rede</th><th class="n">Posts</th><th>Como</th></tr></thead><tbody id="t-plano"></tbody></table></div></div>
+    <div class="card">
+      <h2>Linha editorial @lailaluah</h2>
+      <p class="lead" style="font-size:16px">Curadora de desenvolvimento de marcas · <i>"Marketing vai além de só um post"</i></p>
+      <ul class="list" style="margin-top:8px">
+        <li><b>Marketing vai além de só um post</b> o que é marketing e ninguém trata como tal</li>
+        <li><b>Diário de uma Marketeira</b> bastidores, clientes, o que observou no dia</li>
+        <li><b>O que ninguém percebe</b> detalhes que fazem uma marca ser lembrada</li>
+        <li><b>O que essa marca me ensina</b> análises de marcas, de preferência da Bahia</li>
+        <li><b>Marcas que se sentem</b> experiência, atendimento, hospitalidade</li>
+        <li><b>Cortes em série (Parte 1, 2, 3…)</b> você falando para a câmera</li>
+      </ul>
+      <p class="sub">Tese: uma marca é construída pelo que entrega, pelo que desperta e pelo que permanece na memória. Estilo: títulos A/B/C, nunca texto no rosto, cor natural, carrosséis claros, música em alta, todo vídeo com som.</p>
+    </div>
+  </section>
+
+  <section class="tab" id="metricas">
+    <div class="card"><h2>Meta: 1000 seguidores até domingo 22/11</h2><div class="kpis" id="metas"></div></div>
+    <div class="card"><h2>@lailaluah · TikTok <small>média de views por vídeo, por mês</small></h2><div class="chart" id="c-laila"></div><p class="sub">Novembro inclui vídeos com poucas horas no ar. Janeiro a abril de 2026 ainda não foram lidos.</p></div>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="b-views">—</div><div class="l">Bruno · views no TikTok <span id="b-per"></span></div></div>
+      <div class="kpi"><div class="v" id="b-videos">—</div><div class="l">Bruno · vídeos publicados</div></div>
+      <div class="kpi"><div class="v" id="b-segs">—</div><div class="l">Bruno · seguidores no TikTok</div></div>
+      <div class="kpi"><div class="v" id="b-media">—</div><div class="l">Bruno · views por vídeo</div></div>
+    </div>
+    <div class="card"><h2>Bruno · TikTok <small>views por dia</small></h2><div class="chart" id="c-bruno"></div></div>
+  </section>
+
+  <section class="tab" id="comercial">
+    <div class="grid2">
+      <div class="card"><h2>Agenda de eventos e shows</h2><ul class="list" id="l-agenda"></ul></div>
+      <div class="card"><h2>Pendências comerciais</h2><div class="scroll"><table><tbody id="t-pcom"></tbody></table></div><p class="sub">Leads e orçamentos: planilha de leads (aba Atalhos), atualizada às 07:37.</p></div>
+    </div>
+    <div class="card"><h2>Clientes, cases e projetos</h2><ul class="list" id="t-cli"></ul></div>
+  </section>
+
+  <section class="tab" id="rotinas">
+    <div class="card"><h2>O que roda sozinho <small>só com o computador ligado e o app do Claude aberto</small></h2><div class="scroll"><table><thead><tr><th>Quando</th><th>Frequência</th><th>Frente</th><th>O que faz</th></tr></thead><tbody id="t-rot"></tbody></table></div></div>
+  </section>
+
+  <section class="tab" id="atalhos">
+    <div class="card"><h2>Atalhos</h2><div class="acts">
+      <a href="https://web.whatsapp.com" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="https://www.tiktok.com/tiktokstudio" target="_blank" rel="noopener">🎵 TikTok Studio</a>
+      <a href="https://www.instagram.com/lailaluah/" target="_blank" rel="noopener">📸 @lailaluah</a>
+      <a href="https://www.instagram.com/brunoluah/" target="_blank" rel="noopener">📸 @brunoluah</a>
+      <a href="https://studio.youtube.com" target="_blank" rel="noopener">▶️ YouTube Studio</a>
+      <a href="https://app.metricool.com" target="_blank" rel="noopener">📅 Metricool</a>
+      <a href="https://dashboard.kiwify.com.br" target="_blank" rel="noopener">🛒 Kiwify</a>
+      <a href="https://www.luahuniversodemarca.com.br/essencial/" target="_blank" rel="noopener">📱 LUAH Essencial</a>
+      <a href="https://docs.google.com/spreadsheets/d/1bQTwan3yv1LddYR_H1TRSWWy6G12j3PceBfSqDua1BI" target="_blank" rel="noopener">📋 Planilha de leads</a>
+      <a href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">📁 Drive</a>
+      <a href="https://calendar.google.com" target="_blank" rel="noopener">🗓️ Agenda</a>
+      <a href="https://luahproducao.github.io/BrunoLuah/" target="_blank" rel="noopener">🌐 Site do Bruno</a>
+      <a href="https://claude.ai/artifact/Cy3NuuhVnbVA8b2KVgXzGa" target="_blank" rel="noopener">✨ Central no Claude</a>
+    </div></div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const el=(t,txt,cls)=>{const e=document.createElement(t);if(txt!=null)e.textContent=txt;if(cls)e.className=cls;return e;};
+const nf=n=>n==null?'—':Number(n).toLocaleString('pt-BR');
+const dd=s=>s?s.slice(8,10)+'/'+s.slice(5,7):'';
+const hoje=new Date().toLocaleDateString('en-CA',{timeZone:'America/Bahia'});
+const link=(t,h)=>{if(!h)return document.createTextNode(t);const a=el('a',t);a.href=h;a.target='_blank';a.rel='noopener';return a;};
+const row=(tb,cells,cls)=>{const tr=el('tr',null,cls);cells.forEach(c=>{const td=el('td');if(c&&c.n){td.className='n';c=c.v;}if(c instanceof Node)td.append(c);else td.textContent=c==null?'':c;tr.append(td);});tb.append(tr);return tr;};
+const empty=(tb,msg,cols)=>{const tr=el('tr');const td=el('td',msg);td.colSpan=cols;td.style.color='var(--muted)';tr.append(td);tb.append(tr);};
+
+// abas
+const charts={};const show=t=>{setTimeout(()=>(charts[t]||[]).forEach(f=>f()),0);document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===t));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{show(b.dataset.t);history.replaceState(null,'','#'+b.dataset.t);});
+if(location.hash&&document.getElementById(location.hash.slice(1)))show(location.hash.slice(1));
+
+// feitas (neste aparelho)
+let feitas={};try{feitas=JSON.parse(localStorage.getItem('luah_feitas')||'{}')}catch(e){}
+const salva=()=>{try{localStorage.setItem('luah_feitas',JSON.stringify(feitas))}catch(e){}};
+
+function barras(box,data,label,val,tipTxt,cor){
+  box.replaceChildren();if(!data.length){box.textContent='Sem dados.';return;}
+  const W=Math.max(280,box.clientWidth||340),H=190,m={t:20,r:6,b:24,l:6};
+  const max=Math.max(...data.map(val))||1,bw=(W-m.l-m.r)/data.length;
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');
+  const tip=el('div',null,'tip');
+  const step=Math.ceil(data.length/10);
+  data.forEach((d,i)=>{const v=val(d)||0,h=(H-m.t-m.b)*v/max,x=m.l+i*bw+bw*.15,w=bw*.7,y=H-m.b-h;
+    const r=document.createElementNS(ns,'rect');Object.entries({x,y,width:w,height:Math.max(h,1),rx:3,fill:cor}).forEach(([k,v])=>r.setAttribute(k,v));
+    r.addEventListener('pointerenter',()=>{tip.textContent=tipTxt(d);tip.style.opacity=1;tip.style.left=Math.min(x,W-180)/W*100+'%';tip.style.top=Math.max(0,y-28)+'px';});
+    r.addEventListener('pointerleave',()=>tip.style.opacity=0);svg.append(r);
+    if(data.length<=12){const t=document.createElementNS(ns,'text');t.setAttribute('x',x+w/2);t.setAttribute('y',y-5);t.setAttribute('text-anchor','middle');t.textContent=nf(v);svg.append(t);}
+    if(i%step===0){const t=document.createElementNS(ns,'text');t.setAttribute('x',x+w/2);t.setAttribute('y',H-6);t.setAttribute('text-anchor','middle');t.textContent=label(d);svg.append(t);}
+  });
+  box.append(svg,tip);
+}
+
+fetch('dados.json?v='+Date.now()).then(r=>r.json()).then(D=>{
+  // atualizado
+  const at=new Date(D.atualizado),hrs=(Date.now()-at)/36e5,u=$('#upd');
+  u.textContent='Atualizado em '+at.toLocaleString('pt-BR',{timeZone:'America/Bahia',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+(hrs>36?' · desatualizado (a rotina das 23:37 não rodou)':'');
+  if(hrs>36)u.classList.add('old');
+
+  // HOJE
+  const pend=D.pendencias||[],minhas=pend.filter(p=>(p.quem||'').includes('Laila')&&!feitas[p.id]);
+  const atr=minhas.filter(p=>p.prazo&&p.prazo<hoje).length;
+  const postsHoje=(D.plano||[]).filter(p=>p.dia===hoje).reduce((t,p)=>t+(+p.posts||0),0);
+  const falhas=(D.saude||[]).filter(s=>!/conclu/i.test(s.status)).length;
+  $('#k-minhas').textContent=minhas.length;$('#k-atr').textContent=atr;$('#k-posts').textContent=postsHoje;$('#k-falhas').textContent=falhas;
+  if(atr)$('#k-atr-box').classList.add('alert');
+  const f=$('#frase');f.replaceChildren('Hoje você tem ',el('b',minhas.length+' pendências'),atr?', ':'',atr?el('b',atr+' atrasadas'):'',', ',el('b',postsHoje+' posts'),' previstos nos perfis'+(falhas?' e ':'.'),falhas?el('b',falhas+' rotinas para conferir'):'',falhas?'.':'');
+
+  const saudeLi=(ul,x)=>{const li=el('li');const st=el('span',x.status,'st '+(/conclu/i.test(x.status)?'ok':/falh|não rodou/i.test(x.status)?'bad':'warn'));li.append(st,' ',el('b',x.rotina),el('span',' · '+x.quando+(x.detalhe?' · '+x.detalhe:''),'sub'));ul.append(li);};
+  const sa=D.saude||[],prob=sa.filter(x=>!/conclu/i.test(x.status));
+  prob.forEach(x=>saudeLi($('#t-saude'),x));if(!prob.length)$('#t-saude').append(el('li','Tudo rodou certo.'));
+  sa.forEach(x=>saudeLi($('#t-saude-all'),x));
+
+  const tp=$('#t-pend');
+  pend.slice().sort((a,b)=>(a.prazo||'9')<(b.prazo||'9')?-1:1).forEach(p=>{
+    const li=el('li',null,feitas[p.id]?'done':'');const cb=el('input');cb.type='checkbox';cb.checked=!!feitas[p.id];
+    const tx=el('div',null,'tx');tx.append(el('span',p.area,'tag'),link(p.item,p.link));
+    const late=p.prazo&&p.prazo<hoje&&(p.quem||'').includes('Laila');
+    const meta=el('span',(p.quem||'')+(p.prazo?' · até '+dd(p.prazo):'')+(late?' · atrasada':''),'meta');if(late)meta.style.color='var(--bad)';tx.append(meta);
+    li.append(cb,tx);tp.append(li);
+    cb.onchange=()=>{if(cb.checked)feitas[p.id]=new Date().toISOString();else delete feitas[p.id];salva();li.classList.toggle('done',cb.checked);};
+  });
+
+  const th=$('#t-hoje'),ph=(D.plano||[]).filter(p=>p.dia===hoje);
+  ph.forEach(p=>row(th,[p.perfil,p.rede,{n:1,v:nf(p.posts)},p.o_que]));if(!ph.length)empty(th,'Nenhum post no plano para hoje.',4);
+
+  const ag=(D.agenda||[]).filter(e=>e.inicio.slice(0,10)>=hoje);
+  const fmtEv=e=>new Date(e.inicio+':00-03:00').toLocaleString('pt-BR',{timeZone:'America/Bahia',weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  const lp=$('#l-prox');ag.slice(0,5).forEach(e=>{const li=el('li');li.append(el('b',fmtEv(e)),e.evento+(e.local?' · '+e.local:''));lp.append(li);});
+  const la=$('#l-agenda');ag.forEach(e=>{const li=el('li');li.append(el('b',fmtEv(e)),e.evento+(e.local?' · '+e.local:''));la.append(li);});
+  if(!ag.length){lp.append(el('li','Nenhum evento.'));la.append(el('li','Nenhum evento.'));}
+
+  // CONTEÚDO
+  const tpl=$('#t-plano'),pl=(D.plano||[]).filter(p=>p.dia>=hoje);
+  pl.forEach(p=>row(tpl,[dd(p.dia),p.perfil,p.rede,{n:1,v:nf(p.posts)},p.o_que]));if(!pl.length)empty(tpl,'Plano ainda não atualizado.',5);
+
+  // MÉTRICAS
+  const mb=$('#metas');(D.metas||[]).forEach(m=>{const k=el('div',null,'kpi');const s=m.seguidores;
+    k.append(el('div',s==null?'—':nf(s),'v'),el('div',`${m.perfil} · ${m.rede} · `+(s==null?'sem medição ainda':`faltam ${nf(Math.max(0,m.meta-s))} · medido em ${dd(m.medido_em)}`),'l'));
+    const b=el('div',null,'bar'),i=el('i');i.style.width=(s==null?0:Math.min(100,s/m.meta*100))+'%';b.append(i);k.append(b);mb.append(k);});
+  const nomes=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const lm=D.laila_mes||[];
+  (charts.metricas=charts.metricas||[]).push(()=>barras($('#c-laila'),lm,d=>nomes[+d.mes.slice(5,7)-1]+'/'+d.mes.slice(2,4),d=>d.media_views,d=>`${nomes[+d.mes.slice(5,7)-1]}/${d.mes.slice(2,4)}: ${nf(d.media_views)} views em média · ${d.posts} vídeos · maior ${nf(d.maior)}`,'#C5A059'));
+  const bt=(D.bruno_tiktok||[]).filter(r=>r.views!=null);
+  const tv=bt.reduce((t,r)=>t+r.views,0),tvid=bt.reduce((t,r)=>t+(r.videos||0),0),segs=(D.bruno_tiktok||[]).filter(r=>r.seguidores!=null);
+  $('#b-views').textContent=nf(tv);if(bt.length)$('#b-per').textContent='('+dd(bt[0].dia)+' a '+dd(bt[bt.length-1].dia)+')';$('#b-videos').textContent=nf(tvid);$('#b-segs').textContent=segs.length?nf(segs[segs.length-1].seguidores):'—';$('#b-media').textContent=tvid?nf(Math.round(tv/tvid)):'—';
+  charts.metricas.push(()=>barras($('#c-bruno'),bt,d=>dd(d.dia),d=>d.views,d=>`${dd(d.dia)}: ${nf(d.views)} views · ${d.videos} vídeos`,'#4A3426'));
+  if(document.querySelector('#metricas.on'))charts.metricas.forEach(f=>f());
+  addEventListener('resize',()=>{if(document.querySelector('#metricas.on'))charts.metricas.forEach(f=>f());});
+
+  // COMERCIAL
+  const pc=$('#t-pcom'),pcs=pend.filter(p=>p.area==='Comercial');
+  pcs.forEach(p=>row(pc,[link(p.item,p.link),el('span',dd(p.prazo),p.prazo&&p.prazo<hoje?'late':'')],feitas[p.id]?'done':''));if(!pcs.length)empty(pc,'Nada pendente.',2);
+  const tc=$('#t-cli');(D.clientes||[]).forEach(c=>{const li=el('li');const n=el('b');n.append(link(c.nome,c.link));li.append(el('span',c.frente+' · '+c.tipo,'tag'),n,el('span',c.o_que,'sub'));li.lastChild.style.display='block';tc.append(li);});
+
+  // ROTINAS
+  const tr=$('#t-rot');(D.rotinas||[]).forEach(r=>row(tr,[r.quando,r.freq,r.frente,r.rotina]));
+}).catch(()=>{$('#upd').textContent='Não consegui carregar os dados.';});
+</script>
+</body>
+</html>

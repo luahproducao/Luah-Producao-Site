@@ -1,0 +1,701 @@
+{
+ "atualizado": "2026-11-20T00:40-03:00",
+ "pendencias": [
+  {
+   "id": "p5",
+   "area": "Comercial",
+   "item": "Confirmar evento Condomínio Praia do Castelo (21/11): comunicação pediu para segurar o contrato; Jeferson volta hoje",
+   "quem": "Laila",
+   "prazo": "2026-11-19",
+   "link": "https://web.whatsapp.com"
+  },
+  {
+   "id": "p6",
+   "area": "Conteúdo",
+   "item": "Corrigir o perfil do Chrome no YouTube Studio para retomar Shorts e playlists",
+   "quem": "Laila",
+   "prazo": "2026-11-19",
+   "link": "https://studio.youtube.com"
+  },
+  {
+   "id": "p7",
+   "area": "Sistema",
+   "item": "Publicar o Apps Script da pesquisa de satisfação e enviar a URL /exec",
+   "quem": "Laila",
+   "prazo": "2026-11-20",
+   "link": "https://script.google.com"
+  },
+  {
+   "id": "p8",
+   "area": "Sistema",
+   "item": "Mudar o local de downloads do Chrome para o Drive (Luah Produção)",
+   "quem": "Laila",
+   "prazo": "2026-11-20",
+   "link": ""
+  },
+  {
+   "id": "p11",
+   "area": "Conteúdo",
+   "item": "Fixar 3 vídeos no TikTok @lailaluah pelo app: \"Quem tenta vender pra todo mundo…\", \"Conselho tóxico…\" e \"Vender não é apenas…\"",
+   "quem": "Laila",
+   "prazo": "2026-11-20",
+   "link": "https://www.tiktok.com/@lailaluah"
+  },
+  {
+   "id": "p12",
+   "area": "Sistema",
+   "item": "Deixar o computador ligado e o app do Claude aberto das 06:47 às 23:30 (rotinas do dia)",
+   "quem": "Laila",
+   "prazo": "2026-11-20",
+   "link": ""
+  },
+  {
+   "id": "p10",
+   "area": "Conteúdo",
+   "item": "Captação Condomínio Praia do Castelo: placa do lugar, Bruno de perto, público reagindo, detalhes (drinks/decoração), 1 min de música contínua",
+   "quem": "Laila",
+   "prazo": "2026-11-21",
+   "link": ""
+  },
+  {
+   "id": "p13",
+   "area": "Comercial",
+   "item": "Ouvir a faixa de teste do Bruno (pasta Bruno Luah › Spotify) e decidir se reativa a DistroKid",
+   "quem": "Laila + Bruno",
+   "prazo": "2026-11-21",
+   "link": "https://distrokid.com"
+  },
+  {
+   "id": "p14",
+   "area": "Sistema",
+   "item": "Aceitar os termos do Pixel no Gerenciador de Eventos da Meta (para medir vendas do LUAH Essencial)",
+   "quem": "Laila",
+   "prazo": "2026-11-22",
+   "link": "https://business.facebook.com/events_manager2"
+  },
+  {
+   "id": "p15",
+   "area": "Comercial",
+   "item": "Kiwify: cupom de 100% para compra-teste e subir capa, bônus e texto de entrega do LUAH Essencial",
+   "quem": "Laila",
+   "prazo": "2026-11-22",
+   "link": "https://dashboard.kiwify.com.br"
+  },
+  {
+   "id": "p16",
+   "area": "Conteúdo",
+   "item": "Gravar 10 vídeos curtos falando (30 s cada) com as pautas do radar: série \"Marketing vai além de só um post\"",
+   "quem": "Laila",
+   "prazo": "2026-11-23",
+   "link": ""
+  }
+ ],
+ "plano": [
+  {
+   "id": "d1",
+   "dia": "2026-11-20",
+   "perfil": "@lailaluah",
+   "rede": "TikTok",
+   "posts": 60,
+   "o_que": "Sprint: 30 + lote extra de 30; às 06:47 entram 20 no estilo novo e os antigos são espaçados até 27/11"
+  },
+  {
+   "id": "d2",
+   "dia": "2026-11-20",
+   "perfil": "@lailaluah",
+   "rede": "Instagram",
+   "posts": 2,
+   "o_que": "1 corte de fala (Parte 1) e 1 carrossel, se o navegador estiver logado"
+  },
+  {
+   "id": "d3",
+   "dia": "2026-11-20",
+   "perfil": "@brunoluah",
+   "rede": "TikTok",
+   "posts": 15,
+   "o_que": "De hora em hora, 07:00 às 21:00"
+  },
+  {
+   "id": "d4",
+   "dia": "2026-11-20",
+   "perfil": "Bruno Luah",
+   "rede": "YouTube Shorts",
+   "posts": 15,
+   "o_que": "Os mesmos 15 do TikTok"
+  },
+  {
+   "id": "d5",
+   "dia": "2026-11-21",
+   "perfil": "@lailaluah",
+   "rede": "TikTok",
+   "posts": 30,
+   "o_que": "Sprint no estilo novo: 12 cortes de fala em série, 6 carrosséis, 6 Detalhes invisíveis…"
+  },
+  {
+   "id": "d6",
+   "dia": "2026-11-21",
+   "perfil": "@brunoluah",
+   "rede": "TikTok + Shorts",
+   "posts": 15,
+   "o_que": "10 de show + 5 vídeos de frase com áudio do Bruno"
+  }
+ ],
+ "rotinas": [
+  {
+   "id": "r1",
+   "quando": "20/11 · 06:47",
+   "freq": "Única",
+   "frente": "Laila Luah",
+   "rotina": "Novos conteúdos no estilo novo + espaçar os antigos nos próximos dias"
+  },
+  {
+   "id": "r2",
+   "quando": "07:37",
+   "freq": "Todo dia",
+   "frente": "Luah Produção",
+   "rotina": "WhatsApp: leads, agenda de eventos fechados e estas pendências"
+  },
+  {
+   "id": "r3",
+   "quando": "07:43",
+   "freq": "Todo dia",
+   "frente": "Bruno Luah",
+   "rotina": "Tendências do dia para os vídeos do Bruno (só sugere)"
+  },
+  {
+   "id": "r4",
+   "quando": "08:07 · 12:07 · 16:07 · 20:07",
+   "freq": "Todo dia",
+   "frente": "Laila Luah",
+   "rotina": "Responde comentários e directs no TikTok e Instagram e anota aprendizados"
+  },
+  {
+   "id": "r5",
+   "quando": "20/11 · 08:13",
+   "freq": "Única",
+   "frente": "Bruno Luah",
+   "rotina": "Escolhe as melhores músicas completas e trata uma faixa de teste para o Spotify"
+  },
+  {
+   "id": "r6",
+   "quando": "10:27 · 17:27",
+   "freq": "Todo dia",
+   "frente": "Laila Luah",
+   "rotina": "Interação com perfis do nicho: curtir, comentar, republicar"
+  },
+  {
+   "id": "r7",
+   "quando": "10:51 · 19:51",
+   "freq": "Até completar 500",
+   "frente": "Pessoal",
+   "rotina": "@laaivitoria: deixa de seguir quem não segue de volta (60 por vez)"
+  },
+  {
+   "id": "r8",
+   "quando": "13:13",
+   "freq": "20 a 22/11",
+   "frente": "Laila Luah",
+   "rotina": "Produz os 30 vídeos do dia seguinte (sprint)"
+  },
+  {
+   "id": "r9",
+   "quando": "14:41",
+   "freq": "Todo dia",
+   "frente": "Bruno Luah",
+   "rotina": "Agenda 15 vídeos no TikTok e Shorts do dia seguinte e edita brutos"
+  },
+  {
+   "id": "r10",
+   "quando": "17:13 · 19:13 · 21:13",
+   "freq": "19 a 22/11",
+   "frente": "Laila Luah",
+   "rotina": "Agenda no TikTok os vídeos do sprint com som"
+  },
+  {
+   "id": "r11",
+   "quando": "22:23",
+   "freq": "Todo dia",
+   "frente": "Laila Luah",
+   "rotina": "Stories do Instagram do dia seguinte"
+  },
+  {
+   "id": "r12",
+   "quando": "23:07",
+   "freq": "20 a 23/11",
+   "frente": "Laila Luah",
+   "rotina": "Relatório do sprint e da meta de 1000 seguidores"
+  },
+  {
+   "id": "r13",
+   "quando": "23:37",
+   "freq": "Todo dia",
+   "frente": "Central",
+   "rotina": "Atualiza esta central: posts, seguidores e rotinas"
+  },
+  {
+   "id": "r14",
+   "quando": "Dom · 16:17",
+   "freq": "Semanal",
+   "frente": "Laila Luah",
+   "rotina": "Planejamento e agendamento da semana"
+  },
+  {
+   "id": "r15",
+   "quando": "Seg · 09:37",
+   "freq": "Semanal",
+   "frente": "Laila Luah",
+   "rotina": "Relatório de marketing e vendas do LUAH Essencial"
+  },
+  {
+   "id": "r16",
+   "quando": "Seg · 16:23",
+   "freq": "Semanal",
+   "frente": "Pessoal",
+   "rotina": "Revisão da marca pessoal @laaivitoria"
+  },
+  {
+   "id": "r17",
+   "quando": "Dia 1 · 09:23",
+   "freq": "Mensal",
+   "frente": "Bruno Luah",
+   "rotina": "Revisão mensal de métricas e funil do Bruno"
+  }
+ ],
+ "clientes": [
+  {
+   "id": "c1",
+   "nome": "Bruno Luah",
+   "frente": "Produtora",
+   "tipo": "Artista",
+   "o_que": "Shows, conteúdo diário no TikTok/Shorts/Reels, YouTube de músicas completas, Spotify em preparação",
+   "link": "https://luahproducao.github.io/BrunoLuah/"
+  },
+  {
+   "id": "c2",
+   "nome": "Mariana Leal · Loja Loyall",
+   "frente": "Agência",
+   "tipo": "Consultoria",
+   "o_que": "Consultoria de influenciadora: roteiros de publi, estratégia e app \"Hoje com a Mari\"",
+   "link": ""
+  },
+  {
+   "id": "c3",
+   "nome": "Lyra Floricultura",
+   "frente": "Agência",
+   "tipo": "Consultoria",
+   "o_que": "Consultoria estratégica (Mata de São João)",
+   "link": "https://www.instagram.com/lyrafloricultura/"
+  },
+  {
+   "id": "c4",
+   "nome": "Imagem Verde Ba",
+   "frente": "Agência",
+   "tipo": "Projeto",
+   "o_que": "Escolas de surf, audiovisual e souvenirs de Imbassaí (Diogo)",
+   "link": ""
+  },
+  {
+   "id": "c5",
+   "nome": "Pizzaria Ilha do Meio",
+   "frente": "Agência",
+   "tipo": "Cliente",
+   "o_que": "Restaurante atendido (Roberto e Sheila)",
+   "link": ""
+  },
+  {
+   "id": "c6",
+   "nome": "Souza Bar",
+   "frente": "Agência",
+   "tipo": "Case",
+   "o_que": "Quase um ano de gestão de redes, equipe, captação e edição",
+   "link": ""
+  },
+  {
+   "id": "c7",
+   "nome": "Astrea Brasil",
+   "frente": "Agência",
+   "tipo": "Case",
+   "o_que": "Mais de um ano de gestão completa de marketing, incluindo tráfego pago",
+   "link": ""
+  },
+  {
+   "id": "c8",
+   "nome": "Nature Spa de Cabelos",
+   "frente": "Agência",
+   "tipo": "Case",
+   "o_que": "Alguns meses de gestão de conteúdo",
+   "link": ""
+  },
+  {
+   "id": "c9",
+   "nome": "LUAH Essencial (app)",
+   "frente": "Laila Luah",
+   "tipo": "Produto",
+   "o_que": "App de plano de conteúdo à venda pela Kiwify; teste grátis",
+   "link": "https://www.luahuniversodemarca.com.br/essencial/"
+  },
+  {
+   "id": "c10",
+   "nome": "Guia de boas-vindas para pousadas",
+   "frente": "Agência",
+   "tipo": "Produto",
+   "o_que": "Modelo de guia digital para vender a pousadas locais",
+   "link": ""
+  },
+  {
+   "id": "c11",
+   "nome": "Site portfólio da Luah",
+   "frente": "Agência",
+   "tipo": "Projeto",
+   "o_que": "Site para fechar clientes e apresentar em reuniões",
+   "link": ""
+  },
+  {
+   "id": "c12",
+   "nome": "Site da agência de passeios",
+   "frente": "Agência",
+   "tipo": "Projeto",
+   "o_que": "Site interativo de rotas e passeios do Litoral Norte",
+   "link": ""
+  }
+ ],
+ "metas": [
+  {
+   "id": "m1",
+   "perfil": "@lailaluah",
+   "rede": "TikTok",
+   "seguidores": 76,
+   "medido_em": "2026-11-19",
+   "meta": 1000,
+   "prazo": "2026-11-22"
+  },
+  {
+   "id": "m2",
+   "perfil": "@lailaluah",
+   "rede": "Instagram",
+   "seguidores": null,
+   "medido_em": "",
+   "meta": 1000,
+   "prazo": "2026-11-22"
+  }
+ ],
+ "saude": [
+  {
+   "id": "s1",
+   "quando": "19/11 17:13",
+   "rotina": "Agendar vídeos do sprint (@lailaluah)",
+   "status": "Falhou",
+   "detalhe": "Limite de uso da conta atingido; nova tentativa às 19:13"
+  },
+  {
+   "id": "s2",
+   "quando": "19/11 18:22",
+   "rotina": "Publicar 3 dos últimos editados (@lailaluah)",
+   "status": "Concluída",
+   "detalhe": "Rodou 14 min"
+  },
+  {
+   "id": "s3",
+   "quando": "19/11 18:55",
+   "rotina": "Cortes da Laila falando (Parte 1, 2, 3)",
+   "status": "Conferir",
+   "detalhe": "Terminou em 1 min: provavelmente não conseguiu acessar o computador"
+  },
+  {
+   "id": "s4",
+   "quando": "19/11 16:07",
+   "rotina": "Comentários e directs (@lailaluah)",
+   "status": "Concluída",
+   "detalhe": ""
+  },
+  {
+   "id": "s5",
+   "quando": "19/11 11:45",
+   "rotina": "Pendências e leads (WhatsApp)",
+   "status": "Concluída",
+   "detalhe": ""
+  }
+ ],
+ "laila_mes": [
+  {
+   "mes": "2025-11",
+   "posts": 3,
+   "media_views": 250,
+   "maior": 273
+  },
+  {
+   "mes": "2025-12",
+   "posts": 7,
+   "media_views": 163,
+   "maior": 208
+  },
+  {
+   "mes": "2026-05",
+   "posts": 23,
+   "media_views": 426,
+   "maior": 671
+  },
+  {
+   "mes": "2026-06",
+   "posts": 15,
+   "media_views": 504,
+   "maior": 716
+  },
+  {
+   "mes": "2026-07",
+   "posts": 11,
+   "media_views": 402,
+   "maior": 595
+  },
+  {
+   "mes": "2026-08",
+   "posts": 21,
+   "media_views": 380,
+   "maior": 594
+  },
+  {
+   "mes": "2026-09",
+   "posts": 10,
+   "media_views": 413,
+   "maior": 558
+  },
+  {
+   "mes": "2026-11",
+   "posts": 20,
+   "media_views": 45,
+   "maior": 379
+  }
+ ],
+ "bruno_tiktok": [
+  {
+   "dia": "2026-10-29",
+   "videos": 3,
+   "views": 1159,
+   "curtidas": 73,
+   "seguidores": 1864
+  },
+  {
+   "dia": "2026-10-30",
+   "videos": 7,
+   "views": 1345,
+   "curtidas": 59,
+   "seguidores": null
+  },
+  {
+   "dia": "2026-10-31",
+   "videos": null,
+   "views": null,
+   "curtidas": null,
+   "seguidores": 1865
+  },
+  {
+   "dia": "2026-11-01",
+   "videos": null,
+   "views": null,
+   "curtidas": null,
+   "seguidores": 1865
+  },
+  {
+   "dia": "2026-11-02",
+   "videos": 6,
+   "views": 1213,
+   "curtidas": 58,
+   "seguidores": 1865
+  },
+  {
+   "dia": "2026-11-03",
+   "videos": 2,
+   "views": 387,
+   "curtidas": 16,
+   "seguidores": 1866
+  },
+  {
+   "dia": "2026-11-04",
+   "videos": 4,
+   "views": 812,
+   "curtidas": 33,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-05",
+   "videos": 5,
+   "views": 936,
+   "curtidas": 29,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-06",
+   "videos": 5,
+   "views": 839,
+   "curtidas": 28,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-07",
+   "videos": 5,
+   "views": 909,
+   "curtidas": 21,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-08",
+   "videos": 5,
+   "views": 831,
+   "curtidas": 35,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-09",
+   "videos": 5,
+   "views": 902,
+   "curtidas": 22,
+   "seguidores": 1867
+  },
+  {
+   "dia": "2026-11-10",
+   "videos": 5,
+   "views": 988,
+   "curtidas": 22,
+   "seguidores": 1868
+  },
+  {
+   "dia": "2026-11-11",
+   "videos": 6,
+   "views": 1044,
+   "curtidas": 36,
+   "seguidores": 1864
+  },
+  {
+   "dia": "2026-11-12",
+   "videos": null,
+   "views": null,
+   "curtidas": null,
+   "seguidores": 1864
+  },
+  {
+   "dia": "2026-11-14",
+   "videos": 1,
+   "views": 469,
+   "curtidas": 23,
+   "seguidores": null
+  },
+  {
+   "dia": "2026-11-15",
+   "videos": null,
+   "views": null,
+   "curtidas": null,
+   "seguidores": 1864
+  },
+  {
+   "dia": "2026-11-16",
+   "videos": 3,
+   "views": 558,
+   "curtidas": 24,
+   "seguidores": 1864
+  },
+  {
+   "dia": "2026-11-17",
+   "videos": 3,
+   "views": 494,
+   "curtidas": 33,
+   "seguidores": 1866
+  }
+ ],
+ "agenda": [
+  {
+   "inicio": "2026-11-20T16:00",
+   "evento": "Bruno Luah | Cícero (sexta)",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-21T16:00",
+   "evento": "Bruno Luah | Pôr do sol brisas",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-21T18:00",
+   "evento": "Evento Condomínio Praia do Castelo",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-21T21:00",
+   "evento": "Bruno Luah | Noite do Branco",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-22T12:00",
+   "evento": "Bruno Luah | Cícero (domingo)",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-24T16:00",
+   "evento": "Bruno Luah | PDS mar",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-24T19:45",
+   "evento": "Bruno Luah | Lobby sol premium",
+   "local": "Mata de São João"
+  },
+  {
+   "inicio": "2026-11-25T19:00",
+   "evento": "Bruno Luah | Lobby ibero Bahia",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-27T16:00",
+   "evento": "Bruno Luah | Cícero (sexta)",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-28T16:00",
+   "evento": "Bruno Luah | Pôr do sol brisas",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-28T21:00",
+   "evento": "Bruno Luah | Noite do Branco",
+   "local": ""
+  },
+  {
+   "inicio": "2026-11-29T12:00",
+   "evento": "Bruno Luah | Cícero (domingo)",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-01T16:00",
+   "evento": "Bruno Luah | PDS mar",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-01T19:45",
+   "evento": "Bruno Luah | Lobby sol premium",
+   "local": "Mata de São João"
+  },
+  {
+   "inicio": "2026-12-02T19:00",
+   "evento": "Bruno Luah | Lobby ibero Bahia",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-04T16:00",
+   "evento": "Bruno Luah | Cícero (sexta)",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-05T16:00",
+   "evento": "Bruno Luah | Pôr do sol brisas",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-05T21:00",
+   "evento": "Bruno Luah | Noite do Branco",
+   "local": ""
+  },
+  {
+   "inicio": "2026-12-06T12:00",
+   "evento": "Bruno Luah | Cícero (domingo)",
+   "local": ""
+  }
+ ]
+}
