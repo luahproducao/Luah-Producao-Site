@@ -2,14 +2,6 @@
  "atualizado": "2026-11-20T00:40-03:00",
  "pendencias": [
   {
-   "id": "p5",
-   "area": "Comercial",
-   "item": "Confirmar evento Condomínio Praia do Castelo (21/11): comunicação pediu para segurar o contrato; Jeferson volta hoje",
-   "quem": "Laila",
-   "prazo": "2026-11-19",
-   "link": "https://web.whatsapp.com"
-  },
-  {
    "id": "p6",
    "area": "Conteúdo",
    "item": "Corrigir o perfil do Chrome no YouTube Studio para retomar Shorts e playlists",
@@ -47,14 +39,6 @@
    "item": "Deixar o computador ligado e o app do Claude aberto das 06:47 às 23:30 (rotinas do dia)",
    "quem": "Laila",
    "prazo": "2026-11-20",
-   "link": ""
-  },
-  {
-   "id": "p10",
-   "area": "Conteúdo",
-   "item": "Captação Condomínio Praia do Castelo: placa do lugar, Bruno de perto, público reagindo, detalhes (drinks/decoração), 1 min de música contínua",
-   "quem": "Laila",
-   "prazo": "2026-11-21",
    "link": ""
   },
   {
@@ -610,11 +594,6 @@
   {
    "inicio": "2026-11-21T16:00",
    "evento": "Bruno Luah | Pôr do sol brisas",
-   "local": ""
-  },
-  {
-   "inicio": "2026-11-21T18:00",
-   "evento": "Evento Condomínio Praia do Castelo",
    "local": ""
   },
   {
