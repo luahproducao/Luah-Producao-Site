@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-23T12:32-03:00",
+ "atualizado": "2026-11-23T23:45:00-03:00",
  "pendencias": [
   {
    "id": "p1",
@@ -94,111 +94,55 @@
  "rotinas": [
   {
    "id": "r1",
-   "quando": "06:41 · 14:41",
-   "freq": "Todo dia",
-   "frente": "Laila Luah",
-   "rotina": "Mantém 30 posts por dia agendados no TikTok pela FILA (+ 2–3 no Instagram)"
-  },
-  {
-   "id": "r2",
    "quando": "07:37",
    "freq": "Todo dia",
    "frente": "Luah Produção",
    "rotina": "WhatsApp: leads, agenda de eventos fechados e pendências"
   },
   {
-   "id": "r3",
+   "id": "r2",
    "quando": "07:43",
    "freq": "Todo dia",
    "frente": "Bruno Luah",
    "rotina": "Tendências do dia para os vídeos do Bruno (só sugere)"
   },
   {
-   "id": "r4",
-   "quando": "08:07 · 12:07 · 16:07 · 20:07",
-   "freq": "Todo dia",
-   "frente": "Laila Luah",
-   "rotina": "Responde comentários e directs no TikTok e Instagram"
-  },
-  {
-   "id": "r5",
-   "quando": "10:27 · 17:27",
-   "freq": "Todo dia",
-   "frente": "Laila Luah",
-   "rotina": "Interação com perfis do nicho: curtir, comentar, republicar"
-  },
-  {
-   "id": "r6",
+   "id": "r3",
    "quando": "10:51 · 19:51",
    "freq": "Até completar 500",
    "frente": "Pessoal",
    "rotina": "@laaivitoria: deixa de seguir quem não segue de volta"
   },
   {
-   "id": "r7",
+   "id": "r4",
    "quando": "14:41",
    "freq": "Todo dia",
    "frente": "Bruno Luah",
    "rotina": "Agenda 15 vídeos no TikTok e Shorts do dia seguinte e edita brutos"
   },
   {
-   "id": "r8",
-   "quando": "17:13 · 19:13 · 21:13",
-   "freq": "19 a 22/11 (já passou)",
-   "frente": "Laila Luah",
-   "rotina": "Agenda no TikTok os vídeos do sprint com som"
-  },
-  {
-   "id": "r9",
-   "quando": "22:23",
-   "freq": "Todo dia",
-   "frente": "Laila Luah",
-   "rotina": "Stories do Instagram do dia seguinte"
-  },
-  {
-   "id": "r10",
-   "quando": "23:07",
-   "freq": "20 a 23/11",
-   "frente": "Laila Luah",
-   "rotina": "Relatório do sprint e da meta de 1000 seguidores"
-  },
-  {
-   "id": "r11",
+   "id": "r5",
    "quando": "23:37",
    "freq": "Todo dia",
    "frente": "Central",
    "rotina": "Atualiza esta central: posts, seguidores e rotinas"
   },
   {
-   "id": "r12",
+   "id": "r6",
    "quando": "De hora em hora (:53), 07–23h",
    "freq": "Todo dia",
    "frente": "Sistema",
    "rotina": "Relança rotinas paradas por limite de uso"
   },
   {
-   "id": "r13",
-   "quando": "Dom · 16:17",
-   "freq": "Semanal",
-   "frente": "Laila Luah",
-   "rotina": "Planejamento e agendamento da semana"
-  },
-  {
-   "id": "r14",
-   "quando": "Seg · 09:37",
-   "freq": "Semanal",
-   "frente": "Laila Luah",
-   "rotina": "Relatório de marketing e vendas do LUAH Essencial"
-  },
-  {
-   "id": "r15",
+   "id": "r7",
    "quando": "Seg · 16:23",
    "freq": "Semanal",
    "frente": "Pessoal",
    "rotina": "Revisão da marca pessoal @laaivitoria"
   },
   {
-   "id": "r16",
+   "id": "r8",
    "quando": "Dia 1 · 09:23",
    "freq": "Mensal",
    "frente": "Bruno Luah",
@@ -326,101 +270,101 @@
  "saude": [
   {
    "id": "s1",
-   "quando": "23/11 11:53",
+   "quando": "23/11 22:53",
    "rotina": "Retomar rotinas paradas por limite de uso",
    "status": "Concluída",
-   "detalhe": "Rodou às 11:53; nada para relançar"
+   "detalhe": "Rodou às 22:53; nada parado por limite"
   },
   {
    "id": "s2",
-   "quando": "23/11 10:51",
-   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 10:51; voltou a rodar com atraso às 12:29 (em andamento)"
+   "quando": "23/11 20:07",
+   "rotina": "Responder comentários e directs",
+   "status": "Conferir",
+   "detalhe": "Rodou às 20:08 e terminou em 21 s, rápido demais"
   },
   {
    "id": "s3",
-   "quando": "23/11 10:27",
-   "rotina": "@lailaluah — interação com perfis",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 10:27; voltou a rodar com atraso às 12:29 (em andamento)"
+   "quando": "23/11 19:51",
+   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
+   "status": "Conferir",
+   "detalhe": "Rodou às 19:52 e terminou em 24 s, rápido demais"
   },
   {
    "id": "s4",
-   "quando": "23/11 09:37",
-   "rotina": "Relatório semanal de marketing e vendas",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 09:37; voltou a rodar com atraso às 12:28 (em andamento)"
+   "quando": "23/11 17:27",
+   "rotina": "@lailaluah — interação com perfis",
+   "status": "Conferir",
+   "detalhe": "Rodou às 17:28 e terminou em 23 s, rápido demais"
   },
   {
    "id": "s5",
+   "quando": "23/11 16:23",
+   "rotina": "Marca pessoal Laila — revisão semanal",
+   "status": "Concluída",
+   "detalhe": "Rodou às 16:24 (7 min)"
+  },
+  {
+   "id": "s6",
+   "quando": "23/11 14:41",
+   "rotina": "@lailaluah — 30 posts/dia pela FILA",
+   "status": "Concluída",
+   "detalhe": "Rodou com atraso às 16:59 (20 min)"
+  },
+  {
+   "id": "s7",
+   "quando": "23/11 14:41",
+   "rotina": "Bruno Luah — 15 vídeos/dia",
+   "status": "Conferir",
+   "detalhe": "Rodou com atraso às 16:58 e terminou em 34 s, rápido demais"
+  },
+  {
+   "id": "s8",
+   "quando": "23/11 10:51",
+   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 10:51; rodou com atraso às 12:29"
+  },
+  {
+   "id": "s9",
+   "quando": "23/11 10:27",
+   "rotina": "@lailaluah — interação com perfis",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 10:27; rodou com atraso às 12:29"
+  },
+  {
+   "id": "s10",
+   "quando": "23/11 09:37",
+   "rotina": "Relatório semanal de marketing e vendas",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 09:37; rodou com atraso às 12:28 e concluiu (2 min)"
+  },
+  {
+   "id": "s11",
    "quando": "23/11 08:07",
    "rotina": "Responder comentários e directs",
    "status": "Conferir",
    "detalhe": "Não rodou às 08:07; rodou com atraso às 12:28 e terminou em 45 s"
   },
   {
-   "id": "s6",
+   "id": "s12",
    "quando": "23/11 07:43",
    "rotina": "Tendências diárias Bruno Luah",
    "status": "Conferir",
    "detalhe": "Disparou às 07:44, mas sem resultado registrado"
   },
   {
-   "id": "s7",
+   "id": "s13",
    "quando": "23/11 07:37",
    "rotina": "Pendências e leads diários",
    "status": "Não rodou",
-   "detalhe": "Não rodou às 07:37; voltou a rodar com atraso às 12:28 (já atualizou as pendências)"
-  },
-  {
-   "id": "s8",
-   "quando": "23/11 06:41",
-   "rotina": "@lailaluah — 30 posts/dia pela FILA",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 06:41 nem às 14:41 de 22/11; voltou a rodar com atraso às 12:28 (em andamento)"
-  },
-  {
-   "id": "s9",
-   "quando": "22/11 23:37",
-   "rotina": "Central da Luah",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 23:37; esta atualização rodou às 12:29 de 23/11. Chrome sem resposta: seguidores e mês da Laila não lidos"
-  },
-  {
-   "id": "s10",
-   "quando": "22/11 23:07",
-   "rotina": "Relatório do sprint",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 23:07; voltou a rodar com atraso às 12:28 (em andamento)"
-  },
-  {
-   "id": "s11",
-   "quando": "22/11 22:23",
-   "rotina": "Stories do Instagram (amanhã)",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 22:23; voltou a rodar com atraso às 12:28 (em andamento)"
-  },
-  {
-   "id": "s12",
-   "quando": "22/11 21:13",
-   "rotina": "Sprint — agendamento com som",
-   "status": "Conferir",
-   "detalhe": "Não rodou às 17:13, 19:13 e 21:13; rodou com atraso às 12:29 e terminou em 32 s, rápido demais"
-  },
-  {
-   "id": "s13",
-   "quando": "22/11 16:17",
-   "rotina": "Planejamento e agendamento semanal",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 16:17 de domingo; voltou a rodar com atraso às 12:28 (em andamento)"
+   "detalhe": "Não rodou às 07:37; rodou com atraso às 12:28 e concluiu"
   },
   {
    "id": "s14",
-   "quando": "22/11 14:41",
-   "rotina": "Bruno Luah — 15 vídeos/dia",
+   "quando": "23/11 06:41",
+   "rotina": "@lailaluah — 30 posts/dia pela FILA",
    "status": "Não rodou",
-   "detalhe": "Não rodou às 14:41; voltou a rodar com atraso às 12:28 (em andamento)"
+   "detalhe": "Não rodou às 06:41; rodou com atraso às 12:28"
   }
  ],
  "laila_mes": [
