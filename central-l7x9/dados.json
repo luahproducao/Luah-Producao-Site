@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-23T23:45:00-03:00",
+ "atualizado": "2026-11-25T18:25:00-03:00",
  "pendencias": [
   {
    "id": "p1",
@@ -67,26 +67,26 @@
   },
   {
    "id": "p9",
-   "area": "Sistema",
-   "item": "Reconectar o WhatsApp Web e o Claude in Chrome no computador",
-   "quem": "Laila",
-   "prazo": "2026-11-23",
-   "link": "https://web.whatsapp.com"
-  },
-  {
-   "id": "p10",
-   "area": "Conteúdo",
-   "item": "Agendar vídeos da semana (Padrão V3)",
-   "quem": "Claude",
-   "prazo": "2026-11-23",
-   "link": ""
-  },
-  {
-   "id": "p11",
    "area": "Conteúdo",
    "item": "Gravar 10 vídeos curtos falando (30 s cada) com as pautas do radar: série \"Marketing vai além de só um post\"",
    "quem": "Laila",
    "prazo": "2026-11-23",
+   "link": ""
+  },
+  {
+   "id": "p10",
+   "area": "Sistema",
+   "item": "Reconectar o WhatsApp Web no computador (pediu QR code) e deixar aberto no Chrome que o Claude usa",
+   "quem": "Laila",
+   "prazo": "2026-11-25",
+   "link": "https://web.whatsapp.com"
+  },
+  {
+   "id": "p11",
+   "area": "Conteúdo",
+   "item": "Agendar vídeos da semana (Padrão V3)",
+   "quem": "Claude",
+   "prazo": "2026-11-25",
    "link": ""
   }
  ],
@@ -252,8 +252,8 @@
    "id": "m1",
    "perfil": "@lailaluah",
    "rede": "TikTok",
-   "seguidores": 76,
-   "medido_em": "2026-11-19",
+   "seguidores": 75,
+   "medido_em": "2026-11-25",
    "meta": 1000,
    "prazo": "2026-11-22"
   },
@@ -261,8 +261,8 @@
    "id": "m2",
    "perfil": "@lailaluah",
    "rede": "Instagram",
-   "seguidores": null,
-   "medido_em": "",
+   "seguidores": 241,
+   "medido_em": "2026-11-25",
    "meta": 1000,
    "prazo": "2026-11-22"
   }
@@ -270,101 +270,59 @@
  "saude": [
   {
    "id": "s1",
-   "quando": "23/11 22:53",
-   "rotina": "Retomar rotinas paradas por limite de uso",
-   "status": "Concluída",
-   "detalhe": "Rodou às 22:53; nada parado por limite"
+   "quando": "25/11 18:07",
+   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 10:51; começou com atraso às 18:06 (em andamento)"
   },
   {
    "id": "s2",
-   "quando": "23/11 20:07",
-   "rotina": "Responder comentários e directs",
-   "status": "Conferir",
-   "detalhe": "Rodou às 20:08 e terminou em 21 s, rápido demais"
+   "quando": "25/11 18:06",
+   "rotina": "Bruno Luah — 15 vídeos/dia",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 14:41; começou com atraso às 18:06 (em andamento)"
   },
   {
    "id": "s3",
-   "quando": "23/11 19:51",
-   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
-   "status": "Conferir",
-   "detalhe": "Rodou às 19:52 e terminou em 24 s, rápido demais"
+   "quando": "25/11 18:06",
+   "rotina": "Pendências e leads diários",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 07:37; começou com atraso às 18:06 e já atualizou as pendências"
   },
   {
    "id": "s4",
-   "quando": "23/11 17:27",
-   "rotina": "@lailaluah — interação com perfis",
-   "status": "Conferir",
-   "detalhe": "Rodou às 17:28 e terminou em 23 s, rápido demais"
+   "quando": "25/11 17:53",
+   "rotina": "Retomar rotinas paradas por limite de uso",
+   "status": "Concluída",
+   "detalhe": "Rodou às 17:53; nada parado por limite"
   },
   {
    "id": "s5",
-   "quando": "23/11 16:23",
-   "rotina": "Marca pessoal Laila — revisão semanal",
-   "status": "Concluída",
-   "detalhe": "Rodou às 16:24 (7 min)"
+   "quando": "25/11 07:43",
+   "rotina": "Tendências diárias Bruno Luah",
+   "status": "Conferir",
+   "detalhe": "Disparou às 07:43, mas sem resultado registrado"
   },
   {
    "id": "s6",
-   "quando": "23/11 14:41",
-   "rotina": "@lailaluah — 30 posts/dia pela FILA",
-   "status": "Concluída",
-   "detalhe": "Rodou com atraso às 16:59 (20 min)"
+   "quando": "24/11 23:37",
+   "rotina": "Central da Luah — atualizar painel",
+   "status": "Não rodou",
+   "detalhe": "Não rodou às 23:37; rodou com atraso hoje às 18:06"
   },
   {
    "id": "s7",
-   "quando": "23/11 14:41",
-   "rotina": "Bruno Luah — 15 vídeos/dia",
+   "quando": "24/11 19:51",
+   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
    "status": "Conferir",
-   "detalhe": "Rodou com atraso às 16:58 e terminou em 34 s, rápido demais"
+   "detalhe": "Rodou às 19:51 e terminou em 53 s, rápido demais"
   },
   {
    "id": "s8",
-   "quando": "23/11 10:51",
-   "rotina": "@laaivitoria — deixar de seguir quem não segue de volta",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 10:51; rodou com atraso às 12:29"
-  },
-  {
-   "id": "s9",
-   "quando": "23/11 10:27",
-   "rotina": "@lailaluah — interação com perfis",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 10:27; rodou com atraso às 12:29"
-  },
-  {
-   "id": "s10",
-   "quando": "23/11 09:37",
-   "rotina": "Relatório semanal de marketing e vendas",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 09:37; rodou com atraso às 12:28 e concluiu (2 min)"
-  },
-  {
-   "id": "s11",
-   "quando": "23/11 08:07",
-   "rotina": "Responder comentários e directs",
-   "status": "Conferir",
-   "detalhe": "Não rodou às 08:07; rodou com atraso às 12:28 e terminou em 45 s"
-  },
-  {
-   "id": "s12",
-   "quando": "23/11 07:43",
-   "rotina": "Tendências diárias Bruno Luah",
-   "status": "Conferir",
-   "detalhe": "Disparou às 07:44, mas sem resultado registrado"
-  },
-  {
-   "id": "s13",
-   "quando": "23/11 07:37",
-   "rotina": "Pendências e leads diários",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 07:37; rodou com atraso às 12:28 e concluiu"
-  },
-  {
-   "id": "s14",
-   "quando": "23/11 06:41",
-   "rotina": "@lailaluah — 30 posts/dia pela FILA",
-   "status": "Não rodou",
-   "detalhe": "Não rodou às 06:41; rodou com atraso às 12:28"
+   "quando": "24/11 18:40",
+   "rotina": "Retomar tarefa do @laaivitoria (lembrete)",
+   "status": "Concluída",
+   "detalhe": "Lembrete entregue na conversa às 18:40"
   }
  ],
  "laila_mes": [
@@ -411,10 +369,16 @@
    "maior": 558
   },
   {
+   "mes": "2026-10",
+   "posts": 0,
+   "media_views": 0,
+   "maior": 0
+  },
+  {
    "mes": "2026-11",
-   "posts": 20,
-   "media_views": 45,
-   "maior": 379
+   "posts": 19,
+   "media_views": 162,
+   "maior": 452
   }
  ],
  "bruno_tiktok": [
@@ -428,7 +392,7 @@
   {
    "dia": "2026-10-30",
    "videos": 7,
-   "views": 1412,
+   "views": 1414,
    "curtidas": 59,
    "seguidores": null
   },
@@ -456,64 +420,64 @@
   {
    "dia": "2026-11-03",
    "videos": 2,
-   "views": 425,
+   "views": 426,
    "curtidas": 17,
    "seguidores": 1866
   },
   {
    "dia": "2026-11-04",
    "videos": 4,
-   "views": 858,
-   "curtidas": 33,
+   "views": 860,
+   "curtidas": 34,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-05",
    "videos": 5,
-   "views": 1024,
+   "views": 1027,
    "curtidas": 29,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-06",
    "videos": 5,
-   "views": 897,
+   "views": 898,
    "curtidas": 28,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-07",
    "videos": 5,
-   "views": 982,
+   "views": 983,
    "curtidas": 21,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-08",
    "videos": 5,
-   "views": 874,
+   "views": 875,
    "curtidas": 35,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-09",
    "videos": 5,
-   "views": 946,
+   "views": 948,
    "curtidas": 24,
    "seguidores": 1867
   },
   {
    "dia": "2026-11-10",
    "videos": 5,
-   "views": 1038,
+   "views": 1039,
    "curtidas": 24,
    "seguidores": 1868
   },
   {
    "dia": "2026-11-11",
    "videos": 6,
-   "views": 1163,
-   "curtidas": 40,
+   "views": 1165,
+   "curtidas": 41,
    "seguidores": 1864
   },
   {
@@ -526,8 +490,8 @@
   {
    "dia": "2026-11-14",
    "videos": 1,
-   "views": 485,
-   "curtidas": 23,
+   "views": 486,
+   "curtidas": 24,
    "seguidores": null
   },
   {
@@ -540,14 +504,14 @@
   {
    "dia": "2026-11-16",
    "videos": 3,
-   "views": 616,
-   "curtidas": 26,
+   "views": 617,
+   "curtidas": 27,
    "seguidores": 1864
   },
   {
    "dia": "2026-11-17",
    "videos": 3,
-   "views": 648,
+   "views": 651,
    "curtidas": 44,
    "seguidores": 1866
   },
@@ -578,19 +542,16 @@
    "views": null,
    "curtidas": null,
    "seguidores": 1910
+  },
+  {
+   "dia": "2026-11-23",
+   "videos": null,
+   "views": null,
+   "curtidas": null,
+   "seguidores": 1909
   }
  ],
  "agenda": [
-  {
-   "inicio": "2026-11-24T16:00",
-   "evento": "Bruno Luah | PDS mar",
-   "local": ""
-  },
-  {
-   "inicio": "2026-11-24T19:45",
-   "evento": "Bruno Luah | Lobby sol premium",
-   "local": "Mata de São João"
-  },
   {
    "inicio": "2026-11-25T19:00",
    "evento": "Bruno Luah | Lobby ibero Bahia",
@@ -730,11 +691,6 @@
    "inicio": "2026-12-22T19:45",
    "evento": "Bruno Luah | Lobby sol premium",
    "local": "Mata de São João"
-  },
-  {
-   "inicio": "2026-12-23T19:00",
-   "evento": "Bruno Luah | Lobby ibero Bahia",
-   "local": ""
   }
  ]
 }
